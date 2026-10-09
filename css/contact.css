@@ -1,0 +1,736 @@
+/* ========================================================================
+   BATIBID — CONTACT (PAGE CONTACT OFFICIELLE)
+   Fidélité stricte à la maquette de référence media_1788536487277.jpg
+   Palette : Terracotta var(--clr-primary) · Brun var(--clr-dark) / #160F0A · Crème var(--clr-light)
+   Numéro officiel : +229 01 42 48 48 48
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   1. STRUCTURE GÉNÉRALE & FILIGRANE ARCHITECTURAL
+   ------------------------------------------------------------------------ */
+.contact-page {
+  position: relative;
+  background-color: var(--clr-light, var(--clr-light));
+  padding: 4.5rem 0 6rem;
+  min-height: 85vh;
+  overflow: hidden;
+}
+
+.contact-bg-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url('../assets/images/plan.webp');
+  background-repeat: repeat;
+  background-size: 650px;
+  z-index: 0;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 4.5rem;
+  align-items: flex-start;
+}
+
+/* ------------------------------------------------------------------------
+   2. COLONNE GAUCHE : IDENTITÉ ÉDITORIALE & CANAUX DIRECTS
+   ------------------------------------------------------------------------ */
+.contact-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-eyebrow {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--clr-primary, var(--clr-primary));
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-eyebrow-line {
+  width: 38px;
+  height: 1.5px;
+  background-color: var(--clr-primary, var(--clr-primary));
+  border-radius: 1px;
+  display: inline-block;
+}
+
+.contact-headline {
+  /* font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: var(--fs-h1-fluid, clamp(2.1rem, 5vw + 0.5rem, 3.2rem));
+  line-height: 1.18;
+  font-weight: 600;
+  color: var(--clr-dark, var(--clr-dark));
+  margin: 0 0 1.65rem;
+  letter-spacing: -0.015em; */
+
+      font-family: var(--loc-font-heading);
+    font-size: var(--fs-h1-fluid, clamp(2.1rem, 5vw + 0.5rem, 3.5rem));
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--loc-text-dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.contact-subtext {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--clr-dark-soft);
+  max-width: 480px;
+  margin: 0 0 2.25rem;
+}
+
+/* Bouton CTA WhatsApp Sombre (conforme à la maquette) */
+.contact-whatsapp-wrap {
+  margin-bottom: 3rem;
+}
+
+.btn-whatsapp-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: #160F0A;
+  color: var(--white);
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-weight: 600;
+  font-size: 0.96rem;
+  padding: 0.95rem 1.85rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(22, 15, 10, 0.2);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-whatsapp-dark:hover {
+  background-color: #261911;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22, 15, 10, 0.28);
+  color: var(--white);
+}
+
+.whatsapp-icon {
+  color: #25D366;
+  font-size: 1.25rem;
+}
+
+/* Liste des 3 canaux d'information */
+.contact-channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.contact-channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+
+.contact-channel-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: #FFF2E8;
+  color: var(--clr-primary, var(--clr-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(217, 87, 30, 0.22);
+}
+
+.contact-channel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.channel-label {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--clr-dark, #1C130D);
+}
+
+.channel-value {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.9rem;
+  color: var(--clr-dark-soft);
+  line-height: 1.45;
+}
+
+.channel-link {
+  color: var(--clr-primary, var(--clr-primary));
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.channel-link:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------
+   3. COLONNE DROITE : CARTE DE FORMULAIRE INTERACTIF
+   ------------------------------------------------------------------------ */
+.contact-card-panel {
+  background: var(--white);
+  border: 1px solid rgba(59, 31, 11, 0.08);
+  border-radius: 24px;
+  padding: 3rem 3rem 3.5rem;
+  box-shadow: 0 12px 40px rgba(59, 31, 11, 0.06);
+  position: relative;
+}
+
+.contact-card-title {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: var(--fs-h3-fluid, clamp(1.35rem, 2.5vw, 1.85rem));
+  font-weight: 600;
+  color: var(--clr-dark, #1C130D);
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+
+/* Stepper multi-étapes (01 Identité —— 02 Coordonnées —— 03 Message) */
+.contact-stepper-wrap {
+  margin-bottom: 2.25rem;
+}
+
+.contact-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.stepper-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid #E2D9D2;
+  color: #8A7B70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.stepper-label {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.82rem;
+  color: #8A7B70;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* États actif et terminé du stepper */
+.stepper-item.active .stepper-circle {
+  background-color: var(--clr-primary, var(--clr-primary));
+  border-color: var(--clr-primary, var(--clr-primary));
+  color: var(--white);
+  box-shadow: 0 3px 10px rgba(217, 87, 30, 0.32);
+}
+
+.stepper-item.active .stepper-label {
+  color: var(--clr-dark, #1C130D);
+  font-weight: 700;
+}
+
+.stepper-item.done .stepper-circle {
+  background-color: var(--clr-primary, var(--clr-primary));
+  border-color: var(--clr-primary, var(--clr-primary));
+  color: var(--white);
+}
+
+.stepper-item.done .stepper-label {
+  color: var(--clr-dark, #1C130D);
+  font-weight: 600;
+}
+
+/* Lignes de liaison horizontales du stepper */
+.stepper-line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #EFE8E2;
+  position: relative;
+  margin: 0 0.5rem -1.2rem;
+  z-index: 1;
+}
+
+.stepper-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--clr-primary, var(--clr-primary));
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------------
+   4. ÉTAPES DU FORMULAIRE ET CHAMPS DE SAISIE
+   ------------------------------------------------------------------------ */
+.contact-step-content {
+  display: none;
+  animation: fadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.contact-step-content.active {
+  display: block;
+}
+
+.form-field-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-field-label {
+  display: block;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--clr-dark, #1C130D);
+  margin-bottom: 0.5rem;
+}
+
+.contact-input-wrap,
+.contact-select-wrap {
+  position: relative;
+}
+
+.contact-input,
+.contact-select,
+.contact-textarea {
+  width: 100%;
+  border: 1.5px solid #E2D9D2;
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.95rem;
+  color: var(--clr-dark, #1C130D);
+  background-color: var(--white);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.contact-input:focus,
+.contact-select:focus,
+.contact-textarea:focus {
+  border-color: var(--clr-primary, var(--clr-primary));
+  box-shadow: 0 0 0 3px rgba(217, 87, 30, 0.12);
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: #A0948C;
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.55;
+}
+
+.field-error-hint {
+  display: none;
+  color: #D32F2F;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+  font-weight: 500;
+}
+
+.has-error .contact-input,
+.has-error .contact-textarea {
+  border-color: #D32F2F;
+}
+
+.has-error .field-error-hint {
+  display: block;
+}
+
+/* ------------------------------------------------------------------------
+   5. BOUTONS D'ACTION DU FORMULAIRE
+   ------------------------------------------------------------------------ */
+.contact-step-actions {
+  margin-top: 1rem;
+}
+
+.btn-step-continue {
+  width: 100%;
+  background-color: var(--clr-primary, var(--clr-primary));
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(217, 87, 30, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-step-continue:hover {
+  background-color: #C24816;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(217, 87, 30, 0.36);
+  color: var(--white);
+}
+
+.btn-step-prev {
+  background-color: transparent;
+  border: 1.5px solid var(--clr-border-strong, rgba(59, 31, 11, 0.22));
+  color: var(--clr-dark, var(--clr-dark));
+  border-radius: 10px;
+  padding: 0.95rem 1.25rem;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-step-prev:hover {
+  background-color: var(--clr-light, var(--clr-light));
+  border-color: var(--clr-dark, var(--clr-dark));
+}
+
+.step-actions-dual {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.step-actions-dual .btn-step-continue {
+  margin-top: 0;
+}
+
+/* Boîte de confirmation (Étape 4 Succès) */
+.contact-success-box {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.success-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--success-light);
+  color: var(--success);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.success-title {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--clr-dark, #1C130D);
+  margin-bottom: 0.75rem;
+}
+
+.success-desc {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.95rem;
+  color: var(--clr-dark-soft);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 1.5rem;
+}
+
+.success-quick-info {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.9rem;
+  color: var(--clr-primary, var(--clr-primary));
+  background: #FFF2E8;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------------------------
+   6. RESPONSIVE BREAKPOINTS (TABLETTE & MOBILE FIDÈLES À LA MAQUETTE)
+   ------------------------------------------------------------------------ */
+
+/* Tablette (max-width: 960px) */
+@media (max-width: 960px) {
+  .contact-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .contact-headline {
+    font-size: 2.6rem;
+  }
+
+  /* 3 colonnes horizontales pour les coordonnées sur tablette (comme sur le mockup) */
+  .contact-channels-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-channel-item {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .contact-card-panel {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* Mobile (max-width: 680px) — Correspondance pixel-perfect avec media_1788536487277.jpg */
+@media (max-width: 680px) {
+  .contact-page {
+    padding: 2.25rem 0 4rem;
+  }
+
+  .contact-eyebrow {
+    font-size: 0.75rem;
+  }
+
+  .contact-headline {
+    font-size: 2rem;
+    line-height: 1.22;
+  }
+
+  .contact-subtext {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-whatsapp-wrap {
+    margin-bottom: 2.25rem;
+  }
+
+  .btn-whatsapp-dark {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.92rem;
+  }
+
+  .contact-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .contact-channel-item {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .contact-card-panel {
+    padding: 2rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .contact-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stepper-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .stepper-label {
+    font-size: 0.72rem;
+  }
+
+  .step-actions-dual {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .btn-step-prev {
+    order: 2;
+    padding: 0.8rem 1rem;
+  }
+
+  .step-actions-dual .btn-step-continue {
+    order: 1;
+  }
+}
+
+
+/* ====================================================================
+   BATIBID CONTACT — LUXURY MOTION DESIGN ENGINE (Étape 8)
+   60 FPS GPU, Multi-Step Form Transition, Vibrating WhatsApp, Success Box
+   ==================================================================== */
+
+/* 1. WhatsApp Button Light Sweep & Icon Micro-vibration */
+@keyframes whatsappVibe {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  10%, 30% { transform: scale(1.15) rotate(-8deg); }
+  20%, 40% { transform: scale(1.15) rotate(8deg); }
+  50% { transform: scale(1) rotate(0deg); }
+}
+
+.btn-whatsapp-dark:hover .whatsapp-icon {
+  animation: whatsappVibe 0.8s ease-in-out;
+}
+
+/* 2. Official Channels List Hover */
+.contact-channel-item {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  padding: 0.5rem 0.6rem;
+  border-radius: 12px;
+}
+
+.contact-channel-item:hover {
+  transform: translateX(6px);
+  background: rgba(217, 87, 30, 0.04);
+}
+
+.contact-channel-item:hover .contact-channel-icon {
+  transform: scale(1.12) rotate(-4deg);
+  background-color: var(--clr-primary);
+  color: var(--white);
+}
+
+.contact-channel-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease,
+              color 0.3s ease;
+}
+
+/* 3. Stepper Circle & Line Smooth Fill */
+.stepper-circle {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.stepper-item.active .stepper-circle {
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(217, 87, 30, 0.35);
+}
+
+.stepper-line-fill {
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 4. Form Step Content Smooth Transition */
+.contact-step-content {
+  animation: contactStepFade 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes contactStepFade {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 5. Success Box Spring Pop-in */
+@keyframes successPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.contact-success-box {
+  animation: successPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.success-icon-wrap {
+  animation: successBadgePulse 1.8s ease-in-out infinite 0.6s;
+}
+
+@keyframes successBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+}
+
+/* 6. Form Card Panel Hover */
+.contact-card-panel {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+}
+
+.contact-card-panel:hover {
+  box-shadow: 0 20px 48px rgba(59, 31, 11, 0.08);
+}
+
+/* 7. Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  .btn-whatsapp-dark:hover .whatsapp-icon,
+  .contact-channel-item,
+  .contact-step-content,
+  .contact-success-box,
+  .success-icon-wrap {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

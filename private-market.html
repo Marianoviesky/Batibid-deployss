@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatiBid Private Market — Immobilier Confidentiel &amp; Off-Market au Bénin</title>
+  <meta name="description" content="Vendez en toute discrétion ou accédez à des biens immobiliers exclusifs off-market au Bénin. Honoraires au succès uniquement, qualification préalable sous 24h.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.2">
+  <link rel="stylesheet" href="css/header-footer.css?v=2.0">
+</head>
+<body data-page="private-market">
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA REFONTE - 6 ENTRÉES)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link">Gérer</a>
+        <a href="mise-en-location" class="nav-link">Mise en location</a>
+        <a href="construire" class="nav-link">Construire &amp; rénover</a>
+        <a href="juridique" class="nav-link">Juridique</a>
+        <a href="corporate-housing" class="nav-link">Corporate Housing</a>
+        <a href="private-market" class="nav-link active">Private Market</a>
+        
+        <!-- Dropdown: Plus -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Plus <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a> -->
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="dropdown-divider" style="height: 1px; background: var(--clr-border); margin: 0.35rem 0;"></div>
+            <a href="https://app.batibid.com/register" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> S'inscrire</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien immobilier" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main class="main-content">
+    <section id="private-market" class="view-section active">
+
+      <div class="private-market-page">
+
+        <!-- ====================================================================
+             1. HERO PRESTIGE : DOUBLE ENTRÉE & HONORAIRES AU SUCCÈS VISIBLES
+             ==================================================================== -->
+        <section class="pm-hero">
+          <div class="pm-hero-container">
+            
+            <div class="pm-hero-content">
+              <div class="pm-hero-eyebrow reveal">
+                <span class="pm-eyebrow-accent">BATIBID PRIVATE MARKET</span>
+                <span class="pm-eyebrow-dash">—</span>
+              </div>
+<!--               
+              <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(217, 87, 30, 0.15); border: 1px solid rgba(217, 87, 30, 0.35); padding: 0.35rem 0.85rem; border-radius: 999px; margin-bottom: 1.25rem; font-size: 0.8rem; font-weight: 700; color: #F8B38A;">
+                <i class="fas fa-shield-alt"></i>
+                <span>Honoraires au succès uniquement &bull; Zéro frais d'inscription</span>
+              </div> -->
+
+              <h1 class="pm-hero-title reveal-text-mask">
+                <span class="reveal-line">L'immobilier confidentiel,</span>
+                <span class="reveal-line" style="color: #F8B38A;">accessible autrement.</span>
+              </h1>
+              
+              <p class="pm-hero-desc reveal">
+                Vendez votre bien en toute discrétion ou accédez à des opportunités immobilières de prestige qui ne sont jamais diffusées publiquement.
+              </p>
+              
+              <div class="pm-hero-actions reveal">
+                <button type="button" class="btn btn-primary pm-btn-hero-vendre btn-shimmer" onclick="switchPrivateTrack('vendeur', true)">
+                  <i class="fas fa-shield-alt"></i> Vendre en toute discrétion
+                </button>
+                <button type="button" class="btn btn-outline pm-btn-hero-acq" onclick="switchPrivateTrack('acquereur', true)">
+                  Accéder aux opportunités off-market <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+              
+              <div class="pm-hero-trust reveal">
+                <div class="pm-trust-item">
+                  <i class="fas fa-shield-halved"></i>
+                  <span>Accès contrôlé</span>
+                </div>
+                <span class="pm-trust-dot">&bull;</span>
+                <div class="pm-trust-item">
+                  <i class="fas fa-user-check"></i>
+                  <span>Acquéreurs qualifiés solvables</span>
+                </div>
+                <span class="pm-trust-dot">&bull;</span>
+                <div class="pm-trust-item">
+                  <i class="fas fa-lock"></i>
+                  <span>Confidentialité notariale</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Colonne Droite : Mosaïque Visuelle -->
+            <div class="pm-hero-visual-col">
+              <div class="pm-hero-grid-mosaic reveal-scale">
+                <div class="pm-mosaic-item pm-mosaic-item-main">
+                  <img src="./assets/images/private_hero_night_villa.jpg" alt="Villa d'exception confidentielle" class="pm-mosaic-img">
+                  <div class="pm-mosaic-blur-overlay">
+                    <span class="pm-mosaic-badge"><i class="fas fa-eye-slash"></i> OFF-MARKET &bull; VILLA DE PRESTIGE</span>
+                  </div>
+                </div>
+                
+                <div class="pm-mosaic-item">
+                  <img src="./assets/images/private_acquereur_penthouse.jpg" alt="Penthouse confidentiel Cotonou" class="pm-mosaic-img">
+                  <div class="pm-mosaic-blur-overlay">
+                    <span class="pm-mosaic-badge"><i class="fas fa-lock"></i> PENTHOUSE &bull; COTONOU</span>
+                  </div>
+                </div>
+
+                <div class="pm-mosaic-item pm-mosaic-item-legal">
+                  <img src="./assets/images/juridique_procedure.jpg" alt="Titre Foncier & Procédure confidentielle" class="pm-mosaic-img">
+                  <div class="pm-mosaic-blur-overlay">
+                    <span class="pm-mosaic-badge"><i class="fas fa-certificate"></i> TITRE FONCIER SCELLÉ</span>
+                  </div>
+                </div>
+
+                <div class="pm-mosaic-item">
+                  <img src="./assets/images/private_teaser_ouidah.jpg" alt="Domaine vue mer confidentiel" class="pm-mosaic-img">
+                  <div class="pm-mosaic-blur-overlay">
+                    <span class="pm-mosaic-badge"><i class="fas fa-shield-halved"></i> DOMAINE &bull; OUIDAH</span>
+                  </div>
+                </div>
+
+                <div class="pm-mosaic-center-shield">
+                  <div class="pm-shield-inner">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ACCÈS SOUS ACCRÉDITATION STRICTE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             2. PIPELINE INTERACTIF DU PROTOCOLE CONFIDENTIEL
+             ==================================================================== -->
+        <section class="pm-dual-tracks" id="pm-tracks-section">
+          <div class="pm-pipeline-strip reveal">
+            <div class="pm-pipeline-container" id="pm-pipeline-glow-container">
+              <div class="pm-pipeline-step active" id="pm-step-prive">
+                <span class="pm-pipeline-dot"></span>
+                <span class="pm-pipeline-label">PRIVÉ</span>
+              </div>
+              <div class="pm-pipeline-line"><span class="pm-line-glow"></span></div>
+              <div class="pm-pipeline-step" id="pm-step-qualification">
+                <span class="pm-pipeline-dot"></span>
+                <span class="pm-pipeline-label">QUALIFICATION</span>
+              </div>
+              <div class="pm-pipeline-line"><span class="pm-line-glow"></span></div>
+              <div class="pm-pipeline-step" id="pm-step-acces">
+                <span class="pm-pipeline-dot"></span>
+                <span class="pm-pipeline-label">ACCÈS</span>
+              </div>
+              <div class="pm-pipeline-line"><span class="pm-line-glow"></span></div>
+              <div class="pm-pipeline-step" id="pm-step-revelation">
+                <span class="pm-pipeline-dot"></span>
+                <span class="pm-pipeline-label">RÉVÉLATION</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             3. ESPACE OPÉRATIONNEL : VENDEUR & ACQUÉREUR (SÉLECTEUR SEGMENTÉ)
+             ==================================================================== -->
+        <section class="pm-operational-section" id="pm-operational-anchor">
+          <div class="pm-op-container">
+
+            <!-- Sélecteur de mode -->
+            <div class="pm-mode-switcher-bar reveal">
+              <button type="button" class="pm-mode-btn active" id="pm-mode-btn-vendeur" onclick="switchPrivateTrack('vendeur', false)">
+                <i class="fas fa-handshake"></i> Espace Propriétaire Vendeur
+              </button>
+              <button type="button" class="pm-mode-btn" id="pm-mode-btn-acquereur" onclick="switchPrivateTrack('acquereur', false)">
+                <i class="fas fa-user-shield"></i> Espace Acquéreur Qualifié
+              </button>
+            </div>
+
+            <!-- --------------------------------------------------------------
+                 ONGLET 1 : PARCOURS VENDEUR
+                 -------------------------------------------------------------- -->
+            <div class="pm-track-view active" id="pm-view-vendeur">
+              
+              <div class="pm-track-header reveal">
+                <div class="pm-track-header-left">
+                  <span class="pm-sub-tag">PARCOURS VENDEUR</span>
+                  <h2 class="pm-op-title">Votre bien n'a pas besoin d'être exposé pour être vendu.</h2>
+                  <p class="pm-op-subtitle">BatiBid vous accompagne avec discrétion pour vendre votre bien aux acquéreurs qualifiés, sans affichage public.</p>
+                </div>
+              </div>
+
+              <!-- 4 Étapes Vendeur -->
+              <div class="pm-stepper-stacked-grid stagger-children" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+                <div class="pm-step-card bento-card-interactive">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">01</span>
+                    <div class="pm-step-icon"><i class="fas fa-file-export"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Soumission &amp; Cadrage</h4>
+                  <p class="pm-step-desc">Vous nous transmettez les informations essentielles de votre bien sous engagement de non-divulgation (NDA).</p>
+                </div>
+
+                <div class="pm-step-card bento-card-interactive">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">02</span>
+                    <div class="pm-step-icon"><i class="fas fa-chart-pie"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Étude &amp; Valorisation</h4>
+                  <p class="pm-step-desc">Nos juristes et experts analysent la valeur réelle du bien, vérifient le titre foncier et actent le mandat.</p>
+                </div>
+
+                <div class="pm-step-card bento-card-interactive">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">03</span>
+                    <div class="pm-step-icon"><i class="fas fa-network-wired"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Matching Acquéreurs</h4>
+                  <p class="pm-step-desc">Nous sollicitons directement les acquéreurs audités et solvables dont les critères correspondent exactement.</p>
+                </div>
+
+                <div class="pm-step-card bento-card-interactive">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">04</span>
+                    <div class="pm-step-icon"><i class="fas fa-stamp"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Visites &amp; Acte Notarié</h4>
+                  <p class="pm-step-desc">Visites individuelles sous accréditation et finalisation sécurisée de la vente en étude notariale.</p>
+                </div>
+              </div>
+
+              <!-- 3 Avantages Vendeur -->
+              <div class="pm-vendeur-advantages-panoramic reveal bento-card-interactive" style="margin-bottom: 3.5rem;">
+                <div class="pm-adv-panoramic-header">
+                  <span class="pm-adv-label"><i class="fas fa-award"></i> VOS GARANTIES VENDEUR</span>
+                  <h3 class="pm-adv-title">Une vente maîtrisée de bout en bout</h3>
+                </div>
+
+                <div class="pm-adv-grid-4" style="grid-template-columns: repeat(3, 1fr);">
+                  <div class="pm-adv-col-item">
+                    <div class="pm-adv-icon"><i class="fas fa-user-ninja"></i></div>
+                    <div class="pm-adv-body">
+                      <h5>Discrétion absolue</h5>
+                      <p>Votre bien n'est jamais publié sur internet, les réseaux ou par panneaux physiques.</p>
+                    </div>
+                  </div>
+
+                  <div class="pm-adv-col-item">
+                    <div class="pm-adv-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="pm-adv-body">
+                      <h5>Acquéreurs solvables vérifiés</h5>
+                      <p>Capacité de paiement auditée en amont : aucune visite de curiosité n'est acceptée.</p>
+                    </div>
+                  </div>
+
+                  <div class="pm-adv-col-item">
+                    <div class="pm-adv-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <div class="pm-adv-body">
+                      <h5>Honoraires au succès</h5>
+                      <p>Zéro frais préalable. Rémunération uniquement lors de la signature authentique chez le notaire.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Formulaire Vendeur Simplifié en 2 Étapes -->
+              <div class="pm-vendeur-form-wrapper reveal" id="pm-vendeur-form-box" style="background-image: linear-gradient(135deg, rgba(12, 10, 9, 0.94) 0%, rgba(18, 14, 12, 0.97) 100%), url('./assets/images/private_leather_notebook.jpg');">
+                <div class="pm-form-nda-badge-row">
+                  <span class="pm-notebook-badge"><i class="fas fa-award"></i> ACCORD DE CONFIDENTIALITÉ (NDA)</span>
+                  <span class="pm-nda-subtext">Engagement légal &bull; Réponse d'un directeur de transaction sous 24h ouvrées</span>
+                </div>
+
+                <div class="pm-form-header text-center">
+                  <span class="pm-form-badge">FORMULAIRE VENDEUR CONFIDENTIEL</span>
+                  <h4>Confier un bien en toute discrétion</h4>
+                  <p>Remplissez ces informations préliminaires. La qualification fine s'effectue par échange confidentiel.</p>
+                </div>
+
+                <form class="pm-interactive-form" id="pm-form-vendeur-element" onsubmit="submitPrivateVendeur(event)">
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Nom &amp; Prénom ou Société <span class="req">*</span></label>
+                      <input type="text" name="nom" required placeholder="Ex : M. Jean Dossou" class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Téléphone / WhatsApp direct <span class="req">*</span></label>
+                      <input type="tel" name="telephone" required placeholder="Ex : +229 01 42 48 48 48" class="pm-input">
+                    </div>
+                  </div>
+
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Email de correspondance <span class="req">*</span></label>
+                      <input type="email" name="email" required placeholder="contact@domaine.com" class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Typologie du bien d'exception <span class="req">*</span></label>
+                      <select name="type_bien" required class="pm-input">
+                        <option value="">Sélectionner une typologie</option>
+                        <option value="villa">Villa contemporaine / Propriété de prestige</option>
+                        <option value="penthouse">Penthouse / Grand appartement standing</option>
+                        <option value="immeuble">Immeuble de rapport locatif</option>
+                        <option value="parcelle">Parcelle titrée stratégique</option>
+                        <option value="domaine">Domaine commercial / Mixte</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Localisation approximative <span class="req">*</span></label>
+                      <input type="text" name="zone" required placeholder="Ex : Cotonou — Haie Vive, Cocotiers, Ouidah..." class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Prix souhaité ou fourchette estimée</label>
+                      <input type="text" name="prix" placeholder="Ex : 180M — 250M FCFA" class="pm-input">
+                    </div>
+                  </div>
+
+                  <div class="pm-field pm-field-full">
+                    <label class="pm-label-highlight">Niveau de discrétion souhaité</label>
+                    <div class="pm-radio-card-group">
+                      <label class="pm-radio-card">
+                        <input type="radio" name="confidentialite" value="strict" checked>
+                        <div class="pm-radio-card-body">
+                          <span class="pm-radio-card-title"><i class="fas fa-lock"></i> Strictement confidentiel</span>
+                          <span class="pm-radio-card-desc">Aucune image ni adresse diffusée. Présentation directe sur rendez-vous individuel.</span>
+                        </div>
+                      </label>
+
+                      <label class="pm-radio-card">
+                        <input type="radio" name="confidentialite" value="teaser">
+                        <div class="pm-radio-card-body">
+                          <span class="pm-radio-card-title"><i class="fas fa-eye-slash"></i> Teaser privé autorisé</span>
+                          <span class="pm-radio-card-desc">Caractéristiques globales et photos partielles floutées sans révéler l'adresse exacte.</span>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pm-form-submit-row">
+                    <button type="submit" class="btn btn-primary pm-btn-submit-vendeur btn-shimmer">
+                      <i class="fas fa-shield-alt"></i> Soumettre mon bien en toute discrétion
+                    </button>
+                  </div>
+
+                  <div class="pm-feedback-msg" id="pm-vendeur-feedback" style="display: none;">
+                    <div class="pm-feedback-inner">
+                      <i class="fas fa-circle-check"></i>
+                      <div>
+                        <h5>Votre demande confidentielle a été transmise avec succès.</h5>
+                        <p>Un directeur de transaction BatiBid prendra contact avec vous sous 24h ouvrées sur votre ligne WhatsApp sécurisée.</p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+            <!-- --------------------------------------------------------------
+                 ONGLET 2 : PARCOURS ACQUÉREUR
+                 -------------------------------------------------------------- -->
+            <div class="pm-track-view" id="pm-view-acquereur">
+              
+              <div class="pm-track-header reveal">
+                <div class="pm-track-header-left">
+                  <span class="pm-sub-tag">PARCOURS ACQUÉREUR</span>
+                  <h2 class="pm-op-title">L'accès sélectif aux opportunités confidentielles.</h2>
+                  <p class="pm-op-subtitle">Recevez des dossiers d'actifs rares correspondant rigoureusement à votre capacité d'investissement avant toute diffusion.</p>
+                </div>
+              </div>
+
+              <!-- 4 Étapes Acquéreur -->
+              <div class="pm-stepper-grid pm-stepper-acquereur stagger-children" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+                <div class="pm-step-col">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">01</span>
+                    <div class="pm-step-icon"><i class="fas fa-user-plus"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Profil &amp; Critères</h4>
+                  <p class="pm-step-desc">Vous enregistrez vos critères de recherche (typologie, budget, zones prioritaires au Bénin).</p>
+                </div>
+
+                <div class="pm-step-col">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">02</span>
+                    <div class="pm-step-icon"><i class="fas fa-user-check"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Qualification BatiBid</h4>
+                  <p class="pm-step-desc">Notre comité vérifie la solvabilité financière sous accord de confidentialité strict (NDA).</p>
+                </div>
+
+                <div class="pm-step-col">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">03</span>
+                    <div class="pm-step-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Accès Exclusif</h4>
+                  <p class="pm-step-desc">Vous recevez en avant-première les dossiers d'opportunités privées correspondant à votre profil.</p>
+                </div>
+
+                <div class="pm-step-col">
+                  <div class="pm-step-node">
+                    <span class="pm-step-num">04</span>
+                    <div class="pm-step-icon"><i class="fas fa-key"></i></div>
+                  </div>
+                  <h4 class="pm-step-title">Visite &amp; Signature</h4>
+                  <p class="pm-step-desc">Organisation de visites privées confidentielles et signature notariée sécurisée.</p>
+                </div>
+              </div>
+
+              <!-- Formulaire Acquéreur Déroulé & Clarifié -->
+              <div class="pm-acquereur-form-card reveal bento-card-interactive" style="max-width: 860px; margin: 0 auto;">
+                <div class="pm-form-header text-center">
+                  <span class="pm-form-badge">ACCRÉDITATION ACQUÉREUR PRIVÉ</span>
+                  <h4>Définissez vos critères d'investissement</h4>
+                  <p>Ces paramètres alimentent directement votre matching privé sous 24h ouvrées.</p>
+                </div>
+
+                <form class="pm-interactive-form" id="pm-form-acquereur-element" onsubmit="submitPrivateAcquereur(event)">
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Nom complet ou Entité <span class="req">*</span></label>
+                      <input type="text" id="acq_nom" required placeholder="Ex : Dr. Patrick Tossou" class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Téléphone / WhatsApp direct <span class="req">*</span></label>
+                      <input type="tel" id="acq_tel" required placeholder="+229 01 42 48 48 48" class="pm-input">
+                    </div>
+                  </div>
+
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Email de correspondance <span class="req">*</span></label>
+                      <input type="email" id="acq_email" required placeholder="investisseur@domaine.com" class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Objectif patrimonial principal <span class="req">*</span></label>
+                      <select id="acq_objectif" class="pm-input">
+                        <option value="Investissement locatif à fort rendement">Investissement locatif à fort rendement</option>
+                        <option value="Résidence principale de prestige">Résidence principale de prestige</option>
+                        <option value="Constitution de patrimoine familial sécurisé">Patrimoine familial sécurisé</option>
+                        <option value="Implantation d'entreprise / Siège social">Bâtiment professionnel / Siège social</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Zones ciblées au Bénin <span class="req">*</span></label>
+                      <input type="text" id="acq_zones" placeholder="Cotonou, Haie Vive, Calavi, Ouidah..." value="Cotonou, Calavi, Ouidah" class="pm-input">
+                    </div>
+                    <div class="pm-field">
+                      <label>Capacité budgétaire prévisionnelle <span class="req">*</span></label>
+                      <!-- Tranches de budget corrigées dans l'ordre croissant exact -->
+                      <select id="acq_budget" class="pm-input">
+                        <option value="40 000 000 — 80 000 000 FCFA">40 000 000 — 80 000 000 FCFA</option>
+                        <option value="80 000 000 — 250 000 000 FCFA" selected>80 000 000 — 250 000 000 FCFA</option>
+                        <option value="250 000 000 — 500 000 000 FCFA">250 000 000 — 500 000 000 FCFA</option>
+                        <option value="Plus de 500 000 000 FCFA">Plus de 500 000 000 FCFA</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="pm-form-grid-2">
+                    <div class="pm-field">
+                      <label>Délai d'acquisition envisagé</label>
+                      <select id="acq_delai" class="pm-input">
+                        <option value="Immédiat (< 3 mois)">Immédiat (&lt; 3 mois)</option>
+                        <option value="3 — 6 mois" selected>3 — 6 mois</option>
+                        <option value="6 — 12 mois">6 — 12 mois</option>
+                      </select>
+                    </div>
+                    <div class="pm-field">
+                      <label>Mode de financement</label>
+                      <select id="acq_financement" class="pm-input">
+                        <option value="Fonds propres disponibles">Fonds propres disponibles</option>
+                        <option value="Financement bancaire pré-accordé">Financement bancaire accordé</option>
+                        <option value="Financement mixte / Société d'investissement">Structure d'investissement</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="pm-form-submit-row">
+                    <button type="submit" class="btn btn-primary pm-btn-submit-acq btn-shimmer">
+                      <i class="fas fa-id-card"></i> Valider ma demande d'accréditation
+                    </button>
+                  </div>
+
+                  <div class="pm-feedback-msg" id="pm-acquereur-feedback" style="display: none;">
+                    <div class="pm-feedback-inner">
+                      <i class="fas fa-circle-check"></i>
+                      <div>
+                        <h5>Votre profil acquéreur a été enregistré avec succès.</h5>
+                        <p>Notre comité d'accréditation étudie vos critères. Vous recevrez vos premières opportunités ciblées sous 24h ouvrées.</p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             4. SECTION : LA CONFIDENTIALITÉ EN 3 NIVEAUX (FRISE PROGRESSIVE)
+             ==================================================================== -->
+        <section class="pm-confidentiality-section">
+          <div class="pm-conf-container">
+            
+            <div class="pm-conf-header reveal">
+              <div class="pm-conf-header-left">
+                <h2 class="pm-conf-title">Comment fonctionne la confidentialité</h2>
+                <p class="pm-conf-desc">L'information est révélée progressivement selon votre niveau de qualification et d'autorisation légale.</p>
+              </div>
+              <div class="pm-conf-header-right">
+                <a href="https://wa.me/2290142484848?text=Bonjour%2C%20je%20souhaite%20%C3%A9changer%20confidentiellement%20avec%20un%20conseiller%20priv%C3%A9%20BatiBid." target="_blank" rel="noopener" class="btn btn-outline pm-btn-sm-conf">
+                  <i class="fab fa-whatsapp"></i> Échanger en privé
+                </a>
+              </div>
+            </div>
+
+            <div class="pm-levels-grid stagger-children">
+              
+              <!-- Niveau 01 : Teaser -->
+              <div class="pm-level-card pm-level-1 bento-card-interactive">
+                <div class="pm-level-top">
+                  <span class="pm-level-tag">NIVEAU 01 — TEASER</span>
+                  <div class="pm-level-img-wrap">
+                    <img src="./assets/images/home_dark_interior.jpg" alt="Aperçu masqué Teaser" class="pm-img-blurred">
+                    <div class="pm-blur-overlay">
+                      <i class="fas fa-eye-slash"></i>
+                      <span>Données sensibles masquées</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pm-level-body">
+                  <ul class="pm-level-checklist">
+                    <li><i class="fas fa-check-circle"></i> Zone géographique indicative</li>
+                    <li><i class="fas fa-check-circle"></i> Typologie et surface du bien</li>
+                    <li><i class="fas fa-check-circle"></i> Fourchette de prix indicative</li>
+                    <li><i class="fas fa-check-circle"></i> Rendement locatif prévisionnel</li>
+                  </ul>
+                </div>
+                <div class="pm-level-footer">
+                  <span class="pm-level-badge-free"><i class="fas fa-unlock"></i> Présentation libre sous profil</span>
+                </div>
+              </div>
+
+              <div class="pm-level-arrow float-oscillate-2">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+
+              <!-- Niveau 02 : Dossier sous NDA -->
+              <div class="pm-level-card pm-level-2 bento-card-interactive">
+                <div class="pm-level-top">
+                  <span class="pm-level-tag pm-tag-gold">NIVEAU 02 — DOSSIER SOUS NDA</span>
+                  <div class="pm-level-img-wrap">
+                    <img src="./assets/images/mockup_interior.jpg" alt="Aperçu Dossier Débloqué" class="pm-img-sharp">
+                    <div class="pm-sharp-overlay">
+                      <i class="fas fa-file-shield"></i>
+                      <span>Dossier complet déverrouillé</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pm-level-body">
+                  <ul class="pm-level-checklist">
+                    <li><i class="fas fa-check-circle"></i> Galerie photographique complète HD</li>
+                    <li><i class="fas fa-check-circle"></i> Données financières, baux en cours</li>
+                    <li><i class="fas fa-check-circle"></i> Diagnostics techniques détaillés</li>
+                    <li><i class="fas fa-check-circle"></i> Descriptif architectural complet</li>
+                  </ul>
+                </div>
+                <div class="pm-level-footer">
+                  <span class="pm-level-badge-nda"><i class="fas fa-file-contract"></i> Débloqué sous NDA signé</span>
+                </div>
+              </div>
+
+              <div class="pm-level-arrow float-oscillate-2">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+
+              <!-- Niveau 03 : Accès Sensible -->
+              <div class="pm-level-card pm-level-3 bento-card-interactive">
+                <div class="pm-level-top">
+                  <span class="pm-level-tag pm-tag-terracotta">NIVEAU 03 — ACCÈS SENSIBLE</span>
+                  <div class="pm-level-img-wrap">
+                    <img src="./assets/images/private_vendeur_lounge.jpg" alt="Aperçu Accès Sensible" class="pm-img-sharp">
+                    <div class="pm-sharp-overlay pm-overlay-vault">
+                      <i class="fas fa-vault"></i>
+                      <span>Accréditation maximale</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pm-level-body">
+                  <ul class="pm-level-checklist">
+                    <li><i class="fas fa-check-circle"></i> Localisation exacte &amp; cadastre ANDF</li>
+                    <li><i class="fas fa-check-circle"></i> Titre Foncier certifié &amp; hypothèques</li>
+                    <li><i class="fas fa-check-circle"></i> Visite physique privée accompagnée</li>
+                    <li><i class="fas fa-check-circle"></i> Échanges directs avec le notaire</li>
+                  </ul>
+                </div>
+                <div class="pm-level-footer">
+                  <span class="pm-level-badge-vault"><i class="fas fa-shield-halved"></i> Solvabilité vérifiée requise</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             5. QUESTIONS FRÉQUENTES (4 QUESTIONS CIBLÉES)
+             ==================================================================== -->
+        <section class="pm-faq-section" style="padding: 5rem 0;">
+          <div class="pm-faq-container">
+            
+            <div class="pm-faq-header text-center reveal">
+              <h2 class="pm-faq-title">Questions fréquentes sur le Private Market</h2>
+              <p class="pm-faq-subtitle">Toutes les réponses sur notre mandat confidentiel et l'accès acquéreur sélectif.</p>
+            </div>
+
+            <div class="pm-faq-grid stagger-children" style="max-width: 860px; margin: 0 auto;">
+              
+              <div class="pm-faq-card bento-card-interactive">
+                <button type="button" class="pm-faq-question" onclick="togglePrivateFaq(this)">
+                  <span>Mon bien apparaîtra-t-il sur l'application ou les réseaux sociaux ?</span>
+                  <i class="fas fa-plus pm-faq-icon"></i>
+                </button>
+                <div class="pm-faq-answer">
+                  <p>Non, absolument pas. Un bien confié au Private Market ne fait l'objet d'aucune diffusion sur notre marketplace publique, ni sur les réseaux sociaux, ni par panneaux extérieurs. Il est exclusivement proposé de façon ciblée à notre cercle d'acquéreurs préalablement qualifiés et sous accord de confidentialité (NDA).</p>
+                </div>
+              </div>
+
+              <div class="pm-faq-card bento-card-interactive">
+                <button type="button" class="pm-faq-question" onclick="togglePrivateFaq(this)">
+                  <span>Comment accéder aux offres immobilières privées ?</span>
+                  <i class="fas fa-plus pm-faq-icon"></i>
+                </button>
+                <div class="pm-faq-answer">
+                  <p>Il vous suffit de renseigner votre profil acquéreur via notre formulaire d'accréditation. Notre équipe vérifie vos critères et votre capacité d'investissement sous 24h ouvrées, puis vous transmet les opportunités off-market correspondantes.</p>
+                </div>
+              </div>
+
+              <div class="pm-faq-card bento-card-interactive">
+                <button type="button" class="pm-faq-question" onclick="togglePrivateFaq(this)">
+                  <span>Comment les acquéreurs sont-ils qualifiés ?</span>
+                  <i class="fas fa-plus pm-faq-icon"></i>
+                </button>
+                <div class="pm-faq-answer">
+                  <p>Nous procédons à une double vérification : identité civile ou morale certifiée, et attestation de capacité financière (fonds propres vérifiés ou accord de principe bancaire). Aucune visite de curiosité n'est acceptée.</p>
+                </div>
+              </div>
+
+              <div class="pm-faq-card bento-card-interactive">
+                <button type="button" class="pm-faq-question" onclick="togglePrivateFaq(this)">
+                  <span>L'accès au Private Market est-il payant ?</span>
+                  <i class="fas fa-plus pm-faq-icon"></i>
+                </button>
+                <div class="pm-faq-answer">
+                  <p>L'accréditation et l'étude préalable sont totalement gratuites pour les vendeurs et acquéreurs. BatiBid applique uniquement des honoraires de succès lors de la conclusion définitive de la vente en étude notariale.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             6. BANDEAU CTA DE CLÔTURE
+             ==================================================================== -->
+        <section class="section-cta-terracotta" style="padding-bottom: 5rem;">
+          <div class="pm-op-container">
+            <div class="cta-terracotta-card reveal-scale">
+              
+              <div class="cta-terracotta-content">
+                <div class="cta-icon-wrap" aria-hidden="true">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div>
+                  <h2 class="cta-terracotta-headline">
+                    Vous avez un actif d'exception ou un projet d'acquisition ?
+                  </h2>
+                  <p class="cta-terracotta-subtext">
+                    Honoraires au succès uniquement &bull; Échange direct sous 24h ouvrées avec un directeur de transaction.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cta-terracotta-actions">
+                <button type="button" class="btn-cta-white btn-shimmer" onclick="switchPrivateTrack('vendeur', true)">
+                  <span>Vendre en discrétion</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+                <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20%C3%A9change%20confidentiel%20au%20sujet%20du%20Private%20Market." 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="btn-cta-wa"
+                   title="Ligne Sécurisée WhatsApp (+229 01 42 48 48 48)">
+                  <i class="fab fa-whatsapp"></i>
+                  <span>WhatsApp direct</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER UNIFIÉ (4 COLONNES & MENTIONS LÉGALES MODALES)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence pour l'écosystème immobilier au Bénin. Nous sécurisons la gestion, la construction et les transactions immobilières.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-newspaper"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Zone Commerciale Akpakpa, Lot 402, Cotonou, Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Prendre un rendez-vous</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="openLegalModal('mentions')">Mentions Légales</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('confidentialite')">Politique de Confidentialité</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('cgu')">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mettre en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link active" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.88rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20renseignement%20sur%20le%20Private%20Market." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Assistance direct</span>
+  </a>
+
+  <!-- Mobile Sticky WhatsApp bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20%C3%A9change%20Private%20Market." target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; color: #25D366; border-color: #25D366;">
+      <i class="fab fa-whatsapp" style="margin-right: 0.4rem;"></i> WhatsApp
+    </a>
+    <button type="button" class="btn btn-primary" onclick="switchPrivateTrack('vendeur', true)" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-shield-alt" style="margin-right: 0.4rem;"></i> Confier un bien
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

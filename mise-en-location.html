@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mise en location de biens | BatiBid</title>
+  <meta name="description" content="Trouvez des locataires solvables et certifiés au Bénin en moins de 15 jours avec les solutions BatiBid.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet Map library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Tailwind Css -->
+   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.1">
+</head>
+<body data-page="mise-en-location">
+
+  <!-- ==========================================
+       SCROLL PROGRESS BAR
+       ========================================== -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR)
+       ========================================== -->
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA MAQUETTE)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link">Gérer</a>
+        <a href="mise-en-location" class="nav-link active">Mise en location</a>
+        <a href="construire" class="nav-link">Construire &amp; rénover</a>
+        <a href="juridique" class="nav-link">Juridique</a>
+        <a href="corporate-housing" class="nav-link">Corporate Housing</a>
+        <a href="private-market" class="nav-link">Private Market</a>
+        
+        <!-- Dropdown: Plus -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Plus <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a> -->
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="dropdown-divider" style="height: 1px; background: var(--clr-border); margin: 0.35rem 0;"></div>
+            <a href="https://app.batibid.com/register" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> S'inscrire</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien immobilier" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN VIEWS CONTAINER (SPA SHELL)
+       ========================================== -->
+      <main class="main-content">
+
+    <section id="mise-en-location" class="view-section active">
+<div class="loc-page-wrapper">
+
+  <!-- ====================================================================
+       SECTION 1 : HERO SECTION
+       ==================================================================== -->
+  <section class="loc-hero">
+    <div class="loc-container">
+      <div class="loc-hero-grid">
+        
+        <!-- Left Column: Editorial & Conversion -->
+        <div class="loc-hero-content reveal-left">
+          <!-- <div class="loc-pill-badge hero-badge">
+            <i class="fas fa-key"></i> POUR LES PROPRIÉTAIRES BAILLEURS
+          </div> -->
+           <div class="juridique-eyebrow-wrap reveal">
+            <span class="juridique-eyebrow">L'EXCELLENCE LOCATIVE POUR VOTRE PATRIMOINE</span>
+            <span class="juridique-eyebrow-line" aria-hidden="true"></span>
+          </div>
+          
+          <h1 class="loc-hero-title">
+            <span class="reveal-text-mask"><span class="reveal-line">Donnez à votre bien</span></span>
+            <span class="reveal-text-mask"><span class="reveal-line">la visibilité qu'il <span class="loc-italic-accent">mérite.</span></span></span>
+          </h1>
+          
+          <p class="loc-hero-desc">
+            Diffusez votre propriété auprès de milliers de locataires qualifiés et solvables au Bénin et dans la diaspora. Trouvez le locataire idéal rapidement, sans tracas et aux meilleures conditions du marché.
+          </p>
+          
+          <div class="loc-hero-actions">
+            <a href="https://app.batibid.com/register" class="btn-loc-primary btn-shimmer">
+              Déposer mon bien <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#loc-offres-section" class="btn-loc-secondary" onclick="document.getElementById('loc-offres-section').scrollIntoView({behavior: 'smooth'}); return false;">
+              Découvrir nos offres
+            </a>
+          </div>
+          
+          <!-- Social Proof : Audience portail -->
+          <div class="loc-hero-trust">
+            <div class="loc-audience-badge">
+              <span class="audience-pulse-dot" aria-hidden="true"></span>
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <div class="loc-trust-info">
+              <p class="loc-trust-title">+10 000 visites hebdomadaires sur notre portail immobilier</p>
+              <p class="loc-trust-sub"><i class="fas fa-location-dot"></i> À Cotonou, Calavi et Porto-Novo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Visual Frame & Integrated Guarantee Bar -->
+        <div class="loc-hero-visual reveal-right">
+          <div class="loc-hero-img-box">
+            <img src="./assets/images/mise_en_location_hero_living.jpg" alt="Salon d'exception BatiBid Mise en Location" class="loc-hero-main-img hero-img-cinematic" decoding="async" loading="lazy">
+            <div class="loc-hero-img-glow"></div>
+            
+            <div class="loc-hero-action-strip">
+              <div class="action-strip-pill">
+                <i class="fas fa-shield-halved"></i>
+                <span>Garantie BatiBid</span>
+              </div>
+              <span class="action-strip-text">Solvabilité vérifiée &amp; baux 100% certifiés</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECTION 2 : STATS BAR (4 PILLARS)
+       ==================================================================== -->
+  <section class="loc-stats-bar">
+    <div class="loc-container">
+      <div class="loc-stats-grid stagger-children">
+        
+        <div class="loc-stat-card reveal bento-card-interactive">
+          <div class="loc-stat-val"><span class="counter-num" data-target="89">0</span><span class="loc-stat-unit">%</span></div>
+          <div class="loc-stat-label">Biens déjà loués</div>
+          <div class="loc-stat-sub">Dossiers finalisés & sécurisés par nos équipes</div>
+        </div>
+        
+        <div class="loc-stat-card reveal bento-card-interactive">
+          <div class="loc-stat-val"><span class="counter-num" data-target="21">0</span><span class="loc-stat-unit"> j</span></div>
+          <div class="loc-stat-label">Délai moyen de location</div>
+          <div class="loc-stat-sub">Pour trouver un locataire solvable</div>
+        </div>
+        
+        <div class="loc-stat-card reveal bento-card-interactive">
+          <div class="loc-stat-val"><span class="counter-num" data-target="100">0</span><span class="loc-stat-unit">%</span></div>
+          <div class="loc-stat-label">Locataires vérifiés</div>
+          <div class="loc-stat-sub">Contrôle d'identité & revenus 3x loyer</div>
+        </div>
+        
+        <div class="loc-stat-card reveal bento-card-interactive">
+          <div class="loc-stat-val">+<span class="counter-num" data-target="2500">0</span></div>
+          <div class="loc-stat-label">Biens mis en location</div>
+          <div class="loc-stat-sub">Au Bénin et pour la diaspora</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECTION 3 : GRILLE DES NOUVELLES OFFRES (B2C & B2B)
+       ==================================================================== -->
+  <section class="loc-offres-section" id="loc-offres-section">
+    <div class="loc-container">
+      
+      <div class="loc-section-header text-center reveal">
+        <span class="loc-eyebrow">TARIFS CLAIRS & TRANSPARENTS</span>
+        <h2 class="loc-section-title">
+          Des formules adaptées à votre <span class="loc-italic-accent">stratégie.</span>
+        </h2>
+        <p class="loc-section-desc">
+          Choisissez l'autonomie pour vos annonces ou la sérénité absolue d'une délégation clé en main par nos experts certifiés.
+        </p>
+        
+        <!-- Segmented Tab Switcher -->
+        <div class="loc-tabs-wrapper reveal">
+          <div class="loc-segmented-tabs" role="tablist">
+            <button type="button" class="loc-tab-btn active" id="tab-btn-b2c" role="tab" aria-selected="true" onclick="switchMiseEnLocationTab('b2c')">
+              <i class="fas fa-house-chimney"></i> Propriétaires Bailleurs
+            </button>
+            <button type="button" class="loc-tab-btn" id="tab-btn-b2b" role="tab" aria-selected="false" onclick="switchMiseEnLocationTab('b2b')">
+              <i class="fas fa-handshake-angle"></i> Professionnels & Partenaires B2B
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1 : PROPRIÉTAIRES BAILLEURS (B2C) -->
+      <div class="loc-tab-pane active" id="loc-pane-b2c">
+        <div class="loc-pricing-grid-b2c stagger-children">
+          
+          <!-- Card 1: Annonces Auto-Gérées (3 000 FCFA) -->
+          <div class="loc-pricing-card reveal bento-card-interactive">
+            <div class="loc-card-header">
+              <div class="loc-card-pill">DIFFUSION AUTONOME</div>
+              <h3 class="loc-card-title">Annonces Auto-Gérées</h3>
+              <div class="loc-price-row">
+                <span class="loc-price-amount">3 000</span>
+                <span class="loc-price-currency">FCFA</span>
+                <span class="loc-price-cadence">/ 30 jours</span>
+              </div>
+              <p class="loc-card-summary">
+                Pour les propriétaires autonomes souhaitant bénéficier de la visibilité digitale de BatiBid tout en gérant eux-mêmes les visites et le choix final.
+              </p>
+            </div>
+            
+            <div class="loc-card-divider"></div>
+            
+            <div class="loc-card-body">
+              <div class="loc-features-heading">CE QUI EST INCLUS :</div>
+              <ul class="loc-features-list">
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Diffusion 30 jours</strong> sur la marketplace BatiBid (Web &amp; App mobile)</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Tableau de bord propriétaire</strong> avec alertes de consultation en direct</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Réception directe</strong> des candidatures &amp; demandes de visite</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Conseils d'optimisation</strong> de votre annonce par un expert BatiBid</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="loc-card-footer">
+              <a href="https://app.batibid.com/register" class="btn-loc-card-secondary">
+                Publier une annonce (3 000 FCFA) <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Annonce Boostée & Accompagnée (6 000 FCFA - FEATURED) -->
+          <div class="loc-pricing-card loc-card-featured reveal bento-card-interactive">
+            <div class="loc-featured-tag">
+              <i class="fas fa-star"></i> FORMULE RECOMMANDÉE • VISIBILITÉ RENFORCÉE
+            </div>
+            <div class="loc-card-header">
+              <div class="loc-card-pill loc-pill-featured">DIFFUSION PRO &amp; CONSEILS</div>
+              <h3 class="loc-card-title">Annonce Boostée &amp; Pro</h3>
+              <div class="loc-price-row">
+                <span class="loc-price-amount">6 000</span>
+                <span class="loc-price-currency">FCFA</span>
+                <span class="loc-price-cadence">/ 60 jours</span>
+              </div>
+              <p class="loc-card-summary">
+                Visibilité démultipliée et outils professionnels pour trouver rapidement votre locataire idéal avec l'assistance BatiBid.
+              </p>
+            </div>
+            
+            <div class="loc-card-divider"></div>
+            
+            <div class="loc-card-body">
+              <div class="loc-features-heading">AVANTAGES EXCLUSIFS :</div>
+              <ul class="loc-features-list">
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Diffusion prioritaire 60 jours</strong> en tête de liste des résultats</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Remontée automatique hebdomadaire</strong> de votre annonce</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Mise en avant sur nos canaux officiels</strong> (Newsletter &amp; réseaux sociaux)</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Modèle de bail légal certifié</strong> conforme au droit béninois inclus</span>
+                </li>
+                <li>
+                  <i class="fas fa-check"></i>
+                  <span><strong>Fiche d'état des lieux normalisée</strong> numérique offerte</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="loc-card-footer">
+              <a href="https://app.batibid.com/register" class="btn-loc-primary w-100 btn-shimmer">
+                Choisir l'offre Boostée (6 000 FCFA) <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB 2 : PROFESSIONNELS & PARTENAIRES B2B -->
+      <div class="loc-tab-pane" id="loc-pane-b2b">
+        <div class="loc-b2b-intro reveal">
+          <div class="loc-b2b-intro-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <div class="loc-b2b-intro-text">
+            <h4>Réseau Partenaires de Mise en Location</h4>
+            <p>Agences immobilières, courtiers, gestionnaires indépendants et apporteurs d'affaires : connectez-vous à l'écosystème BatiBid pour développer votre portefeuille et accélérer vos transactions.</p>
+          </div>
+        </div>
+
+        <div class="loc-b2b-grid stagger-children">
+          
+          <!-- Pillar 1: Accès Annonces Auto -->
+          <div class="loc-b2b-card reveal bento-card-interactive">
+            <div class="loc-b2b-badge">AGENCES & MULTI-DIFFUSION</div>
+            <div class="loc-b2b-icon"><i class="fas fa-layer-group"></i></div>
+            <h4 class="loc-b2b-title">Accès Annonces Auto</h4>
+            <div class="loc-b2b-pricing">Pack Volume / Abonnement Agence</div>
+            <p class="loc-b2b-desc">
+              Diffusez l'ensemble de votre catalogue de biens avec synchronisation de flux, mise en avant garantie et badge Agence Certifiée BatiBid.
+            </p>
+            <ul class="loc-b2b-bullets">
+              <li><i class="fas fa-circle-check"></i> Multi-diffusion de vos mandats en un clic</li>
+              <li><i class="fas fa-circle-check"></i> Console agence multi-utilisateurs & statistiques</li>
+              <li><i class="fas fa-circle-check"></i> Remontée automatique en tête des résultats</li>
+              <li><i class="fas fa-circle-check"></i> Support technique et commercial prioritaire</li>
+            </ul>
+            <a href="https://app.batibid.com/register" class="btn-loc-b2b-action">
+              Rejoindre le réseau Pro <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Pillar 2: Accès Annonces Bailleurs -->
+          <div class="loc-b2b-card reveal bento-card-interactive">
+            <div class="loc-b2b-badge">MANDATS QUALIFIÉS</div>
+            <div class="loc-b2b-icon"><i class="fas fa-handshake"></i></div>
+            <h4 class="loc-b2b-title">Accès Annonces Bailleurs</h4>
+            <div class="loc-b2b-pricing">Partage d'honoraires 50/50</div>
+            <p class="loc-b2b-desc">
+              Accédez directement à notre vivier exclusif de propriétaires bailleurs recherchant des professionnels de terrain pour la mise en location de leurs biens.
+            </p>
+            <ul class="loc-b2b-bullets">
+              <li><i class="fas fa-circle-check"></i> Flux de mandats exclusifs confiés par BatiBid</li>
+              <li><i class="fas fa-circle-check"></i> Attribution géographique ciblée selon votre zone</li>
+              <li><i class="fas fa-circle-check"></i> Cadre contractuel inter-cabinet transparent</li>
+              <li><i class="fas fa-circle-check"></i> Rémunération sécurisée à la signature</li>
+            </ul>
+            <a href="https://app.batibid.com/register" class="btn-loc-b2b-action">
+              Postuler comme Partenaire Mandats <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- Pillar 3: Accès Demandes Personnalisées -->
+          <div class="loc-b2b-card reveal bento-card-interactive">
+            <div class="loc-b2b-badge">CHASSE & RELOCATION</div>
+            <div class="loc-b2b-icon"><i class="fas fa-bullseye"></i></div>
+            <h4 class="loc-b2b-title">Accès Demandes Personnalisées</h4>
+            <div class="loc-b2b-pricing">Commission au succès</div>
+            <p class="loc-b2b-desc">
+              Recevez en temps réel les cahiers des charges de cadres d'entreprises, institutions, expatriés et locataires solvables en recherche urgente.
+            </p>
+            <ul class="loc-b2b-bullets">
+              <li><i class="fas fa-circle-check"></i> Demandes qualifiées avec budgets validés</li>
+              <li><i class="fas fa-circle-check"></i> Matching intelligent avec votre stock de biens</li>
+              <li><i class="fas fa-circle-check"></i> Délais de concrétisation très courts (&lt; 10 jours)</li>
+              <li><i class="fas fa-circle-check"></i> Garantie de solvabilité des locataires</li>
+            </ul>
+            <a href="https://app.batibid.com/register" class="btn-loc-b2b-action">
+              Activer le flux Demandes B2B <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECTION 4 : COMMENT NOUS LOUONS VOTRE BIEN (STEPPER 6 ÉTAPES)
+       ==================================================================== -->
+  <section class="loc-process-section">
+    <div class="loc-container">
+      
+      <div class="loc-section-header text-center reveal">
+        <span class="loc-eyebrow">NOTRE MÉTHODOLOGIE ÉPROUVÉE</span>
+        <h2 class="loc-section-title">
+          Comment nous louons votre bien en <span class="loc-italic-accent">toute sérénité.</span>
+        </h2>
+        <p class="loc-section-desc">
+          Un processus rigoureux en 5 étapes clés, de la captation du bien à la remise des clés. Ces étapes s'appliquent selon la formule choisie (délégation clé en main ou diffusion autonome).
+        </p>
+      </div>
+
+      <!-- Format dépliant (accordéon interactif) du parcours -->
+      <div class="loc-process-accordion" id="loc-process-accordion">
+        
+        <!-- Étape 1 (dépliée par défaut) -->
+        <div class="loc-accordion-item active">
+          <button type="button" class="loc-accordion-header" onclick="toggleLocProcessStep(0)" aria-expanded="true">
+            <div class="loc-accordion-header-left">
+              <span class="loc-accordion-number">01</span>
+              <div class="loc-accordion-icon"><i class="fas fa-camera"></i></div>
+              <h4 class="loc-accordion-title">Mise en valeur &amp; Shooting professionnel</h4>
+            </div>
+            <div class="loc-accordion-chevron"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="loc-accordion-body">
+            <div class="loc-accordion-content">
+              Reportage photographique HD professionnel, visite immersive et valorisation soignée des atouts de votre propriété pour séduire les meilleurs candidats dès les premières secondes.
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="loc-accordion-item">
+          <button type="button" class="loc-accordion-header" onclick="toggleLocProcessStep(1)" aria-expanded="false">
+            <div class="loc-accordion-header-left">
+              <span class="loc-accordion-number">02</span>
+              <div class="loc-accordion-icon"><i class="fas fa-bullhorn"></i></div>
+              <h4 class="loc-accordion-title">Diffusion multicanale &amp; Réseau BatiBid</h4>
+            </div>
+            <div class="loc-accordion-chevron"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="loc-accordion-body">
+            <div class="loc-accordion-content">
+              Publication prioritaire sur la marketplace web &amp; mobile BatiBid, diffusion ciblée sur nos réseaux partenaires et notification instantanée auprès de notre base de locataires qualifiés.
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="loc-accordion-item">
+          <button type="button" class="loc-accordion-header" onclick="toggleLocProcessStep(2)" aria-expanded="false">
+            <div class="loc-accordion-header-left">
+              <span class="loc-accordion-number">03</span>
+              <div class="loc-accordion-icon"><i class="fas fa-shield-halved"></i></div>
+              <h4 class="loc-accordion-title">Sélection rigoureuse &amp; Audit de solvabilité</h4>
+            </div>
+            <div class="loc-accordion-chevron"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="loc-accordion-body">
+            <div class="loc-accordion-content">
+              Contrôle strict des pièces justificatives, vérification de l'authenticité de l'identité, ratio de solvabilité certifié (revenus minimum 3x le loyer) et validation des garants solides.
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="loc-accordion-item">
+          <button type="button" class="loc-accordion-header" onclick="toggleLocProcessStep(3)" aria-expanded="false">
+            <div class="loc-accordion-header-left">
+              <span class="loc-accordion-number">04</span>
+              <div class="loc-accordion-icon"><i class="fas fa-file-signature"></i></div>
+              <h4 class="loc-accordion-title">Bail sécurisé conforme au droit béninois</h4>
+            </div>
+            <div class="loc-accordion-chevron"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="loc-accordion-body">
+            <div class="loc-accordion-content">
+              Rédaction juridique sur-mesure conforme au Code foncier et domanial du Bénin et aux normes OHADA. Signature sécurisée avec protection des intérêts réciproques bailleur-locataire.
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 5 -->
+        <div class="loc-accordion-item">
+          <button type="button" class="loc-accordion-header" onclick="toggleLocProcessStep(4)" aria-expanded="false">
+            <div class="loc-accordion-header-left">
+              <span class="loc-accordion-number">05</span>
+              <div class="loc-accordion-icon"><i class="fas fa-key"></i></div>
+              <h4 class="loc-accordion-title">État des lieux certifié &amp; Remise des clés</h4>
+            </div>
+            <div class="loc-accordion-chevron"><i class="fas fa-chevron-down"></i></div>
+          </button>
+          <div class="loc-accordion-body">
+            <div class="loc-accordion-content">
+              État des lieux numérique contradictoire avec inventaire photo horodaté, encaissement du dépôt de garantie et remise solennelle des clés en main propre.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECTION 5 : GALERIE DE RÉALISATIONS
+       ==================================================================== -->
+  <section class="loc-gallery-section">
+    <div class="loc-container">
+      
+      <div class="loc-section-header text-center reveal">
+        <span class="loc-eyebrow">STANDARDS ÉLEVÉS</span>
+        <h2 class="loc-section-title">
+          Votre bien mérite la plus belle <span class="loc-italic-accent">vitrine.</span>
+        </h2>
+        <p class="loc-section-desc">
+          Un bien mis en valeur de manière professionnelle se loue en moyenne 3 fois plus rapidement. Découvrez nos récentes réalisations.
+        </p>
+      </div>
+
+      <div class="loc-gallery-grid stagger-children">
+        
+        <!-- Showcase 1 -->
+        <div class="loc-showcase-card reveal bento-card-interactive">
+          <div class="loc-showcase-img-box">
+            <img src="./assets/images/mise_en_location_hero_living.jpg" alt="Villa Contemporaine Cadjèhoun">
+            <div class="loc-showcase-badge">
+              <i class="fas fa-bolt"></i> Louée en 11 jours
+            </div>
+          </div>
+          <div class="loc-showcase-info">
+            <div class="loc-showcase-meta">Cadjèhoun, Cotonou • 4 Chambres</div>
+            <h4 class="loc-showcase-title">Villa Contemporaine avec Jardin</h4>
+            <div class="loc-showcase-rent">850 000 FCFA <span class="loc-showcase-period">/ mois</span></div>
+          </div>
+        </div>
+
+        <!-- Showcase 2 -->
+        <div class="loc-showcase-card reveal bento-card-interactive">
+          <div class="loc-showcase-img-box">
+            <img src="./assets/images/gerer_hero_villa.jpg" alt="Résidence de standing Haie Vive">
+            <div class="loc-showcase-badge">
+              <i class="fas fa-bolt"></i> Louée en 14 jours
+            </div>
+          </div>
+          <div class="loc-showcase-info">
+            <div class="loc-showcase-meta">Haie Vive, Cotonou • 5 Chambres • Piscine</div>
+            <h4 class="loc-showcase-title">Propriété de Maître Privative</h4>
+            <div class="loc-showcase-rent">1 200 000 FCFA <span class="loc-showcase-period">/ mois</span></div>
+          </div>
+        </div>
+
+        <!-- Showcase 3 -->
+        <div class="loc-showcase-card reveal bento-card-interactive">
+          <div class="loc-showcase-img-box">
+            <img src="./assets/images/mockup_interior.jpg" alt="Appartement Standing Fidjrossè">
+            <div class="loc-showcase-badge">
+              <i class="fas fa-bolt"></i> Loué en 8 jours
+            </div>
+          </div>
+          <div class="loc-showcase-info">
+            <div class="loc-showcase-meta">Fidjrossè Calvaire • 3 Chambres Meublé</div>
+            <h4 class="loc-showcase-title">Appartement Moderne Meublé</h4>
+            <div class="loc-showcase-rent">450 000 FCFA <span class="loc-showcase-period">/ mois</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECTION 6 : BANDEAU CTA TERRACOTTA
+       ==================================================================== -->
+  <section class="loc-cta-section">
+    <div class="loc-container">
+      <div class="loc-cta-card reveal-scale">
+        <div class="loc-cta-content reveal-left">
+          <span class="loc-cta-eyebrow">PASSEZ À L'ACTION</span>
+          <h2 class="loc-cta-title">
+            Prêt à louer votre bien au meilleur prix et sans stress ?
+          </h2>
+          <p class="loc-cta-desc">
+            Confiez-nous votre bien ou publiez votre première annonce dès aujourd'hui. Nos conseillers locaux et notre technologie vous garantissent un locataire fiable au plus vite.
+          </p>
+          <div class="loc-cta-actions">
+            <a href="https://app.batibid.com/register" class="btn-loc-cta-white btn-shimmer">
+              Déposer mon bien maintenant <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid,%20je%20souhaite%20mettre%20mon%20bien%20en%20location" target="_blank" rel="noopener" class="btn-loc-cta-whatsapp">
+              <i class="fab fa-whatsapp"></i> +229 01 42 48 48 48
+            </a>
+          </div>
+        </div>
+        
+        <div class="loc-cta-visual reveal-right">
+          <div class="loc-cta-arch">
+            <img src="./assets/images/gerer_cta_interior.jpg" alt="Intérieur contemporain BatiBid" class="loc-cta-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+  </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER (PREMIUM DARK BACKGROUND)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Brand & Presentation -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence au Bénin. Nous sécurisons et valorisons le patrimoine immobilier des propriétaires tout en offrant aux locataires et acquéreurs un cadre transparent et certifié.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions Immobilières -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue en ligne)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises & Off-Market -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Quartier Haie Vive / Akpakpa, Cotonou, République du Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Réserver une consultation</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés. PropTech leader au Bénin.</p>
+      <div class="footer-bottom-links">
+        <a href="juridique">Mentions Légales</a>
+        <a href="juridique">Politique de Confidentialité</a>
+        <a href="juridique">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       ALERT MODAL (GENERIC POPUP)
+       ========================================== -->
+  <div class="modal-overlay" id="alert-modal">
+    <div class="modal-card">
+      <div class="modal-icon" id="alert-modal-icon">
+        <i class="fas fa-info-circle"></i>
+      </div>
+      <h3 id="alert-modal-title">Alerte</h3>
+      <p id="alert-modal-text">Ceci est un message d'information.</p>
+      <button class="btn btn-primary" style="min-width: 120px;" onclick="closeAlert()">D'accord</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       USSD MOBILE MONEY VALIDATION SIMULATOR MODAL
+       ========================================== -->
+  <div class="modal-overlay" id="ussd-simulator-modal">
+    <div class="modal-card" style="background-color: #2c2c2c; border: 2px solid #FFCC00; max-width: 380px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; color: #FFCC00;">
+        <i class="fas fa-mobile-alt" style="font-size: 2rem;"></i>
+        <span style="font-weight: 900; letter-spacing: 0.05em; font-size: 1.15rem;">PUSH MOBILE MONEY</span>
+      </div>
+      <p id="ussd-modal-text" style="color: var(--white); font-size: 0.95rem; font-family: monospace; line-height: 1.6; text-align: left; background-color: #1a1a1a; padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid #444444; margin-bottom: 2rem;">
+        Confirmation USSD...
+      </p>
+      
+      <div class="form-group" style="margin-bottom: 2rem;">
+        <label class="form-label" style="color: var(--white); text-align: left;" for="ussd-pin-input">Entrez votre code PIN Mobile Money</label>
+        <input type="password" id="ussd-pin-input" class="form-control" style="background-color: #1a1a1a; border-color: #444444; color: var(--white); font-family: monospace; text-align: center; letter-spacing: 0.5em; font-size: 1.25rem;" maxlength="4" placeholder="••••" required>
+      </div>
+      
+      <div style="display: flex; gap: 1rem;">
+        <button class="btn btn-secondary" style="flex: 1; border-color: var(--gray-500); color: var(--white);" onclick="cancelUssdPayment()">Annuler</button>
+        <button class="btn btn-primary" style="flex: 1; background-color: #FFCC00; color: var(--secondary);" onclick="confirmUssdPayment()">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLYING CUSTOM SEARCH MODAL (SLIDE-OVER DRAWER)
+       ========================================== -->
+  <div class="drawer-overlay" id="custom-search-modal">
+    <div class="drawer-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-300); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 0; display: flex; align-items: center; gap: 0.5rem; color: var(--primary);">
+          <i class="fas fa-magic"></i> Recherche Personnalisée
+        </h3>
+        <button onclick="closeCustomSearchModal()" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--gray-600);"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <p class="body-md mb-4">Vous ne trouvez pas votre bonheur dans notre catalogue ? Remplissez ce court formulaire et un agent BatiBid cherchera le logement idéal pour vous sous 12h.</p>
+      
+      <form onsubmit="submitCustomSearch(event)">
+        <div class="form-group">
+          <label class="form-label">Zone recherchée (Ville/Quartier au Bénin)</label>
+          <input type="text" id="cust-search-zone" class="form-control" required placeholder="Ex: Fidjrossè ou Cocotomey">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Budget mensuel max (FCFA)</label>
+          <input type="number" id="cust-search-budget" class="form-control" required placeholder="Ex: 200000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type de logement</label>
+          <select id="cust-search-type" class="form-control">
+            <option value="appartement">Appartement</option>
+            <option value="villa">Maison / Villa / Duplex</option>
+            <option value="studio">Studio</option>
+            <option value="bureau">Bureau professionnel</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nombre de chambres minimum</label>
+          <select id="cust-search-rooms" class="form-control">
+            <option value="1">1 chambre</option>
+            <option value="2">2 chambres</option>
+            <option value="3">3 chambres</option>
+            <option value="4">4 chambres et plus</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Votre numéro WhatsApp pour le suivi</label>
+          <input type="tel" id="cust-search-whatsapp" class="form-control" required placeholder="Ex: +229 97 00 00 00">
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeCustomSearchModal()">Annuler</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Soumettre la recherche</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLYING RENT ESTIMATOR MODAL (SLIDE-OVER DRAWER)
+       ========================================== -->
+  <div class="drawer-overlay" id="rent-estimator-modal">
+    <div class="drawer-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-300); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 0; display: flex; align-items: center; gap: 0.5rem; color: var(--primary);">
+          <i class="fas fa-calculator"></i> Estimateur de Loyer
+        </h3>
+        <button onclick="closeRentEstimator()" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--gray-600);"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <p class="body-md mb-4">Estimez la valeur locative mensuelle de votre bien au Bénin en temps réel selon les prix du marché actuel.</p>
+      
+      <form onsubmit="calculateRentEstimate(event)">
+        <div class="form-group">
+          <label class="form-label">Ville</label>
+          <select id="est-city" class="form-control" onchange="updateEstNeighborhoods()">
+            <option value="cotonou">Cotonou</option>
+            <option value="calavi">Abomey-Calavi</option>
+            <option value="portonovo">Porto-Novo</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Quartier</label>
+          <select id="est-neighborhood" class="form-control">
+            <option value="haievive">Haie Vive</option>
+            <option value="fidjrosse">Fidjrossè</option>
+            <option value="cadjehoun">Cadjehoun</option>
+            <option value="akpakpa">Akpakpa</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Type de bien</label>
+          <select id="est-type" class="form-control">
+            <option value="appartement">Appartement</option>
+            <option value="maison">Maison / Villa / Duplex</option>
+            <option value="studio">Studio</option>
+            <option value="bureau">Bureau professionnel</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Nombre de chambres</label>
+          <select id="est-rooms" class="form-control">
+            <option value="1">1 chambre</option>
+            <option value="2" selected>2 chambres</option>
+            <option value="3">3 chambres</option>
+            <option value="4">4 chambres et plus</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Calculer l'estimation</button>
+      </form>
+      
+      <!-- Estimation Result Container (Hidden by default) -->
+      <div id="est-result-container" style="display: none; margin-top: 2rem; padding: 1.5rem; background-color: var(--primary-light); border: 1px solid var(--primary); border-radius: var(--radius-md); text-align: center;">
+        <h4 style="margin-bottom: 0.5rem; color: var(--secondary);">Valeur locative estimée :</h4>
+        <div id="est-result-value" style="font-size: 1.65rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;">250 000 FCFA - 300 000 FCFA</div>
+        <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1.5rem;">Estimation basée sur les données réelles de BatiBid et du marché local au Bénin.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <button class="btn btn-primary" onclick="closeRentEstimator(); navigateTo('index.html#auth');" style="width: 100%;">
+            <i class="fas fa-handshake"></i> Confier mon bien à BatiBid
+          </button>
+          <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20j%27ai%20r%C3%A9alis%C3%A9%20une%20estimation%20de%20loyer%20sur%20votre%20site%20et%20je%20souhaite%20en%20discuter." class="btn btn-secondary" style="width: 100%; border-color: var(--primary); color: var(--primary); text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" style="color: #25D366;"></i> En discuter sur WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MOBILE NAVIGATION OVERLAY
+       ========================================== -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+            <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mise en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        
+        <div class="mobile-nav-section-title">Marketplace &amp; Recherche</div>
+        <a href="https://app.batibid.com/search" target="_blank" rel="noopener" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-search"></i> Marketplace de biens</span>
+          <span style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.74rem; color: var(--clr-primary); font-weight: 600;">
+            App ↗ <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.65rem;"></i>
+          </span>
+        </a>
+
+        <div class="mobile-nav-section-title">Entreprise &amp; Ressources</div>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="contact" class="btn btn-primary" style="width: 100%;" onclick="toggleMobileMenu()">
+          <i class="fas fa-calendar-alt"></i> Prendre RDV
+        </a>
+        <div class="mobile-nav-app-row">
+          <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn btn-secondary">
+            <i class="fas fa-arrow-right-to-bracket"></i> Connexion
+          </a>
+          <a href="https://app.batibid.com/register" target="_blank" rel="noopener" class="btn btn-outline">
+            <i class="fas fa-user-plus"></i> Inscription
+          </a>
+        </div>
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.84rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       FLOATING ACTION BUBBLES (CONTACT & WHATSAPP)
+       ========================================== -->
+  <a href="contact" id="contact-fab" class="contact-fab" title="Nous écrire / Contact">
+    <i class="fas fa-envelope"></i>
+    <span class="contact-fab-tooltip">Nous contacter</span>
+  </a>
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20j%27ai%20besoin%20d%27aide%20concernant%20vos%20services." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Besoin d'aide ?</span>
+  </a>
+
+  <!-- ==========================================
+       MOBILE STICKY CTA (visitor only)
+       ========================================== -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://app.batibid.com/search" target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; border-color: var(--clr-border-strong); color: var(--clr-dark);">
+      <i class="fas fa-search" style="margin-right: 0.4rem; color: var(--clr-primary);"></i> Rechercher
+    </a>
+    <a href="contact" class="btn btn-primary" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-calendar-alt" style="margin-right: 0.4rem;"></i> Prendre RDV
+    </a>
+  </div>
+
+  <!-- Data Layer & Properties Database -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  
+  <!-- Main JavaScript App Logic -->
+  <script src="app.js?v=3.7"></script>
+  <!-- ==========================================
+       SEARCH MODAL OVERLAY (APPLICATION)
+       ========================================== -->
+  <div class="search-modal-overlay" id="search-modal" onclick="if(event.target === this) closeSearchModal()">
+    <div class="search-modal-window">
+      <button type="button" class="search-modal-close" onclick="closeSearchModal()" aria-label="Fermer la recherche">
+        <i class="fas fa-times"></i>
+      </button>
+      <span class="home-eyebrow">RECHERCHE DE BIENS &bull; APPLICATION</span>
+      <h3 style="font-family: var(--ff-display); font-size: 1.5rem; margin: 0.5rem 0 1rem; color: var(--clr-dark);">Trouver une location ou un achat au Bénin</h3>
+      <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="search-modal-form">
+        <div class="search-modal-input-wrap">
+          <i class="fas fa-search search-modal-icon"></i>
+          <input type="text" name="q" id="search-modal-input" class="search-modal-input" placeholder="Ville, quartier (ex: Haie Vive, Calavi, Akpakpa), type de bien..." autofocus>
+          <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1.15rem; font-size: 0.85rem;">Rechercher</button>
+        </div>
+      </form>
+      <div class="search-quick-tags">
+        <span>Suggestions :</span>
+        <a href="https://app.batibid.com/search?q=Haie+Vive" target="_blank" rel="noopener">Haie Vive</a>
+        <a href="https://app.batibid.com/search?q=Calavi" target="_blank" rel="noopener">Calavi</a>
+        <a href="https://app.batibid.com/search?q=Akpakpa" target="_blank" rel="noopener">Akpakpa</a>
+        <a href="https://app.batibid.com/search?q=Villa" target="_blank" rel="noopener">Villas</a>
+        <a href="https://app.batibid.com/search?q=Terrain" target="_blank" rel="noopener">Terrains Titrés</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CORPORATE HOUSING PROPOSAL MODAL (B2B)
+       ========================================== -->
+  <div class="ch-modal-overlay" id="modal-corporate-proposition" onclick="if(event.target === this) closeCorporateModal()">
+    <div class="ch-modal-card">
+      <button type="button" class="ch-modal-close" onclick="closeCorporateModal()" aria-label="Fermer la fenêtre">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="ch-modal-header">
+        <span class="ch-eyebrow"><i class="fas fa-building"></i> Mobilité Entreprise</span>
+        <h3>Demande de proposition Corporate Housing</h3>
+        <p>Recevez sous 24h une proposition personnalisée et chiffrée pour l'installation et l'accompagnement de vos collaborateurs au Bénin.</p>
+      </div>
+      <form id="ch-proposition-form" onsubmit="return handleCorporateSubmit(event)">
+        <div class="ch-form-row">
+          <div class="ch-form-group">
+            <label class="ch-form-label">Nom &amp; Prénom *</label>
+            <input type="text" class="ch-form-input" placeholder="Ex: Marc DUPONT" required>
+          </div>
+          <div class="ch-form-group">
+            <label class="ch-form-label">Entreprise / Organisation *</label>
+            <input type="text" class="ch-form-input" placeholder="Ex: Groupe Bolloré Bénin" required>
+          </div>
+        </div>
+        <div class="ch-form-row">
+          <div class="ch-form-group">
+            <label class="ch-form-label">Fonction / Rôle *</label>
+            <input type="text" class="ch-form-input" placeholder="Ex: DRH / Responsable Mobilité" required>
+          </div>
+          <div class="ch-form-group">
+            <label class="ch-form-label">Email professionnel *</label>
+            <input type="email" class="ch-form-input" placeholder="m.dupont@entreprise.com" required>
+          </div>
+        </div>
+        <div class="ch-form-row">
+          <div class="ch-form-group">
+            <label class="ch-form-label">Téléphone / WhatsApp *</label>
+            <input type="tel" class="ch-form-input" placeholder="+229 ... ou +33 ..." required>
+          </div>
+          <div class="ch-form-group">
+            <label class="ch-form-label">Formule envisagée *</label>
+            <select id="ch-formula-select" class="ch-form-select">
+              <option value="Essential (150 000 - 250 000 FCFA HT)">Corporate Housing Essential (150 000 à 250 000 F HT / dossier)</option>
+              <option value="Premium (550 000 - 950 000 FCFA HT)" selected>Corporate Housing Premium (550 000 à 950 000 F HT / an)</option>
+              <option value="Employee Housing Pass (Dès 1 500 000 FCFA HT / an)">Employee Housing Pass (Dès 1 500 000 F HT / an)</option>
+              <option value="Formule Flexible (Missions durée variable)">Formule Flexible (Installation + Suivi mensuel)</option>
+              <option value="Étude sur mesure">Besoin multi-collaborateurs / Grand Compte (+150 salariés)</option>
+            </select>
+          </div>
+        </div>
+        <div class="ch-form-row">
+          <div class="ch-form-group">
+            <label class="ch-form-label">Ville d'affectation *</label>
+            <input type="text" class="ch-form-input" placeholder="Ex: Cotonou (Haie Vive, Ganhi...), Calavi..." required>
+          </div>
+          <div class="ch-form-group">
+            <label class="ch-form-label">Date prévisionnelle d'arrivée</label>
+            <input type="date" class="ch-form-input">
+          </div>
+        </div>
+        <div class="ch-form-group">
+          <label class="ch-form-label">Critères clés ou exigences particulières</label>
+          <textarea class="ch-form-textarea" rows="3" placeholder="Typologie (appartement, villa), composition familiale, meublé, groupe électrogène, exigences de sécurité..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-shimmer" style="width: 100%; padding: 0.95rem; font-size: 1rem;">
+          <i class="fas fa-paper-plane"></i> Transmettre ma demande de proposition
+        </button>
+        <p class="ch-form-help" style="text-align: center; margin-top: 0.75rem;">
+          <i class="fas fa-lock"></i> Confidentialité garantie. Vos données ne sont jamais transmises à des tiers.
+        </p>
+      </form>
+      <div id="ch-modal-success" class="ch-modal-success" style="display: none;">
+        <i class="fas fa-circle-check"></i>
+        <h4 style="font-family: var(--ff-display); font-size: 1.5rem; color: var(--clr-dark); margin-bottom: 0.6rem;">Demande bien reçue !</h4>
+        <p style="color: var(--clr-dark-soft); line-height: 1.6; margin-bottom: 1.5rem;">
+          Notre cellule <strong>Corporate Housing BatiBid</strong> a bien réceptionné vos critères. Un conseiller mobilité dédié prendra attache avec vous sous <strong>4 heures ouvrées</strong> pour convenir d'un échange et vous transmettre une proposition adaptée.
+        </p>
+        <button type="button" class="btn btn-primary" onclick="closeCorporateModal()">
+          Fermer la fenêtre
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1242 @@
+/* ========================================================================
+   BATIBID — JURIDIQUE & FONCIER (PAGE OFFICIELLE ÉDITORIALE)
+   Palette : Terracotta var(--clr-primary) · Brun var(--clr-dark) / #160F0A · Crème var(--clr-light)
+   Numéro officiel d'autorité : +229 01 42 48 48 48
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   1. STRUCTURE GÉNÉRALE & CONTENEUR
+   ------------------------------------------------------------------------ */
+.juridique-page {
+  position: relative;
+  background-color: var(--clr-light, var(--clr-light));
+  color: var(--clr-dark, var(--clr-dark));
+  min-height: 85vh;
+  overflow: hidden;
+}
+
+.juridique-bg-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url('../assets/images/plan.webp');
+  background-repeat: repeat;
+  background-size: 650px;
+  z-index: 0;
+}
+
+.juridique-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------------------
+   2. HERO SECTION : EN-TÊTE FONCIER & VUE AÉRIENNE CADASTRALE
+   ------------------------------------------------------------------------ */
+.juridique-hero {
+  padding: 3.5rem 0 5rem;
+}
+
+.juridique-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Colonne Gauche : Argumentaire Éditorial */
+.juridique-hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.juridique-eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.juridique-eyebrow {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--clr-primary, var(--clr-primary));
+  text-transform: uppercase;
+}
+
+.juridique-eyebrow-line {
+  width: 36px;
+  height: 1.5px;
+  background-color: var(--clr-primary, var(--clr-primary));
+  border-radius: 1px;
+}
+
+.juridique-headline {
+  /* font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: var(--fs-h1-fluid, clamp(2.1rem, 5vw + 0.5rem, 3.4rem));
+  line-height: 1.12;
+  font-weight: 600;
+  color: var(--clr-dark, var(--clr-dark));
+  letter-spacing: -0.015em;
+  margin: 0 0 1.5rem; */
+
+  /* font-family: var(--loc-font-heading);
+  font-size: var(--fs-h2-fluid, clamp(1.65rem, 3.5vw + 0.3rem, 2.65rem));
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--loc-text-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em; */
+
+      font-family: var(--loc-font-heading);
+    font-size: var(--fs-h1-fluid, clamp(2.1rem, 5vw + 0.5rem, 3.5rem));
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--loc-text-dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.juridique-subtext {
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--clr-dark-soft);
+  max-width: 500px;
+  margin: 0 0 2.25rem;
+}
+
+.juridique-hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.btn-juridique-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--clr-primary, var(--clr-primary));
+  color: var(--white);
+  padding: 0.95rem 1.85rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(217, 87, 30, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-juridique-primary:hover {
+  background: #C24816;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(217, 87, 30, 0.36);
+  color: var(--white);
+}
+
+.btn-juridique-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  color: var(--clr-dark, var(--clr-dark));
+  border: 1.5px solid #D2C4B7;
+  padding: 0.92rem 1.65rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-juridique-outline:hover {
+  background: var(--white);
+  border-color: var(--clr-primary, var(--clr-primary));
+  color: var(--clr-primary, var(--clr-primary));
+}
+
+.btn-juridique-outline i {
+  color: var(--clr-primary, var(--clr-primary));
+}
+
+.juridique-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(59, 31, 11, 0.08);
+}
+
+.juridique-avatars-stack {
+  display: flex;
+}
+
+.juridique-avatars-stack img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  margin-left: -8px;
+  object-fit: cover;
+}
+
+.juridique-avatars-stack img:first-child {
+  margin-left: 0;
+}
+
+.juridique-trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.85rem;
+  color: var(--clr-dark-soft);
+}
+
+.juridique-trust-text strong {
+  color: var(--clr-dark, var(--clr-dark));
+}
+
+.juridique-trust-text span {
+  font-size: 0.75rem;
+  color: #8C786B;
+}
+
+/* Colonne Droite : Vue Drone & Cadastre */
+.juridique-hero-visual-col {
+  position: relative;
+}
+
+.cadastre-visual-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(59, 31, 11, 0.12);
+  background: #E6D7C8;
+  /* aspect-ratio: 4 / 3; */
+  height: 480px;
+  width: 580px;
+}
+
+.cadastre-drone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Calque Cadastral Vectoriel */
+.cadastre-overlay-grid {
+  position: absolute;
+  inset: 15% 15% 15% 15%;
+  border: 2px dashed rgba(217, 87, 30, 0.85);
+  background: rgba(217, 87, 30, 0.06);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.cadastre-overlay-grid::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  border: 3px solid var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Badge Dossier Juridique Flottant */
+/* Bandeau sobre d'audit foncier certifié (intégré, sans badges flottants) */
+.cadastre-audit-summary-dock {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  background: rgba(20, 17, 15, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  color: var(--white);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  z-index: 3;
+}
+
+.cadastre-dock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dock-badge-official {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--clr-primary, #D9571E);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dock-ref {
+  font-family: var(--ff-mono, 'JetBrains Mono', monospace);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cadastre-dock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dock-lbl {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dock-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.dock-val.text-success {
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dock-val.text-secure {
+  color: #34D399;
+}
+
+/* ------------------------------------------------------------------------
+   3. SECTION : « NOS EXPERTISES JURIDIQUES & FONCIÈRES » (7 CARTES EN BENTO 4+3)
+   ------------------------------------------------------------------------ */
+.section-expertises-grid {
+  padding: 5rem 0;
+  border-top: 1px solid rgba(59, 31, 11, 0.06);
+  background: var(--clr-bg-wh);
+}
+
+.expertises-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Ligne 1 : 4 cartes de 3 colonnes chacune (4 x 3 = 12 colonnes) */
+.expertises-cards-grid > .expertise-card:nth-child(1),
+.expertises-cards-grid > .expertise-card:nth-child(2),
+.expertises-cards-grid > .expertise-card:nth-child(3),
+.expertises-cards-grid > .expertise-card:nth-child(4) {
+  grid-column: span 3;
+}
+
+/* Ligne 2 : 3 cartes de 4 colonnes chacune (3 x 4 = 12 colonnes) */
+.expertises-cards-grid > .expertise-card:nth-child(5),
+.expertises-cards-grid > .expertise-card:nth-child(6),
+.expertises-cards-grid > .expertise-card:nth-child(7) {
+  grid-column: span 4;
+}
+
+.expertise-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 2.2rem 1.6rem 1.8rem;
+  border: 1px solid rgba(59, 31, 11, 0.07);
+  box-shadow: 0 10px 28px rgba(59, 31, 11, 0.04);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.35s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.expertise-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(217, 87, 30, 0.1);
+  border-color: rgba(217, 87, 30, 0.3);
+}
+
+.expertise-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(217, 87, 30, 0.1);
+  color: var(--clr-primary, #D9571E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.35s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1)), background 0.3s ease;
+}
+
+.expertise-card:hover .expertise-icon-box {
+  transform: scale(1.1) rotate(-3deg);
+  background: rgba(217, 87, 30, 0.18);
+}
+
+.expertise-title {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--clr-dark, #2D1807);
+  margin: 0 0 0.65rem;
+}
+
+.expertise-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #6E5A4E;
+  margin: 0 0 1.25rem;
+}
+
+.expertise-card-line {
+  margin-top: auto;
+  display: block;
+  width: 32px;
+  height: 2.5px;
+  background-color: var(--clr-primary, #D9571E);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.expertise-card:hover .expertise-card-line {
+  width: 52px;
+}
+
+
+
+/* ------------------------------------------------------------------------
+   5. SECTION : UNE APPROCHE RIGOUREUSE (DOSSIER FONCIER & IMPACT)
+   ------------------------------------------------------------------------ */
+.section-approche-rigoureuse {
+  padding: 5.5rem 0;
+}
+
+.approche-rigoureuse-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.dossier-card-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(59, 31, 11, 0.12);
+  background: #E6D7C8;
+  aspect-ratio: 4 / 3;
+}
+
+.dossier-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dossier-stamp-tag {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  background: rgba(22, 15, 10, 0.88);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  padding: 0.6rem 1.05rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dossier-stamp-tag i {
+  color: #81C784;
+  font-size: 0.85rem;
+}
+
+.approche-rigoureuse-text-col {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5rem;
+}
+
+.approche-headline {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: var(--fs-h2-fluid, clamp(1.8rem, 3.5vw + 0.35rem, 2.5rem));
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--clr-dark, var(--clr-dark));
+  margin: 0 0 1.25rem;
+}
+
+.approche-subtext {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--clr-dark-soft);
+  margin: 0 0 2.25rem;
+  max-width: 680px;
+}
+
+.approche-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.ac-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--clr-dark, var(--clr-dark));
+}
+
+.ac-check-row .check-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--success-light);
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Diagnostic Action Footer & Poursuite Audit */
+.diagnostic-action-footer {
+  margin-top: 1.35rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.daf-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.daf-info strong {
+  color: #FEF08A;
+}
+
+.btn-proceed-audit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--clr-primary, #D9571E);
+  color: var(--white);
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(217, 87, 30, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-proceed-audit:hover {
+  background: #C24816;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(217, 87, 30, 0.45);
+}
+
+/* Pastille situation pré-sélectionnée dans le Modal */
+.lead-situation-pill {
+  margin-top: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  background: rgba(217, 87, 30, 0.1);
+  border: 1px solid rgba(217, 87, 30, 0.28);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: var(--clr-dark, #1F1610);
+}
+
+/* ------------------------------------------------------------------------
+   6. SECTION : SIMULATEUR D'ORIENTATION JURIDIQUE (DARK + TERRACOTTA)
+   ------------------------------------------------------------------------ */
+.section-diagnostic-orientation {
+  padding: 5.5rem 0;
+  background-color: var(--gerer-dark-bg, #14110F);
+}
+
+.section-diagnostic-orientation .juridique-eyebrow-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.section-diagnostic-orientation .juridique-eyebrow {
+  color: #FF9E66;
+  background: rgba(217, 87, 30, 0.16);
+  border: 1px solid rgba(255, 158, 102, 0.35);
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  display: inline-block;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-diagnostic-orientation .juridique-eyebrow-line {
+  display: none;
+}
+
+.diagnostic-banner-card {
+  background: var(--gerer-dark-card, #1C1917);
+  border-radius: 24px;
+  padding: 3.5rem;
+  border: 1.5px solid rgba(217, 87, 30, 0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  color: var(--white);
+}
+
+.diagnostic-card-header {
+  margin-bottom: 2.5rem;
+  max-width: 780px;
+}
+
+.diagnostic-headline {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: var(--fs-h2-fluid, clamp(1.75rem, 3.5vw + 0.3rem, 2.5rem));
+  font-weight: 600;
+  line-height: 1.22;
+  color: #FFFFFF;
+  margin: 0 0 1rem;
+}
+
+.diagnostic-subtext {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #CBD5E1;
+  margin: 0;
+}
+
+.diagnostic-interactive-wrap {
+  max-width: 760px;
+}
+
+.diagnostic-interactive-wrap .form-label {
+  color: #F8FAFC;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diagnostic-select-wrap select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1.05rem 1.35rem;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: #24201D;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+}
+
+.diagnostic-select-wrap select:focus {
+  border-color: #FF9E66;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217, 87, 30, 0.28);
+}
+
+.diagnostic-select-wrap select option {
+  background: #1C1917;
+  color: #FFFFFF;
+  padding: 0.5rem;
+}
+
+/* Boîte de résultat dynamique avec contrastes WCAG AAA */
+.diagnostic-result-box {
+  margin-top: 2rem;
+  padding: 2.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.35s ease;
+}
+
+.diagnostic-result-box h4,
+.diagnostic-result-box .diagnostic-res-title {
+  color: #FFFFFF !important;
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.85rem;
+}
+
+.diagnostic-result-box .diagnostic-res-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FEF08A !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.diagnostic-result-box .diagnostic-res-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #E2E8F0 !important;
+  margin: 0;
+}
+
+/* Badges de couverture adaptés au dark mode */
+.coverage-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.coverage-tag.tag-included {
+  background: rgba(34, 197, 94, 0.18) !important;
+  color: #4ADE80 !important;
+  border: 1px solid rgba(74, 222, 128, 0.4) !important;
+}
+
+.coverage-tag.tag-premium {
+  background: rgba(249, 115, 22, 0.2) !important;
+  color: #FB923C !important;
+  border: 1px solid rgba(251, 146, 60, 0.4) !important;
+}
+
+.coverage-tag.tag-none {
+  background: rgba(148, 163, 184, 0.18) !important;
+  color: #E2E8F0 !important;
+  border: 1px solid rgba(203, 213, 225, 0.3) !important;
+}
+
+/* ------------------------------------------------------------------------
+   7. SECTION : LES 4 GRANDS DOMAINES D'EXPERTISE DÉTAILLÉS
+   ------------------------------------------------------------------------ */
+.section-domaines-expertises-details {
+  padding: 4.5rem 0;
+  background: var(--clr-bg-wh);
+}
+
+.legal-expertises-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.legal-detail-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid rgba(59, 31, 11, 0.08);
+  box-shadow: 0 12px 32px rgba(59, 31, 11, 0.05);
+}
+
+.ldc-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid #F0E6DD;
+}
+
+.ldc-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(217, 87, 30, 0.1);
+  color: var(--clr-primary, var(--clr-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.ldc-title {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--clr-dark, var(--clr-dark));
+  margin: 0;
+}
+
+.ldc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.ldc-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #4A3A30;
+}
+
+.ldc-list li i {
+  color: var(--clr-primary, var(--clr-primary));
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------------------
+   8. FAQ JURIDIQUE & FONCIÈRE (GRILLE 2 COLONNES)
+   ------------------------------------------------------------------------ */
+.section-faq-juridique {
+  padding: 5rem 0 3.5rem;
+}
+
+.faq-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1160px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.faq-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.faq-column .accordion-item {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid rgba(59, 31, 11, 0.08);
+  box-shadow: 0 4px 14px rgba(59, 31, 11, 0.03);
+  transition: all 0.3s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1));
+  overflow: hidden;
+}
+
+.faq-column .accordion-item:hover {
+  border-color: rgba(217, 87, 30, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 31, 11, 0.06);
+}
+
+.faq-column .accordion-item.active {
+  border-color: rgba(217, 87, 30, 0.35);
+  box-shadow: 0 12px 28px rgba(217, 87, 30, 0.08);
+}
+
+.faq-column .accordion-header {
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--ff-base, 'Geist', sans-serif);
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--clr-dark, #2D1807);
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.faq-column .accordion-item.active .accordion-header {
+  color: var(--clr-primary, #D9571E);
+}
+
+.faq-column .accordion-icon {
+  font-size: 0.85rem;
+  color: #8C786B;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
+.faq-column .accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+  color: var(--clr-primary, #D9571E);
+}
+
+.faq-column .accordion-content {
+  display: none;
+  padding: 0 1.5rem 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #6E5A4E;
+}
+
+.faq-column .accordion-item.active .accordion-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .faq-two-columns {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+    max-width: 720px;
+  }
+}
+
+/* Espacement direct harmonieux vers le CTA final */
+.section-cta-terracotta {
+  padding: 2.5rem 0 5.5rem;
+}
+
+/* ------------------------------------------------------------------------
+   9. RESPONSIVE MEDIA QUERIES
+   ------------------------------------------------------------------------ */
+@media (max-width: 1080px) {
+  .juridique-hero-grid,
+  .approche-rigoureuse-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .expertises-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .expertises-cards-grid > .expertise-card {
+    grid-column: auto !important;
+  }
+
+  .expertises-cards-grid > .expertise-card:nth-child(7) {
+    grid-column: 1 / -1 !important; /* 7ème carte étalée harmonieusement sur tablette */
+  }
+
+  .legal-stepper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.5rem;
+  }
+
+  .legal-expertises-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 991px) {
+  /* Désactivation de la ligne horizontale sur tablette/mobile pour éviter tout débordement */
+  .legal-stepper::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .juridique-hero {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .juridique-headline {
+    font-size: 2.4rem;
+  }
+
+  .diagnostic-banner-card {
+    padding: 2.2rem 1.5rem;
+  }
+
+  .cadastre-dossier-badge {
+    width: 200px;
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .expertises-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .expertises-cards-grid > .expertise-card:nth-child(7) {
+    grid-column: auto !important;
+  }
+
+  .legal-stepper {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .ls-step-item {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: #FFFFFF;
+    padding: 1.35rem;
+    border-radius: 16px;
+    border: 1px solid rgba(59, 31, 11, 0.07);
+    box-shadow: 0 4px 14px rgba(59, 31, 11, 0.04);
+  }
+
+  .ls-step-icon-wrap {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .ls-step-badge {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    margin-bottom: 0;
+  }
+
+  .juridique-hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-juridique-primary,
+  .btn-juridique-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ========================================================================
+   LUXURY MOTION DESIGN ENHANCEMENTS — CONSEILS JURIDIQUES & FONCIER
+   Authority, Cadastral Blueprint Accents, Stepper Connector & 60 FPS
+   ======================================================================== */
+
+/* Cadastral overlay pulse and active glow */
+.cadastre-overlay-grid {
+  transition: opacity 0.8s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1)), transform 0.8s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cadastre-overlay-grid.is-active,
+.cadastre-visual-card:hover .cadastre-overlay-grid {
+  border-color: var(--clr-primary);
+  background: rgba(217, 87, 30, 0.12);
+  box-shadow: inset 0 0 20px rgba(217, 87, 30, 0.15);
+}
+
+@keyframes pinPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 87, 30, 0.4); }
+  50% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(217, 87, 30, 0); }
+}
+
+.cadastre-overlay-grid::after {
+  animation: pinPulse 2.4s ease-in-out infinite;
+}
+
+/* Stepper roadmap timeline connector (desktop >= 992px) */
+@media (min-width: 992px) {
+  .legal-stepper::before {
+    content: '';
+    position: absolute;
+    top: 29px; /* Exactement au centre des cercles de 58px */
+    left: calc(100% / 12); /* Alignement parfait sur le centre de l'étape 1 */
+    right: calc(100% / 12); /* Alignement parfait sur le centre de l'étape 6 */
+    height: 3px;
+    background: linear-gradient(90deg, #D9571E 0%, rgba(217, 87, 30, 0.45) 65%, #2E7D32 100%);
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 2px;
+    transform-origin: left;
+    animation: drawStepperLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes drawStepperLine {
+  from {
+    transform: scaleX(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Legal stepper item hover lift */
+.ls-step-item {
+  transition: transform 0.3s ease;
+}
+
+.ls-step-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Bento card interactive micro-interactions */
+.expertise-card:hover .expertise-icon-box,
+.legal-detail-card:hover .ldc-icon-box {
+  transform: scale(1.1) rotate(-3deg);
+  background: rgba(217, 87, 30, 0.18);
+}
+
+.expertise-icon-box,
+.ldc-icon-box {
+  transition: transform 0.35s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1)), background 0.35s ease;
+}
+
+.legal-detail-card {
+  transition: transform 0.35s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.legal-detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(59, 31, 11, 0.08);
+  border-color: rgba(217, 87, 30, 0.28);
+}
+
+/* Diagnostic result box dynamic reveal & pulse */
+.diagnostic-result-box {
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.diagnostic-result-box.calc-pulse {
+  animation: calcPulse 0.45s var(--ease-luxury, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+/* Pricing callout strip */
+.juridique-pricing-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 2.5rem 0 3.5rem;
+}
+
+@media (max-width: 820px) {
+  .juridique-pricing-strip {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}
+
+.jps-card {
+  background: var(--white, #ffffff);
+  border: 1px solid rgba(59, 31, 11, 0.08);
+  border-radius: 16px;
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 18px rgba(59, 31, 11, 0.03);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.jps-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--clr-primary, #D9571E);
+}
+
+.jps-card.featured {
+  background: linear-gradient(135deg, #160F0A 0%, #2A1D15 100%);
+  border-color: #160F0A;
+  color: #ffffff;
+}
+
+.jps-card.featured .jps-icon {
+  background: rgba(217, 87, 30, 0.25);
+  color: #F28C4B;
+}
+
+.jps-card.featured .jps-title {
+  color: #ffffff;
+}
+
+.jps-card.featured .jps-desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.jps-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(217, 87, 30, 0.1);
+  color: var(--clr-primary, #D9571E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.jps-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.jps-price {
+  font-family: var(--ff-display, 'Fraunces', serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-primary, #D9571E);
+  line-height: 1.2;
+}
+
+.jps-card.featured .jps-price {
+  color: #F28C4B;
+}
+
+.jps-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--clr-dark, #160F0A);
+  margin-top: 0.15rem;
+}
+
+.jps-desc {
+  font-size: 0.8rem;
+  color: #7D695D;
+}
+
+

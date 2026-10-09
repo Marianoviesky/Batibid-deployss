@@ -1,0 +1,274 @@
+    <section id="contact" class="view-section active">
+<!-- ========================================================================
+     BATIBID — CONTACT (PAGE CONTACT OFFICIELLE)
+     Fidélité stricte à la maquette de référence media_1788536487277.jpg
+     Numéro officiel d'autorité : +229 01 42 48 48 48
+     ======================================================================== -->
+
+<div class="contact-page">
+  <!-- Filigrane architectural subtil d'arrière-plan -->
+  <div class="contact-bg-watermark" aria-hidden="true"></div>
+
+  <div class="contact-container">
+    <div class="contact-layout-grid">
+      
+      <!-- ==================================================================
+           COLONNE GAUCHE : IDENTITÉ DE CONTACT & CANAUX DIRECTS
+           ================================================================== -->
+      <div class="contact-left-col">
+        
+        <!-- Tag avec ligne d'accentuation terracotta -->
+        <div class="contact-eyebrow-wrap reveal">
+          <span class="contact-eyebrow">CONTACTEZ-NOUS</span>
+          <span class="contact-eyebrow-line" aria-hidden="true"></span>
+        </div>
+
+        <!-- Titre principal sculpté Fraunces -->
+        <h1 class="contact-headline reveal-text-mask">
+          <span class="reveal-line">Besoin d'un</span>
+          <span class="reveal-line">renseignement ?</span>
+          <span class="reveal-line">Notre équipe est là.</span>
+        </h1>
+
+        <!-- Sous-titre explicatif -->
+        <p class="contact-subtext reveal">
+          Une question sur la gestion locative, les visites virtuelles ou les méthodes de paiement ? Contactez nos conseillers clientèle à tout moment.
+        </p>
+
+        <!-- Bouton CTA WhatsApp Sombre (conforme à la maquette) -->
+        <div class="contact-whatsapp-wrap">
+          <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20renseignement%20sur%20vos%20services." 
+             target="_blank" 
+             rel="noopener" 
+             class="btn-whatsapp-dark btn-shimmer"
+             aria-label="Discuter directement sur WhatsApp avec BatiBid (+229 01 42 48 48 48)">
+            <i class="fab fa-whatsapp whatsapp-icon" aria-hidden="true"></i>
+            <span>Discuter sur WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- 3 Canaux d'information et coordonnées officielles -->
+        <div class="contact-channels-list stagger-children">
+          
+          <!-- Canal 1: Email -->
+          <div class="contact-channel-item">
+            <div class="contact-channel-icon">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="contact-channel-content">
+              <span class="channel-label">Adresse Email</span>
+              <a href="mailto:contact@batibid.com" class="channel-value channel-link">
+                contact@batibid.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Canal 2: Téléphone officiel -->
+          <div class="contact-channel-item">
+            <div class="contact-channel-icon">
+              <i class="fas fa-phone-volume" aria-hidden="true"></i>
+            </div>
+            <div class="contact-channel-content">
+              <span class="channel-label">Téléphone</span>
+              <a href="tel:+2290142484848" class="channel-value channel-link">
+                +229 01 42 48 48 48
+              </a>
+            </div>
+          </div>
+
+          <!-- Canal 3: Siège Social -->
+          <div class="contact-channel-item">
+            <div class="contact-channel-icon">
+              <i class="fas fa-location-dot" aria-hidden="true"></i>
+            </div>
+            <div class="contact-channel-content">
+              <span class="channel-label">Siège Social</span>
+              <span class="channel-value channel-text">
+                Zone Commerciale Akpakpa,<br>Lot 402 - Cotonou, Bénin
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================================
+           COLONNE DROITE : FORMULAIRE ÉDITORIAL (« Envoyez-nous un message »)
+           ================================================================== -->
+      <div class="contact-right-col">
+        <div class="contact-card-panel reveal-right bento-card-interactive">
+          
+          <h2 class="contact-card-title">Envoyez-nous un message</h2>
+
+          <!-- Stepper multi-étapes conforme à la maquette -->
+          <div class="contact-stepper-wrap" role="progressbar" aria-label="Progression du formulaire" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+            <div class="contact-stepper">
+              
+              <!-- Étape 1 : Identité -->
+              <div class="stepper-item active" id="cp-step-1">
+                <div class="stepper-circle">01</div>
+                <span class="stepper-label">Identité</span>
+              </div>
+
+              <!-- Ligne de liaison 1-2 -->
+              <div class="stepper-line" id="cp-line-1">
+                <div class="stepper-line-fill" id="cp-line-fill-1"></div>
+              </div>
+
+              <!-- Étape 2 : Coordonnées -->
+              <div class="stepper-item" id="cp-step-2">
+                <div class="stepper-circle">02</div>
+                <span class="stepper-label">Coordonnées</span>
+              </div>
+
+              <!-- Ligne de liaison 2-3 -->
+              <div class="stepper-line" id="cp-line-2">
+                <div class="stepper-line-fill" id="cp-line-fill-2"></div>
+              </div>
+
+              <!-- Étape 3 : Message -->
+              <div class="stepper-item" id="cp-step-3">
+                <div class="stepper-circle">03</div>
+                <span class="stepper-label">Message</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Formulaire Multi-Étapes interactif -->
+          <form id="contact-form" class="contact-multistep-form" onsubmit="submitContactForm(event)" novalidate>
+            
+            <!-- ===================== ÉTAPE 1 : IDENTITÉ ===================== -->
+            <div class="contact-step-content active" id="contact-step-1">
+              <div class="form-field-group" id="group-contact-name">
+                <label for="contact-name" class="contact-field-label">Nom complet</label>
+                <div class="contact-input-wrap">
+                  <input type="text" 
+                         id="contact-name" 
+                         name="name" 
+                         class="contact-input" 
+                         placeholder="Ex: Jean DOSSOU" 
+                         required 
+                         autocomplete="name"
+                         onkeydown="if(event.key==='Enter'){event.preventDefault();nextContactStep(2);}">
+                </div>
+                <span class="field-error-hint" id="contact-name-hint">Veuillez renseigner votre nom complet.</span>
+              </div>
+
+              <div class="contact-step-actions">
+                <button type="button" class="btn-step-continue btn-shimmer" onclick="nextContactStep(2)">
+                  Continuer <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ===================== ÉTAPE 2 : COORDONNÉES ===================== -->
+            <div class="contact-step-content" id="contact-step-2">
+              <div class="form-field-group" id="group-contact-phone">
+                <label for="contact-phone" class="contact-field-label">Numéro de téléphone ou WhatsApp</label>
+                <div class="contact-input-wrap">
+                  <input type="tel" 
+                         id="contact-phone" 
+                         name="phone" 
+                         class="contact-input" 
+                         placeholder="Ex: +229 97 00 00 00" 
+                         required 
+                         autocomplete="tel">
+                </div>
+                <span class="field-error-hint" id="contact-phone-hint">Numéro de téléphone requis pour vous joindre.</span>
+              </div>
+
+              <div class="form-field-group" id="group-contact-email">
+                <label for="contact-email" class="contact-field-label">Adresse Email</label>
+                <div class="contact-input-wrap">
+                  <input type="email" 
+                         id="contact-email" 
+                         name="email" 
+                         class="contact-input" 
+                         placeholder="Ex: jean.dossou@gmail.com" 
+                         required 
+                         autocomplete="email"
+                         onkeydown="if(event.key==='Enter'){event.preventDefault();nextContactStep(3);}">
+                </div>
+                <span class="field-error-hint" id="contact-email-hint">Veuillez entrer une adresse email valide.</span>
+              </div>
+
+              <div class="contact-step-actions step-actions-dual">
+                <button type="button" class="btn-step-prev" onclick="prevContactStep(1)">
+                  <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour
+                </button>
+                <button type="button" class="btn-step-continue btn-shimmer" onclick="nextContactStep(3)">
+                  Continuer <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ===================== ÉTAPE 3 : MESSAGE ===================== -->
+            <div class="contact-step-content" id="contact-step-3">
+              <div class="form-field-group">
+                <label for="contact-subject" class="contact-field-label">Votre demande concerne</label>
+                <div class="contact-select-wrap">
+                  <select id="contact-subject" name="subject" class="contact-select">
+                    <option value="gestion">Gestion locative &amp; Garantie de loyers</option>
+                    <option value="mise-en-location">Mise en location de mon bien</option>
+                    <option value="construire">Projet de construction / Rénovation</option>
+                    <option value="juridique">Sécurisation foncière &amp; Titre Foncier</option>
+                    <option value="private-market">BatiBid Private Market (Vente / Achat discret)</option>
+                    <option value="autre">Autre renseignement</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field-group" id="group-contact-msg">
+                <label for="contact-msg" class="contact-field-label">Votre message</label>
+                <div class="contact-input-wrap">
+                  <textarea id="contact-msg" 
+                            name="message" 
+                            class="contact-textarea" 
+                            rows="4" 
+                            placeholder="Comment pouvons-nous vous aider ? Décrivez votre projet..." 
+                            required></textarea>
+                </div>
+                <span class="field-error-hint" id="contact-msg-hint">Veuillez saisir votre message.</span>
+              </div>
+
+              <div class="contact-step-actions step-actions-dual">
+                <button type="button" class="btn-step-prev" onclick="prevContactStep(2)">
+                  <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour
+                </button>
+                <button type="submit" class="btn-step-continue btn-step-submit btn-shimmer">
+                  <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer
+                </button>
+              </div>
+            </div>
+
+            <!-- ===================== ÉTAPE 4 : CONFIRMATION SUCCÈS ===================== -->
+            <div class="contact-step-content" id="contact-step-success">
+              <div class="contact-success-box">
+                <div class="success-icon-wrap">
+                  <i class="fas fa-check" aria-hidden="true"></i>
+                </div>
+                <h3 class="success-title">Message transmis avec succès !</h3>
+                <p class="success-desc">
+                  Merci de votre confiance. Notre équipe de conseillers à Cotonou étudie votre demande et vous recontactera sous 2 heures ouvrées.
+                </p>
+                <div class="success-quick-info">
+                  <span><i class="fas fa-phone-volume"></i> Assistance directe : <strong>+229 01 42 48 48 48</strong></span>
+                </div>
+                <button type="button" class="btn btn-outline" onclick="resetContactForm()" style="margin-top: 1.5rem;">
+                  Envoyer un autre message
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+    </section>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Housing au Bénin | BatiBid — Mobilité Résidentielle B2B</title>
+  <meta name="description" content="Solutions de logement pensées pour la mobilité de vos collaborateurs au Bénin. Recherche, vérification, installation et suivi RH continu.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.2">
+  <link rel="stylesheet" href="css/header-footer.css?v=2.0">
+</head>
+<body data-page="corporate-housing">
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA REFONTE - 6 ENTRÉES)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link">Gérer</a>
+        <a href="mise-en-location" class="nav-link">Mise en location</a>
+        <a href="construire" class="nav-link">Construire &amp; rénover</a>
+        <a href="juridique" class="nav-link">Juridique</a>
+        <a href="corporate-housing" class="nav-link active">Corporate Housing</a>
+        <a href="private-market" class="nav-link">Private Market</a>
+        
+        <!-- Dropdown: Plus -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Plus <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a> -->
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="dropdown-divider" style="height: 1px; background: var(--clr-border); margin: 0.35rem 0;"></div>
+            <a href="https://app.batibid.com/register" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> S'inscrire</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien immobilier" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main class="main-content">
+    <section id="corporate-housing" class="view-section active">
+
+      <div class="corporate-housing-page">
+
+        <!-- ====================================================================
+             1. HERO B2B : MOBILITÉ RÉSIDENTIELLE ENTREPRISE
+             ==================================================================== -->
+        <section class="ch-hero">
+          <div class="ch-hero-radar-bg" aria-hidden="true">
+            <svg class="ch-radar-svg" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="600" cy="280" r="140" stroke="rgba(248, 179, 138, 0.12)" stroke-width="1.5" />
+              <circle cx="600" cy="280" r="280" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+              <circle cx="600" cy="280" r="420" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1.5" />
+              <circle cx="600" cy="280" r="560" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1.5" />
+              <line x1="600" y1="280" x2="1080" y2="560" stroke="rgba(248, 179, 138, 0.18)" stroke-width="1.5" stroke-dasharray="6 4" />
+            </svg>
+          </div>
+
+          <div class="ch-container">
+            <div class="ch-hero-centered-content reveal">
+              
+              <div class="ch-hero-subtitle-accent">
+                Le logement de vos collaborateurs, <span class="ch-accent-gold">organisé et suivi de bout en bout.</span>
+              </div>
+
+              <p class="ch-hero-centered-desc">
+                BatiBid accompagne les entreprises, les ONG et les organisations dans la recherche, la vérification et l'installation de leurs collaborateurs au Bénin. De la mobilité ponctuelle aux programmes logement annuels, nous proposons des solutions adaptées à vos besoins RH et à votre budget.
+              </p>
+
+              <div class="ch-hero-actions-centered">
+                <button type="button" class="btn-ch-primary btn-shimmer" onclick="openCorporateModal('general')">
+                  Demander une proposition entreprise <i class="fas fa-arrow-right"></i>
+                </button>
+                <a href="#ch-offres-section" class="btn-ch-secondary-dark">
+                  Découvrir nos 3 offres <i class="fas fa-arrow-down"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             2. TROIS SOLUTIONS POUR VOS BESOINS DE MOBILITÉ RÉSIDENTIELLE
+             ==================================================================== -->
+        <section class="ch-offres-section" id="ch-offres-section">
+          <div class="ch-container">
+            
+            <div class="ch-section-header text-center reveal">
+              <span class="ch-eyebrow" style="color: #F8B38A;"><i class="fas fa-layer-group"></i> CATALOGUE B2B BATIBID</span>
+              <h2 class="ch-section-title">
+                Trois solutions adaptées à votre politique RH
+              </h2>
+              <p class="ch-section-desc">
+                Une gamme claire : installer un collaborateur, accompagner sa mobilité sur la durée ou proposer un avantage logement pérenne à vos effectifs.
+              </p>
+            </div>
+
+            <div class="ch-offers-grid-3">
+
+              <!-- OFFRE 1 : ESSENTIAL -->
+              <div class="ch-pricing-card reveal">
+                <div class="ch-card-pill">Offre d'acquisition B2B</div>
+                <h3 class="ch-card-title">Corporate Housing Essential</h3>
+                <p class="ch-card-catchphrase">« Le bon logement pour votre collaborateur, sans mobiliser vos équipes. »</p>
+                <p class="ch-card-summary">
+                  Confiez-nous la recherche, la présélection, les visites, les vérifications et l'installation de votre collaborateur.
+                </p>
+
+                <div class="ch-card-divider"></div>
+
+                <div class="ch-card-body">
+                  <div class="ch-features-heading">Ce qui est inclus :</div>
+                  <ul class="ch-features-list">
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Jusqu'à 5 logements proposés</strong> et 3 visites organisées.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Première sélection sous 5 jours ouvrés</strong>, selon vos critères.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>7 jours d'assistance continue</strong> après l'installation.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span>Vérification juridique du titre de propriété &amp; bail sécurisé BatiBid.</span>
+                    </li>
+                  </ul>
+
+                  <div class="ch-price-row">
+                    <span class="ch-price-prefix">À partir de</span>
+                    <span class="ch-price-amount">150 000</span>
+                    <span class="ch-price-currency">FCFA HT</span>
+                    <span class="ch-price-cadence">/ dossier</span>
+                  </div>
+                  <p class="ch-price-range-sub">Fourchette indicative : 150 000 à 250 000 FCFA HT</p>
+                </div>
+
+                <div class="ch-card-footer">
+                  <button type="button" class="btn-ch-card-secondary" onclick="openCorporateModal('Essential')">
+                    Demander une recherche <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- OFFRE 2 : PREMIUM (RECOMMANDÉ) -->
+              <div class="ch-pricing-card ch-card-featured reveal">
+                <div class="ch-featured-tag">
+                  <i class="fas fa-star"></i> RECOMMANDÉ &bull; FORTE VALEUR AJOUTÉE
+                </div>
+                <div class="ch-card-pill ch-pill-featured">Accompagnement annuel complet</div>
+                <h3 class="ch-card-title">Corporate Housing Premium</h3>
+                <p class="ch-card-catchphrase">« Votre collaborateur s'installe. BatiBid l'accompagne pendant toute sa mobilité. »</p>
+                <p class="ch-card-summary">
+                  Un conseiller dédié coordonne la recherche prioritaire, l'installation et le suivi du logement pendant 12 mois.
+                </p>
+
+                <div class="ch-card-divider"></div>
+
+                <div class="ch-card-body">
+                  <div class="ch-features-heading" style="color: #F8B38A;">Ce qui est inclus :</div>
+                  <ul class="ch-features-list">
+                    <li>
+                      <i class="fas fa-check-circle" style="color: #F8B38A;"></i>
+                      <span><strong>Première sélection sous 72 heures ouvrées</strong>, selon disponibilité.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle" style="color: #F8B38A;"></i>
+                      <span><strong>Jusqu'à 6 visites</strong> accompagnées et commentées.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle" style="color: #F8B38A;"></i>
+                      <span><strong>Suivi des échéances</strong> et coordination prompte des incidents.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle" style="color: #F8B38A;"></i>
+                      <span><strong>Accompagnement pendant 12 mois</strong> (conseiller dédié &amp; 4 rapports annuels RH).</span>
+                    </li>
+                  </ul>
+
+                  <div class="ch-price-row">
+                    <span class="ch-price-prefix">À partir de</span>
+                    <span class="ch-price-amount" style="color: #F8B38A;">550 000</span>
+                    <span class="ch-price-currency">FCFA HT</span>
+                    <span class="ch-price-cadence">/ an</span>
+                  </div>
+                  <p class="ch-price-range-sub">Fourchette indicative : 550 000 à 950 000 FCFA HT</p>
+                </div>
+
+                <div class="ch-card-footer">
+                  <button type="button" class="btn-ch-primary btn-shimmer" style="width: 100%;" onclick="openCorporateModal('Premium')">
+                    Organiser une mobilité <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- OFFRE 3 : EMPLOYEE HOUSING PASS -->
+              <div class="ch-pricing-card reveal">
+                <div class="ch-card-pill">Abonnement annuel entreprise</div>
+                <h3 class="ch-card-title">Employee Housing Pass</h3>
+                <p class="ch-card-catchphrase">« Faites du logement un avantage salarié pour vos effectifs. »</p>
+                <p class="ch-card-summary">
+                  Proposez à vos collaborateurs un accès organisé aux logements vérifiés et aux services d'accompagnement BatiBid dans le cadre de votre politique RH.
+                </p>
+
+                <div class="ch-card-divider"></div>
+
+                <div class="ch-card-body">
+                  <div class="ch-features-heading">Ce qui est inclus :</div>
+                  <ul class="ch-features-list">
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Dès 5 collaborateurs</strong> : bénéficiaires et budgets définis par l'entreprise.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Parcours Essential inclus</strong> selon la formule souscrite.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Accès aux services Premium</strong> &amp; tarifs préférentiels.</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-check-circle"></i>
+                      <span><strong>Suivi centralisé et reporting RH</strong> régulier consolidé.</span>
+                    </li>
+                  </ul>
+
+                  <div class="ch-price-row">
+                    <span class="ch-price-prefix">À partir de</span>
+                    <span class="ch-price-amount">1 500 000</span>
+                    <span class="ch-price-currency">FCFA HT</span>
+                    <span class="ch-price-cadence">/ an</span>
+                  </div>
+                  <p class="ch-price-range-sub">Formules modulables de 1,5 à 5 millions FCFA HT / an</p>
+                </div>
+
+                <div class="ch-card-footer">
+                  <button type="button" class="btn-ch-card-secondary" onclick="openCorporateModal('Pass')">
+                    Créer notre programme logement <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ACCORDÉON : SYNTHÈSE DE LA GAMME B2B -->
+            <div class="pricing-expandable-wrap reveal" style="margin-top: 2.5rem;">
+              <button type="button" class="btn-toggle-pricing-details" onclick="toggleCorporatePricingDetails()" aria-expanded="false" id="btn-ch-pricing-details-toggle">
+                <span class="toggle-text"><i class="fas fa-sliders-h"></i> Synthèse comparative des trois formules B2B</span>
+                <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+              </button>
+              
+              <div class="pricing-details-table-wrapper cp" id="ch-pricing-details-table" style="display: none; margin-top: 1.5rem;">
+                <div class="ch-positioning-block">
+                  <div class="ch-table-responsive">
+                    <table class="ch-positioning-table">
+                      <thead>
+                        <tr>
+                          <th style="width: 26%;">Offre</th>
+                          <th style="width: 26%;">Pour qui</th>
+                          <th style="width: 28%;">Besoin principal</th>
+                          <th style="width: 20%;">Tarif indicatif</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong class="ch-table-offer-name">Corporate Housing Essential</strong></td>
+                          <td>Entreprises, PME, ONG</td>
+                          <td>Recherche et installation ponctuelle d'un collaborateur</td>
+                          <td><span class="ch-table-badge">Dès 150 000 F HT / dossier</span></td>
+                        </tr>
+                        <tr class="ch-row-featured">
+                          <td>
+                            <strong class="ch-table-offer-name" style="color: #F8B38A;">Corporate Housing Premium</strong>
+                            <span class="ch-mini-tag">Recommandé</span>
+                          </td>
+                          <td>Grandes entreprises, multinationales, expatriés</td>
+                          <td>Installation et accompagnement continu sur 12 mois</td>
+                          <td><span class="ch-table-badge ch-badge-accent">Dès 550 000 F HT / an</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong class="ch-table-offer-name">Employee Housing Pass</strong></td>
+                          <td>Organisations employant des équipes mobiles (+5 salariés)</td>
+                          <td>Accès au logement comme avantage salarié pérenne</td>
+                          <td><span class="ch-table-badge">Dès 1 500 000 F HT / an</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             3. SECTION : COMMENT ÇA MARCHE EN 3 TEMPS & PREUVE ENTREPRISE
+             ==================================================================== -->
+        <section class="ch-workflow-section">
+          <div class="ch-container">
+            
+            <div class="ch-section-header text-center reveal">
+              <span class="ch-eyebrow"><i class="fas fa-route"></i> DÉROULEMENT OPÉRATIONNEL</span>
+              <h2 class="ch-section-title">
+                Comment ça marche ? Un parcours fluide en 3 temps
+              </h2>
+              <p class="ch-section-desc">
+                Une coordination simple et efficace entre votre direction, vos équipes RH et nos conseillers de terrain.
+              </p>
+            </div>
+
+            <div class="ch-steps-grid reveal">
+              <div class="ch-step-card">
+                <div class="ch-step-badge">1</div>
+                <h3 class="ch-step-title">Brief &amp; Cahier des charges</h3>
+                <p class="ch-step-desc">
+                  Vous nous partagez les critères de votre collaborateur (quartiers souhaités, budget, meublé ou non, équipements prioritaires et date d'arrivée).
+                </p>
+              </div>
+
+              <div class="ch-step-card">
+                <div class="ch-step-badge">2</div>
+                <h3 class="ch-step-title">Sélection &amp; Visites qualifiées</h3>
+                <p class="ch-step-desc">
+                  Nos équipes présélectionnent des biens rigoureusement contrôlés sous 72h à 5 jours, puis organisent les visites physiques ou en direct vidéo.
+                </p>
+              </div>
+
+              <div class="ch-step-card">
+                <div class="ch-step-badge">3</div>
+                <h3 class="ch-step-title">Contractualisation &amp; Suivi</h3>
+                <p class="ch-step-desc">
+                  Nous sécurisons la rédaction du bail conforme au Code Foncier, réalisons l'état des lieux d'entrée et assurons l'assistance continue.
+                </p>
+              </div>
+            </div>
+
+            <!-- Preuve / Témoignage d'entreprise -->
+            <div class="ch-proof-box reveal">
+              <div class="ch-proof-icon"><i class="fas fa-quote-left"></i></div>
+              <div>
+                <p class="ch-proof-quote">
+                  « BatiBid a pris en charge l'installation de trois directeurs expatriés à Cotonou en moins de deux semaines. Baux sécurisés, logements contrôlés et zéro charge mentale pour notre équipe RH. »
+                </p>
+                <p class="ch-proof-author">
+                  Direction des Ressources Humaines &bull; Groupe Logistique &amp; Énergie, Cotonou
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             4. SECTION : POURQUOI CHOISIR BATIBID ? (4 PUCES D'UNE LIGNE)
+             ==================================================================== -->
+        <section class="ch-light-section" style="padding: 4.5rem 0;">
+          <div class="ch-container">
+            
+            <div class="ch-section-header text-center reveal">
+              <span class="ch-eyebrow"><i class="fas fa-award"></i> VALEUR AJOUTÉE</span>
+              <h2 class="ch-section-title">
+                Pourquoi choisir BatiBid ?
+              </h2>
+            </div>
+
+            <div class="ch-pillars-grid">
+              <div class="ch-pillar-card reveal">
+                <div class="ch-pillar-icon"><i class="fas fa-user-tie"></i></div>
+                <h4 class="ch-pillar-title">Un interlocuteur unique</h4>
+                <p class="ch-pillar-desc">
+                  Un chef de projet dédié qui centralise tous les échanges entre votre direction, vos RH, le collaborateur et les bailleurs.
+                </p>
+              </div>
+
+              <div class="ch-pillar-card reveal">
+                <div class="ch-pillar-icon"><i class="fas fa-shield"></i></div>
+                <h4 class="ch-pillar-title">Logements 100% vérifiés</h4>
+                <p class="ch-pillar-desc">
+                  Audit physique in situ, contrôle systématique du titre foncier, rédaction de baux légaux et conformité des équipements.
+                </p>
+              </div>
+
+              <div class="ch-pillar-card reveal">
+                <div class="ch-pillar-icon"><i class="fas fa-file-lines"></i></div>
+                <h4 class="ch-pillar-title">Décisions documentées</h4>
+                <p class="ch-pillar-desc">
+                  Fiches comparatives détaillées, grilles d'évaluation objectives et reporting RH structuré pour sécuriser chaque arbitrage.
+                </p>
+              </div>
+
+              <div class="ch-pillar-card reveal">
+                <div class="ch-pillar-icon"><i class="fas fa-handshake-angle"></i></div>
+                <h4 class="ch-pillar-title">Accompagnement adapté</h4>
+                <p class="ch-pillar-desc">
+                  De la mission ponctuelle d'installation au déploiement d'un programme d'entreprise pérenne pour l'ensemble de vos équipes.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             5. BANDEAU CTA
+             ==================================================================== -->
+        <section class="ch-cta-banner-section">
+          <div class="ch-container">
+            <div class="ch-cta-banner-card reveal">
+              <span class="ch-eyebrow" style="color: #F8B38A;"><i class="fas fa-paper-plane"></i> VOTRE PROJET DE MOBILITÉ</span>
+              
+              <h2 class="ch-cta-banner-title">
+                Un projet de mobilité pour vos collaborateurs ?
+              </h2>
+              
+              <p class="ch-cta-banner-sub">
+                Présentez-nous vos besoins, les villes concernées et le nombre de collaborateurs à accompagner. Notre cellule Corporate vous répond sous 24h ouvrées.
+              </p>
+
+              <div class="ch-cta-banner-buttons">
+                <button type="button" class="btn-ch-primary btn-shimmer" onclick="openCorporateModal('general')">
+                  Recevoir une proposition entreprise <i class="fas fa-arrow-right"></i>
+                </button>
+                <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20des%20informations%20sur%20les%20offres%20Corporate%20Housing." 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="btn-ch-secondary-dark"
+                   style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                  <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                  <span>Échanger sur WhatsApp (+229 01 42 48 48 48)</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ==========================================
+           MODAL DE PROPOSITION CORPORATE HOUSING
+           ========================================== -->
+      <div class="ch-modal-overlay" id="modal-corporate-proposition" onclick="if(event.target === this) closeCorporateModal()">
+        <div class="ch-modal-card">
+          <button type="button" class="ch-modal-close" onclick="closeCorporateModal()" aria-label="Fermer la fenêtre">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="ch-modal-header">
+            <span class="ch-eyebrow"><i class="fas fa-building"></i> Mobilité Entreprise</span>
+            <h3>Demande de proposition Corporate Housing</h3>
+            <p>Recevez sous 24h ouvrées une proposition personnalisée et chiffrée pour l'installation de vos collaborateurs au Bénin.</p>
+          </div>
+          <form id="ch-proposition-form" onsubmit="return handleCorporateSubmit(event)">
+            <div class="ch-form-row">
+              <div class="ch-form-group">
+                <label class="ch-form-label">Nom &amp; Prénom *</label>
+                <input type="text" class="ch-form-input" placeholder="Ex: Marc DUPONT" required>
+              </div>
+              <div class="ch-form-group">
+                <label class="ch-form-label">Entreprise / Organisation *</label>
+                <input type="text" class="ch-form-input" placeholder="Ex: Groupe Bolloré Bénin" required>
+              </div>
+            </div>
+            <div class="ch-form-row">
+              <div class="ch-form-group">
+                <label class="ch-form-label">Fonction / Rôle *</label>
+                <input type="text" class="ch-form-input" placeholder="Ex: DRH / Responsable Mobilité" required>
+              </div>
+              <div class="ch-form-group">
+                <label class="ch-form-label">Email professionnel *</label>
+                <input type="email" class="ch-form-input" placeholder="m.dupont@entreprise.com" required>
+              </div>
+            </div>
+            <div class="ch-form-row">
+              <div class="ch-form-group">
+                <label class="ch-form-label">Téléphone / WhatsApp *</label>
+                <input type="tel" class="ch-form-input" placeholder="+229 ... ou +33 ..." required>
+              </div>
+              <div class="ch-form-group">
+                <label class="ch-form-label">Formule envisagée *</label>
+                <select id="ch-formula-select" class="ch-form-select">
+                  <option value="essential">Corporate Housing Essential (Dès 150 000 F HT / dossier)</option>
+                  <option value="premium" selected>Corporate Housing Premium (Dès 550 000 F HT / an)</option>
+                  <option value="pass">Employee Housing Pass (Dès 1 500 000 F HT / an)</option>
+                  <option value="sur-mesure">Programme sur-mesure / Multi-collaborateurs</option>
+                </select>
+              </div>
+            </div>
+            <div class="ch-form-row">
+              <div class="ch-form-group">
+                <label class="ch-form-label">Ville d'affectation *</label>
+                <input type="text" class="ch-form-input" placeholder="Ex: Cotonou (Haie Vive, Ganhi...), Calavi..." required>
+              </div>
+              <div class="ch-form-group">
+                <label class="ch-form-label">Date prévisionnelle d'arrivée</label>
+                <input type="date" class="ch-form-input">
+              </div>
+            </div>
+            <div class="ch-form-group">
+              <label class="ch-form-label">Critères clés ou exigences particulières</label>
+              <textarea class="ch-form-textarea" rows="3" placeholder="Typologie (appartement, villa), meublé, groupe électrogène, exigences de sécurité..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-shimmer" style="width: 100%; padding: 0.95rem; font-size: 1rem;">
+              <i class="fas fa-paper-plane"></i> Transmettre ma demande de proposition
+            </button>
+            <p class="ch-form-help" style="text-align: center; margin-top: 0.75rem;">
+              <i class="fas fa-lock"></i> Confidentialité garantie. Vos données ne sont jamais transmises à des tiers.
+            </p>
+          </form>
+          <div id="ch-modal-success" class="ch-modal-success" style="display: none;">
+            <i class="fas fa-circle-check"></i>
+            <h4 style="font-family: var(--ff-display); font-size: 1.5rem; color: var(--clr-dark); margin-bottom: 0.6rem;">Demande bien reçue !</h4>
+            <p style="color: var(--clr-dark-soft); line-height: 1.6; margin-bottom: 1.5rem;">
+              Notre cellule <strong>Corporate Housing BatiBid</strong> a bien réceptionné vos critères. Un conseiller mobilité dédié prendra attache avec vous sous <strong>24 heures ouvrées</strong> pour convenir d'un échange et vous transmettre une proposition adaptée.
+            </p>
+            <button type="button" class="btn btn-primary" onclick="closeCorporateModal()">
+              Fermer la fenêtre
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER UNIFIÉ (4 COLONNES & MENTIONS LÉGALES MODALES)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence pour l'écosystème immobilier au Bénin. Nous sécurisons la gestion, la construction et les transactions immobilières.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Zone Commerciale Akpakpa, Lot 402, Cotonou, Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Prendre un rendez-vous</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="openLegalModal('mentions')">Mentions Légales</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('confidentialite')">Politique de Confidentialité</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('cgu')">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mettre en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link active" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.88rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20renseignement%20sur%20Corporate%20Housing." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Assistance direct</span>
+  </a>
+
+  <!-- Mobile Sticky WhatsApp bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20une%20proposition%20Corporate." target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; color: #25D366; border-color: #25D366;">
+      <i class="fab fa-whatsapp" style="margin-right: 0.4rem;"></i> WhatsApp
+    </a>
+    <button type="button" class="btn btn-primary" onclick="openCorporateModal('general')" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-paper-plane" style="margin-right: 0.4rem;"></i> Proposition RH
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

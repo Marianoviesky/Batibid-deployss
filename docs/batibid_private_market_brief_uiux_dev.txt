@@ -1,0 +1,189 @@
+
+BATIBID
+PRIVATE MARKET
+Brief fonctionnel UI/UX & Développement — V1
+Objectif : permettre à BatiBid d’opérer un marché immobilier confidentiel, avec une expérience distincte pour les vendeurs et les acquéreurs qualifiés.
+CONFIDENTIELAucune exposition publique par défaut
+QUALIFIÉAccès et demandes contrôlés
+SÉLECTIFOpportunités privées, pas un catalogue public
+
+Document de cadrage destiné au UI/UX Designer et au Développeur
+
+FEUILLE 1 — SITE WEB
+Onglet recommandé : Private Market  |  URL indicative : /private-market  |  Rôle : expliquer la proposition de valeur, capter vendeurs et acquéreurs, puis les faire entrer dans un parcours de qualification.
+1. Architecture de la page
+01 — Hero / proposition de valeur
+Label : « BATIBID PRIVATE MARKET »
+Titre : « L’immobilier confidentiel, accessible autrement. »
+Sous-titre : « Vendez votre bien en toute discrétion ou accédez à des opportunités immobilières qui ne sont pas diffusées publiquement. »
+CTA primaire : « Vendre en toute discrétion »
+CTA secondaire : « Accéder aux opportunités privées »
+Mention de réassurance : « Accès contrôlé • Acquéreurs qualifiés • Confidentialité »
+Visuel : immobilier premium sobre, sans logique de catalogue ni grille d’annonces.
+02 — Deux parcours clairement séparés
+Carte A — VENDEUR : « Votre bien n’a pas besoin d’être exposé pour être vendu. » CTA : « Confier un bien »
+Carte B — ACQUÉREUR : « Certaines opportunités ne sont jamais publiées. » CTA : « Rejoindre le marché privé »
+Le clic sur chaque carte doit conduire directement au formulaire correspondant.
+03 — Bloc vendeur / mandat confidentiel
+Promesse : commercialisation ciblée sans publication sur la marketplace BatiBid ni diffusion publique par défaut.
+Étapes visibles : 1. Soumission du bien → 2. Étude BatiBid → 3. Validation du mandat → 4. Matching acquéreurs → 5. Visites privées → 6. Offre & transaction.
+Arguments : discrétion, maîtrise de l’information, acquéreurs qualifiés, accompagnement transactionnel.
+CTA : « Soumettre mon bien confidentiellement ».
+04 — Bloc acquéreur / accès privé
+Promesse : recevoir des opportunités correspondant au profil avant toute éventuelle diffusion publique.
+Étapes visibles : 1. Créer son profil → 2. Définir critères & budget → 3. Qualification BatiBid → 4. Accès aux opportunités pertinentes → 5. Demande de dossier/visite.
+Ne pas promettre un accès illimité : le matching doit dépendre des critères et du niveau de qualification.
+CTA : « Créer mon profil acquéreur ».
+05 — Comment fonctionne la confidentialité
+Expliquer que les informations sensibles peuvent être masquées avant qualification : adresse exacte, identité du propriétaire, documents, localisation précise.
+Possibilité d’utiliser un teaser : zone, typologie, prix ou fourchette, caractéristiques clés, rendement si pertinent.
+Le dossier détaillé est débloqué selon le niveau d’accès et, lorsque nécessaire, après engagement de confidentialité.
+06 — Aperçu des opportunités privées
+Afficher 3 à 6 cartes « teaser » maximum pour matérialiser le service, uniquement si le vendeur autorise ce niveau d’exposition.
+Carte : photo générique ou autorisée, zone approximative, type de bien, prix/fourchette si autorisé, 2–3 caractéristiques, badge « Private », CTA « Demander l’accès ».
+Ne jamais afficher automatiquement l’adresse exacte, le nom du vendeur, le titre foncier ou les pièces sensibles.
+État vide possible : « Les opportunités privées sont accessibles après qualification. »
+07 — Pourquoi BatiBid
+4 piliers : réseau d’acquéreurs qualifiés ; connaissance terrain ; accompagnement juridique/transactionnel ; écosystème BatiBid (gestion, travaux, immobilier).
+Ajouter preuves chiffrées uniquement lorsqu’elles sont pertinentes et vérifiables.
+CTA de rappel vers les deux parcours.
+08 — FAQ essentielle
+« Mon bien apparaîtra-t-il sur l’application ou les réseaux ? »
+« Qui peut voir les informations de mon bien ? »
+« Comment les acquéreurs sont-ils qualifiés ? »
+« Puis-je choisir ce qui peut être communiqué ? »
+« Comment accéder aux offres privées ? »
+« L’accès au Private Market est-il payant ? » — prévoir contenu dynamique selon modèle commercial final.
+09 — CTA final
+Titre : « Vous avez un actif à céder ou un projet d’acquisition ? »
+Bouton vendeur : « Vendre confidentiellement »
+Bouton acquéreur : « Rejoindre Private Market »
+Option : « Être rappelé par un conseiller » si le process commercial le prévoit.
+2. Formulaires web — données minimales V1
+Parcours
+Champs essentiels
+Résultat attendu
+Vendeur
+Nom/prénom ou société ; téléphone/WhatsApp ; e-mail ; type de bien ; ville/zone ; prix souhaité ou fourchette ; statut d’occupation ; documents disponibles ; niveau de confidentialité ; commentaire ; consentement contact.
+Création d’un lead vendeur Private Market + notification équipe.
+Acquéreur
+Nom/prénom ou société ; téléphone/WhatsApp ; e-mail ; type(s) de biens recherchés ; zones ; budget min/max ; objectif (résidence/investissement/entreprise/etc.) ; délai d’acquisition ; mode de financement ; préférences ; consentement contact.
+Création d’un profil acquéreur à qualifier.
+3. Règles UX / produit à respecter
+Private Market doit avoir une identité plus sobre et exclusive que la marketplace publique, tout en restant clairement rattaché à BatiBid.
+Ne pas reproduire l’UX d’un portail d’annonces classique : le produit repose sur l’accès, le matching et la confidentialité.
+Deux CTA structurants doivent rester visibles : Vendre / Acquérir.
+Prévoir les états : non connecté, connecté non qualifié, qualification en cours, qualifié, accès refusé/suspendu.
+Chaque donnée sensible doit avoir un niveau de visibilité configurable.
+Prévoir responsive mobile en priorité pour les formulaires et les cartes teaser.
+Prévoir tracking analytics : clics CTA, formulaires commencés/terminés, demandes d’accès, demandes de visite, conversion en RDV.
+
+FEUILLE 2 — APPLICATION BATIBID
+Entrée recommandée : un onglet/entrée « Private Market » identifiable depuis la navigation principale ou la rubrique Achat/Vente. Objectif : faire de l’application l’espace sécurisé où l’utilisateur gère son profil, ses accès et ses opportunités privées.
+1. Écrans V1 à concevoir
+Écran A — Landing Private Market
+Hero compact + proposition de valeur.
+Deux actions principales : « Je veux vendre » / « Je veux acquérir ».
+Pour utilisateur déjà qualifié : remplacer le CTA acquéreur par « Voir mes opportunités ».
+Écran B — Onboarding vendeur
+Formulaire en étapes courtes : coordonnées → bien → prix → confidentialité → documents/photos facultatifs → validation.
+Choix du niveau de diffusion : « Strictement confidentiel » / « Teaser privé autorisé » / autres niveaux futurs.
+Écran final : dossier reçu + statut « En étude par BatiBid ».
+Écran C — Onboarding acquéreur
+Profil : identité/contact → recherche → zones → budget → objectif → délai → financement.
+Possibilité de modifier les critères ultérieurement.
+Statut après envoi : « Qualification en cours ».
+Écran D — Accueil acquéreur qualifié
+Bloc « Opportunités correspondant à vos critères ».
+Nouveautés / opportunités consultées / demandes en cours.
+Filtres limités aux données autorisées : typologie, zone, budget, objectif.
+Ne pas exposer un catalogue global si la logique métier est un matching individuel.
+Écran E — Carte opportunité privée
+Badge « PRIVATE » + identifiant interne du bien.
+Image autorisée ou visuel de confidentialité.
+Zone approximative ; type ; prix/fourchette si autorisé ; surface/caractéristiques ; rendement si pertinent.
+CTA : « Voir le dossier » ou « Demander l’accès » selon droits.
+Écran F — Fiche opportunité
+Niveau 1 : teaser.
+Niveau 2 après autorisation : galerie, informations détaillées, données financières, description.
+Niveau 3 si nécessaire : localisation précise et documents sensibles.
+Actions : « Demander une visite », « Poser une question », « Manifester mon intérêt ».
+Journaliser les accès aux informations sensibles.
+Écran G — Mes demandes
+Liste des demandes d’accès, visites et manifestations d’intérêt.
+Statuts : envoyée / en étude / accès accordé / visite à planifier / visite confirmée / clôturée.
+Notifications lors de chaque changement important.
+Écran H — Mes biens privés (vendeur)
+Liste des biens confiés à BatiBid.
+Statut : étude / dossier incomplet / actif / en matching / visites / offre reçue / sous accord / vendu / suspendu.
+Indicateurs non sensibles : nombre de profils approchés, intérêts reçus, visites réalisées, offres.
+Possibilité de consulter les demandes nécessitant une décision du vendeur, selon process métier.
+Écran I — Notifications
+Nouvelle opportunité correspondant aux critères.
+Accès à un dossier accordé/refusé.
+Demande de visite confirmée.
+Nouvelle offre ou action requise côté vendeur.
+Prévoir push + centre de notifications in-app.
+2. Permissions et statuts — indispensables au développement
+Objet
+Statuts V1
+Impact interface
+Profil acquéreur
+Brouillon / Soumis / En qualification / Qualifié / Refusé / Suspendu
+Détermine l’accès aux opportunités et aux informations.
+Bien privé
+Brouillon / En étude / Incomplet / Actif / Suspendu / Sous offre / Vendu / Retiré
+Détermine visibilité et actions possibles.
+Accès opportunité
+Non demandé / Demandé / Accordé / Refusé / Expiré
+Contrôle les niveaux d’information affichés.
+Visite
+Demandée / À confirmer / Confirmée / Réalisée / Annulée
+Alimente Mes demandes et les notifications.
+Intérêt / offre
+Intérêt déclaré / Offre soumise / En négociation / Acceptée / Refusée / Retirée
+Permet le suivi commercial sans exposer les parties inutilement.
+3. Back-office nécessaire pour rendre la V1 exploitable
+Créer/éditer un bien Private Market et définir son niveau de confidentialité.
+Valider/refuser un profil acquéreur et enregistrer des notes internes de qualification.
+Associer manuellement un bien à un ou plusieurs profils acquéreurs (matching V1).
+Accorder/révoquer l’accès à une opportunité et à ses niveaux d’information.
+Voir l’historique des consultations/demandes sensibles.
+Gérer demandes de visite, manifestations d’intérêt et offres.
+Déclencher notifications in-app/push/e-mail selon les événements.
+Dashboard minimum : biens actifs, acquéreurs qualifiés, matchings, demandes d’accès, visites, offres, transactions.
+4. Modèle de données minimum à prévoir
+PrivateBuyerProfile : user_id, critères, zones, budget_min/max, objectif, financement, délai, qualification_status.
+PrivateProperty : seller_id, property_id éventuel, confidentialité, données teaser, données détaillées, documents, statut.
+PropertyAccess : buyer_id, private_property_id, access_level, status, granted_at, expires_at.
+PrivateMatch : buyer_id, private_property_id, score/raison éventuelle, created_by, status.
+PrivateVisit : buyer_id, property_id, date souhaitée/confirmée, status.
+PrivateInterest / Offer : buyer_id, property_id, montant éventuel, commentaire, status.
+AuditLog : utilisateur, ressource consultée, niveau d’accès, date/heure, action.
+5. Hors périmètre recommandé pour la toute première ébauche
+Algorithme de matching automatisé complexe : commencer par un matching administrateur basé sur critères.
+Paiement d’abonnement ou frais d’accès tant que le modèle commercial n’est pas arbitré.
+Signature électronique native du NDA/mandat : prévoir l’emplacement et le statut, mais peut être intégrée en phase suivante.
+Chat temps réel vendeur-acquéreur : conserver BatiBid comme intermédiaire dans la V1.
+Affichage public de tout le stock Private Market.
+
+SYNTHÈSE POUR LE DESIGNER & LE DÉVELOPPEUR
+Principe directeur : Private Market n’est pas une seconde marketplace. C’est un espace d’accès contrôlé où BatiBid qualifie les parties, organise le matching et décide quelles informations sont visibles à chaque étape.
+UI/UX DESIGNER — première maquette
+DÉVELOPPEUR — première V1 fonctionnelle
+• Page web desktop + mobile : Hero, 2 parcours, fonctionnement, confidentialité, teasers, preuves, FAQ, CTA.
+• Créer les entités de données Private Market.
+• App : landing, onboarding vendeur, onboarding acquéreur, liste opportunités, fiche, demandes, biens vendeur, notifications.
+• Créer les deux formulaires et statuts de qualification.
+• Définir composants et états : locked/unlocked, qualification, accès, confidentialité, badges et statuts.
+• Mettre en place les permissions par niveau d’accès.
+• Prévoir une esthétique premium sobre : espace, photographie maîtrisée, informations volontairement hiérarchisées.
+• Créer le matching manuel back-office.
+
+• Créer demandes d’accès, visites, intérêts/offres et notifications.
+
+• Journaliser les consultations sensibles.
+
+• Prévoir API réutilisable par site et application.
+
+Critère de réussite de la première ébauche : un vendeur comprend immédiatement comment céder sans exposition publique ; un acquéreur comprend immédiatement pourquoi il doit être qualifié ; l’équipe BatiBid conserve le contrôle de la mise en relation et des informations sensibles.

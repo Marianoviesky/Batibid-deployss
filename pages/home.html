@@ -1,0 +1,614 @@
+    <section id="home" class="view-section active">
+<!-- ========================================================================
+     BATIBID — MASTER LANDING PAGE D'ACCUEIL (HOME)
+     Fidélité stricte à la maquette de référence éditoriale BatiBid
+     ======================================================================== -->
+
+<div class="home-page">
+
+  <!-- ====================================================================
+       SECTION 1 : HERO SECTION
+       ==================================================================== -->
+  <section class="home-hero">
+    <div class="home-hero-container">
+      
+      <!-- Left Column: Editorial Headline & Conversion -->
+      <div class="home-hero-content">
+        <!-- <span class="home-eyebrow hero-badge">VOTRE PATRIMOINE. NOTRE EXPERTISE.</span> -->
+         <div class="juridique-eyebrow-wrap reveal">
+            <span class="juridique-eyebrow">VOTRE PATRIMOINE. NOTRE EXPERTISE.</span>
+            <span class="juridique-eyebrow-line" aria-hidden="true"></span>
+          </div>
+        
+        <!--  <h1 class="home-hero-title">
+          <span class="reveal-text-mask"><span class="reveal-line">L'actif, votre patrimoine immobilier.</span></span>
+          <span class="reveal-text-mask"><span class="reveal-line">La stratégie, <span class="accent-italic">notre expertise.</span></span></span>
+        </h1> -->
+         <h1 class="home-hero-title">
+          <span class="reveal-text-mask"><span class="reveal-line">L'actif, votre patrimoine immobilier. La stratégie, <span class="accent-italic">notre expertise.</span></span></span>
+          <!-- <span class="reveal-text-mask"><span class="reveal-line">La stratégie, <span class="accent-italic">notre expertise.</span></span></span> -->
+        </h1>
+        
+        <p class="home-hero-desc">
+          Chaque étape de votre parcours pilotée avec des données fiables, des experts qualifiés et des solutions sur mesure.
+        </p>
+        
+        <div class="home-hero-actions">
+          <a href="#home-services" class="btn btn-primary btn-hero-cta btn-shimmer" onclick="document.getElementById('home-services').scrollIntoView({behavior:'smooth'}); return false;">
+            Découvrir nos solutions <i class="fas fa-arrow-down"></i>
+          </a>
+          <button type="button" class="btn btn-outline btn-hero-demo" onclick="openDemoModal()">
+            Voir une démonstration <i class="far fa-circle-play"></i>
+          </button>
+        </div>
+        
+        <!-- Social Proof Trust & Customer Reviews Bar (Neutral, Factual & Professional) -->
+        <div class="home-hero-trust">
+          <div class="hero-trust-seal">
+            <div class="trust-seal-icon" aria-label="Avis clients">
+              <i class="fas fa-award"></i>
+            </div>
+            <div class="trust-seal-details">
+              <div class="trust-stars-row" aria-label="Note 5 sur 5">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span class="trust-rating-score">5/5</span>
+              </div>
+              <span class="trust-seal-label">Avis clients</span>
+            </div>
+          </div>
+          <div class="hero-trust-divider" aria-hidden="true"></div>
+          <div class="hero-trust-text">
+            <p class="trust-title">Plus de <strong>2 500 clients</strong> nous font déjà confiance</p>
+            <p class="trust-sub">Propriétaires • Investisseurs • Diaspora • Professionnels</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Grand Architectural Villa Visual (Clean, Full & Balanced) -->
+      <div class="home-hero-visual-col">
+        <div class="hero-visual-frame">
+          <img src="./assets/images/home_hero_villa.jpg" alt="Villa Contemporaine BatiBid à Cotonou" class="hero-main-img hero-img-cinematic" loading="eager" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+
+    </div>
+
+    
+  </section>
+  <!-- ================================================================
+       BANDEAU DÉFILANT D'ÉLITE (MARQUEE TICKER) : OFFRES PHARES & TRÉSORERIE
+       ================================================================ -->
+  <section class="bb-offers-wrapper" aria-label="Offres phares BatiBid">
+    <div class="bb-offers-card">
+      
+      <!-- Zone Contenu des Offres -->
+      <div class="bb-offers-slides-container">
+        
+        <!-- Offre 1 : Avance Loyers (PRODUIT PHARE) -->
+        <div class="bb-offer-slide active" data-index="0">
+          <div class="flex-1 pr-4">
+            <div class="bb-offer-badge badge-phare">
+              <i class="fas fa-crown text-amber-500"></i> EXCLUSIVITÉ BATIBID
+            </div>
+            <h3 class="bb-offer-title">
+              Avance Loyers <span class="bb-offer-rate">3%</span>
+            </h3>
+            <p class="bb-offer-desc">
+              Trésorerie immédiate : <strong>percevez 3 à 12 mois de loyers d'avance</strong> dès l'activation de votre contrat pour financer vos projets.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a href="gerer#offres" onclick="localStorage.setItem('bb_gerer_tab', 'digitale');" class="bb-offer-cta">
+              <span>Découvrir l'offre</span>
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offre 2 : Gestion Digitale -->
+        <div class="bb-offer-slide" data-index="1">
+          <div class="flex-1 pr-4">
+            <div class="bb-offer-badge">
+              <i class="fas fa-mobile-screen-button"></i> 100% EN LIGNE
+            </div>
+            <h3 class="bb-offer-title">
+              Gestion Digitale <span class="bb-offer-rate">3%</span>
+            </h3>
+            <p class="bb-offer-desc">
+              Pilotage en temps réel : <strong>quittances certifiées &amp; encaissements automatisés</strong> sans effort ni paperasse.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a href="gerer#offres" onclick="localStorage.setItem('bb_gerer_tab', 'digitale');" class="bb-offer-cta">
+              <span>Activer la gestion</span>
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a> 
+          </div>
+        </div>
+
+        <!-- Offre 3 : Sérénité / Premium Locative -->
+        <div class="bb-offer-slide" data-index="2">
+          <div class="flex-1 pr-4">
+            <div class="bb-offer-badge">
+              <i class="fas fa-shield-halved"></i> GESTION PREMIUM
+            </div>
+            <h3 class="bb-offer-title">
+              Gestion Premium <span class="bb-offer-rate">10%</span>
+            </h3>
+            <p class="bb-offer-desc">
+              Zéro impayé garanti : <strong>vos loyers vous sont versés le 5 du mois</strong> quoi qu'il arrive et gestion d'incidents sous 48h.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a href="gerer" onclick="window.location.hash='#gerer'; setTimeout(function(){ switchGererPricingTab('delegation'); document.getElementById('offres')?.scrollIntoView({behavior:'smooth'}); }, 100);" class="bb-offer-cta">
+              <span>Explorer l'offre</span>
+              <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Indicateurs de défilement (Bullets) -->
+      <div class="bb-offers-navigation">
+        <button class="bb-offer-dot active" onclick="bbJumpToSlide(0)" aria-label="Offre 1"></button>
+        <button class="bb-offer-dot" onclick="bbJumpToSlide(1)" aria-label="Offre 2"></button>
+        <button class="bb-offer-dot" onclick="bbJumpToSlide(2)" aria-label="Offre 3"></button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 2 : 5 PILLARS OF EXPERTISE STRIP
+       ==================================================================== -->
+  <section class="home-pillars-section" id="home-services">
+    <div class="home-pillars-container">
+      <div class="home-pillars-card stagger-children">
+        
+        <!-- Pillar 1: Gérer votre patrimoine -->
+        <a href="gerer" class="pillar-item">
+          <div class="pillar-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Gérer<br>votre patrimoine</h4>
+          <p class="pillar-desc">Suivez la performance de vos biens en temps réel et optimisez vos revenus.</p>
+          <div class="pillar-cta-arrow"><span>Découvrir</span> <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Pillar 2: Mettre en location -->
+        <a href="mise-en-location" class="pillar-item">
+          <div class="pillar-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="7.5" cy="15.5" r="4.5"></circle>
+              <path d="M21 2l-9.6 9.6"></path>
+              <path d="M15.5 7.5l3 3"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Mettre<br>en location</h4>
+          <p class="pillar-desc">Louez rapidement à des locataires fiables. Nous nous occupons du reste.</p>
+          <div class="pillar-cta-arrow"><span>Découvrir</span> <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Pillar 3: Construire ou rénover -->
+        <a href="construire" class="pillar-item">
+          <div class="pillar-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h16"></path>
+              <path d="M9 22V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+              <path d="M9 12h10"></path>
+              <path d="M9 8h4"></path>
+              <path d="M2 10l7-6"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Construire<br>ou rénover</h4>
+          <p class="pillar-desc">Des partenaires vérifiés pour des projets livrés dans les règles de l'art.</p>
+          <div class="pillar-cta-arrow"><span>Découvrir</span> <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Pillar 4: Sécuriser juridiquement -->
+        <a href="juridique" class="pillar-item">
+          <div class="pillar-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Sécuriser<br>juridiquement</h4>
+          <p class="pillar-desc">Titres fonciers, contrats, conformité, investissez en toute sécurité.</p>
+          <div class="pillar-cta-arrow"><span>Découvrir</span> <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Pillar 5: Trouver le bon bien (Lien Catalogue Application) -->
+        <a href="https://app.batibid.com/search" target="_blank" rel="noopener" class="pillar-item pillar-item-external" title="Ouvrir la marketplace sur l'application">
+          <div class="pillar-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <path d="M11 8l3 3-3 3"></path>
+            </svg>
+          </div>
+          <h4 class="pillar-title">Trouver<br>le bon bien <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.65rem; opacity: 0.75; vertical-align: middle;"></i></h4>
+          <p class="pillar-desc">Achetez ou louez le bien qui correspond vraiment à vos besoins.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 3 : DARK SECTION (DONNÉES, TRANSPARENCE, PERFORMANCE)
+       ==================================================================== -->
+  <section class="home-data-section">
+    <!-- Fond photographique de prestige en pleine hauteur et fondu fluide -->
+    <div class="data-ambient-interior-backdrop" aria-hidden="true">
+      <img src="./assets/images/home_dark_interior.jpg" alt="" class="ambient-interior-img" decoding="async" loading="lazy">
+      <div class="ambient-interior-gradient-mask"></div>
+    </div>
+
+    <div class="home-data-container">
+      
+      <!-- Narrative Left Column -->
+      <div class="data-narrative reveal-left">
+        <span class="data-eyebrow">DONNÉES. TRANSPARENCE. PERFORMANCE.</span>
+        
+        <h2 class="data-title">
+          Des décisions<br>
+          éclairées par<br>
+          des données <em>fiables.</em>
+        </h2>
+        
+        <p class="data-desc">
+          BatiBid centralise, vérifie et analyse les données clés de votre patrimoine pour vous aider à investir mieux et plus sereinement.
+        </p>
+        
+        <a href="gerer" onclick="navigateToGererSection4(event)" class="data-cta-link btn-shimmer">
+          Explorer nos insights <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Dashboard & Architecture Visual Right Column -->
+      <div class="data-visual-col reveal-right">
+        
+        <!-- Live Dashboard Card -->
+        <div class="data-dashboard-card bento-card-interactive">
+          
+          <div class="dash-header">
+            <span class="dash-label">PORTFOLIO GLOBAL</span>
+            <div class="dash-big-num">1,245,000,000 <span class="dash-currency">FCFA</span></div>
+          </div>
+          
+          <div class="dash-filter-row">
+            <span class="dash-chart-title">ÉVOLUTION DU PORTEFEUILLE</span>
+            <div class="dash-period-select">
+              <span>12 mois</span> <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 0.25rem;"></i>
+            </div>
+          </div>
+
+          <!-- Interactive SVG Line Chart -->
+          <div class="dash-chart-container">
+            <svg viewBox="0 0 460 160" class="dash-chart-svg" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#D9571E" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#D9571E" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              
+              <!-- Grid lines -->
+              <line x1="45" y1="20" x2="450" y2="20" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3,3"/>
+              <text x="35" y="24" class="chart-axis-text">1.5B</text>
+              
+              <line x1="45" y1="65" x2="450" y2="65" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3,3"/>
+              <text x="35" y="69" class="chart-axis-text">1B</text>
+              
+              <line x1="45" y1="110" x2="450" y2="110" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3,3"/>
+              <text x="35" y="114" class="chart-axis-text">500M</text>
+              
+              <line x1="45" y1="145" x2="450" y2="145" stroke="rgba(255,255,255,0.12)"/>
+              <text x="35" y="148" class="chart-axis-text">0</text>
+              
+              <!-- Area under curve -->
+              <path d="M50,135 Q85,130 120,115 T190,95 T260,82 T330,78 T400,72 L440,70 L440,145 L50,145 Z" fill="url(#chartGrad)"/>
+              
+              <!-- Trajectory curve with stroke drawing -->
+              <path class="dash-chart-draw-path" d="M50,135 Q85,130 120,115 T190,95 T260,82 T330,78 T400,72 L440,70" fill="none" stroke="#D9571E" stroke-width="2.6" stroke-linecap="round"/>
+              
+              <!-- Glowing Data Points -->
+              <circle cx="50" cy="135" r="3.5" fill="#D9571E"/>
+              <circle cx="85" cy="130" r="3.5" fill="#D9571E"/>
+              <circle cx="120" cy="115" r="3.5" fill="#D9571E"/>
+              <circle cx="155" cy="105" r="3.5" fill="#D9571E"/>
+              <circle cx="190" cy="95" r="3.5" fill="#D9571E"/>
+              <circle cx="225" cy="88" r="3.5" fill="#D9571E"/>
+              <circle cx="260" cy="82" r="3.5" fill="#D9571E"/>
+              <circle cx="295" cy="80" r="3.5" fill="#D9571E"/>
+              <circle cx="330" cy="78" r="3.5" fill="#D9571E"/>
+              <circle cx="365" cy="75" r="3.5" fill="#D9571E"/>
+              <circle cx="400" cy="72" r="3.5" fill="#D9571E"/>
+              <circle cx="440" cy="70" r="4.5" fill="#FFF" stroke="#D9571E" stroke-width="2.5"/>
+            </svg>
+            
+            <!-- Month labels -->
+            <div class="chart-month-row">
+              <span>Juil.</span>
+              <span>Août</span>
+              <span>Sept.</span>
+              <span>Oct.</span>
+              <span>Nov.</span>
+              <span>Déc.</span>
+              <span>Jan.</span>
+              <span>Fév.</span>
+              <span>Mar.</span>
+              <span>Avr.</span>
+              <span>Mai</span>
+              <span>Juin</span>
+            </div>
+          </div>
+
+          <!-- Bottom 3 Metric Pills -->
+          <div class="dash-stats-grid">
+            <div class="dash-stat-box">
+              <span class="stat-box-label">Revenus locatifs</span>
+              <div class="stat-box-val">112,500,000 <span style="font-size: 0.68rem; font-weight: normal;">FCFA</span></div>
+              <span class="stat-box-trend positive"><i class="fas fa-arrow-trend-up"></i> +0,4%</span>
+            </div>
+
+            <div class="dash-stat-box">
+              <span class="stat-box-label">Taux d'occupation</span>
+              <div class="stat-box-val">92%</div>
+              <span class="stat-box-trend positive"><i class="fas fa-arrow-trend-up"></i> +4,1%</span>
+            </div>
+
+            <div class="dash-stat-box">
+              <span class="stat-box-label">Biens actifs</span>
+              <div class="stat-box-val">18</div>
+              <span class="stat-box-trend positive"><i class="fas fa-arrow-trend-up"></i> +2</span>
+            </div>
+          </div>
+
+        </div>
+
+        </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 4 : TESTIMONIAL & AUTHORITY METRICS GRID
+       ==================================================================== -->
+  <section class="home-authority-section">
+    <div class="home-authority-container">
+      
+      <!-- Left Column: Big Editorial Quote -->
+      <div class="authority-quote-col reveal-left">
+        <div class="quote-mark">“</div>
+        <blockquote class="authority-quote-text">
+          Enfin une plateforme immobilière qui allie expertise locale et <em>standards internationaux.</em>
+        </blockquote>
+        <div class="authority-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=140" alt="Marc A." class="author-avatar" decoding="async" loading="lazy">
+          <div class="author-details">
+            <strong class="author-name">Marc A.</strong>
+            <span class="author-role">Investisseur, Diaspora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 4 Key Authority Metrics -->
+      <div class="authority-metrics-grid stagger-children">
+        
+        <!-- Metric 1 -->
+        <div class="authority-metric-item">
+          <div class="metric-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="metric-big-num counter-num" data-target="2500" data-suffix="+">2 500+</div>
+          <h5 class="metric-heading">Clients actifs</h5>
+          <p class="metric-detail">Particuliers, investisseurs et professionnels.</p>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="authority-metric-item">
+          <div class="metric-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <line x1="9" y1="22" x2="9" y2="22.01"></line>
+              <line x1="15" y1="22" x2="15" y2="22.01"></line>
+              <line x1="8" y1="6" x2="8" y2="6.01"></line>
+              <line x1="12" y1="6" x2="12" y2="6.01"></line>
+              <line x1="16" y1="6" x2="16" y2="6.01"></line>
+              <line x1="8" y1="10" x2="8" y2="10.01"></line>
+              <line x1="12" y1="10" x2="12" y2="10.01"></line>
+              <line x1="16" y1="10" x2="16" y2="10.01"></line>
+              <line x1="8" y1="14" x2="8" y2="14.01"></line>
+              <line x1="12" y1="14" x2="12" y2="14.01"></line>
+              <line x1="16" y1="14" x2="16" y2="14.01"></line>
+              <line x1="8" y1="18" x2="8" y2="18.01"></line>
+              <line x1="12" y1="18" x2="12" y2="18.01"></line>
+              <line x1="16" y1="18" x2="16" y2="18.01"></line>
+            </svg>
+          </div>
+          <div class="metric-big-num counter-num" data-target="8000" data-suffix="+">8 000+</div>
+          <h5 class="metric-heading">Biens gérés</h5>
+          <p class="metric-detail">Maisons, appartements, terrains et locaux.</p>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="authority-metric-item">
+          <div class="metric-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <div class="metric-big-num counter-num" data-target="100" data-suffix="%">100%</div>
+          <h5 class="metric-heading">Titres vérifiés</h5>
+          <p class="metric-detail">Zéro litige grâce à notre processus de vérification.</p>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="authority-metric-item">
+          <div class="metric-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="metric-big-num"><span class="counter-num" data-target="4.9" data-decimals="1">4,9</span> <span style="font-size: 1.1rem; color: var(--clr-dark-soft); font-weight: normal;">/5</span></div>
+          <h5 class="metric-heading">Satisfaction client</h5>
+          <p class="metric-detail">Basé sur plus de 300 avis vérifiés.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       SECTION 5 : CALL TO ACTION BANNER (WARM TERRACOTTA CARD)
+       ==================================================================== -->
+  <section class="home-cta-section">
+    <div class="home-cta-container">
+      <div class="home-cta-card reveal-scale">
+        
+        <!-- Left: CTA Typography & Action -->
+        <div class="cta-card-content">
+          <h2 class="cta-card-title">
+            Donnez à votre patrimoine<br>
+            l'envergure qu'il mérite.
+          </h2>
+          <p class="cta-card-desc">
+            Trésorerie immédiate, gestion 100% sécurisée ou projet clé en main : réalisez vos ambitions avec les conseillers BatiBid.
+          </p>
+          <a href="contact" class="btn btn-cta-contact btn-shimmer">
+            Nous contacter <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Right: Modern Illuminated Villa Window -->
+        <div class="cta-card-visual">
+          <img src="./assets/images/duplex_villa.png" alt="Propriété de prestige BatiBid" decoding="async" loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ====================================================================
+     DEMO MODAL (LECTURE VIDÉO DIRECTE SANS SCROLL)
+     ==================================================================== -->
+<div class="demo-modal-overlay" id="demo-modal" onclick="if(event.target === this) closeDemoModal()">
+  <div class="demo-modal-window demo-modal-video-window" onclick="event.stopPropagation()">
+    <button type="button" class="demo-modal-close" onclick="closeDemoModal()" aria-label="Fermer la démonstration">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="demo-modal-header">
+      <span class="home-eyebrow">DÉMONSTRATION VIDÉO • PLATEFORME BATIBID</span>
+      <h3 class="headline-md" style="margin-top: 0.35rem; font-size: 1.35rem;">Découvrez BatiBid en action</h3>
+      <p class="body-sm" style="color: var(--clr-dark-soft); margin-top: 0.25rem;">
+        Visite guidée complète : gestion locative, suivi de patrimoine, transactions et services exclusifs.
+      </p>
+    </div>
+    <div class="demo-video-wrapper">
+      <video id="demo-platform-video" controls playsinline preload="metadata">
+        <source src="assets/video/demo_plateforme.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture de cette vidéo.
+      </video>
+    </div>
+    <div class="demo-modal-footer demo-video-footer">
+      <span class="demo-video-status">
+        <i class="fas fa-circle-check" style="color: #10B981;"></i> Plateforme active &amp; certifiée
+      </span>
+      <a href="gerer" class="btn btn-primary btn-sm" onclick="closeDemoModal(); navigateToGererSection4(event);">
+        Explorer nos solutions <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================================
+     MODAL DE RAPPEL RAPIDE & ÉCHANGE CONSEILLER (HOME)
+     ==================================================================== -->
+<div class="lead-modal-backdrop" id="home-callback-modal" style="display: none;" onclick="closeHomeCallbackModal(event)">
+  <div class="lead-modal-dialog" onclick="event.stopPropagation()">
+    <button type="button" class="lead-modal-close" onclick="closeHomeCallbackModal()" aria-label="Fermer">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="lead-modal-header">
+      <span class="lead-modal-eyebrow"><i class="fas fa-headset"></i> RAPPEL GRATUIT · BATIBID</span>
+      <h3 class="lead-modal-title">Échangez avec un conseiller patrimonial</h3>
+      <p class="lead-modal-sub">Indiquez vos coordonnées pour être contacté sous 24h ouvrées et bénéficier d'une orientation personnalisée.</p>
+    </div>
+
+    <form id="home-callback-form" onsubmit="submitHomeCallback(event)">
+      <div class="lead-modal-grid">
+        <div class="lead-field-group">
+          <label for="hcb-name">Nom &amp; Prénom *</label>
+          <input type="text" id="hcb-name" required placeholder="Ex : M. / Mme DOSSOU">
+        </div>
+        <div class="lead-field-group">
+          <label for="hcb-phone">Téléphone / WhatsApp *</label>
+          <input type="tel" id="hcb-phone" required placeholder="Ex : +229 01 42 48 48 48">
+        </div>
+        <div class="lead-field-group">
+          <label for="hcb-email">Email (facultatif)</label>
+          <input type="email" id="hcb-email" placeholder="votre.email@domaine.com">
+        </div>
+        <div class="lead-field-group">
+          <label for="hcb-service">Service prioritaire *</label>
+          <select id="hcb-service" required>
+            <option value="gerer">Gestion locative &amp; Avance loyers (Gérer)</option>
+            <option value="location">Mise en location de bien</option>
+            <option value="construire">Construction &amp; Rénovation (Suivi de chantier)</option>
+            <option value="juridique">Conseil juridique &amp; vérification foncière</option>
+            <option value="private-market">Achat / Vente d'actifs (Marché privé)</option>
+          </select>
+        </div>
+        <div class="lead-field-group full-width">
+          <label for="hcb-creneau">Créneau d'appel préféré</label>
+          <select id="hcb-creneau">
+            <option value="matin">Matinée (09h00 - 12h00)</option>
+            <option value="apres-midi">Après-midi (14h00 - 18h00)</option>
+            <option value="asap">Dès que possible</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="lead-modal-actions">
+        <button type="submit" class="btn-lead-submit btn-shimmer">
+          Être rappelé gratuitement <i class="fas fa-arrow-right"></i>
+        </button>
+        <span class="lead-modal-reassurance">
+          <i class="fas fa-lock"></i> Confidentialité garantie • 100% gratuit • Sans engagement
+        </span>
+      </div>
+    </form>
+
+    <div id="home-callback-success" class="lead-modal-success" style="display: none;">
+      <div class="lead-success-icon"><i class="fas fa-check"></i></div>
+      <h3 style="font-family: var(--ff-display); font-size: 1.5rem; margin-bottom: 0.5rem; color: #0F172A;">Demande de rappel enregistrée !</h3>
+      <p style="color: #64748B; font-size: 0.92rem; margin-bottom: 1.5rem;">Un conseiller BatiBid vous appellera au créneau sélectionné.</p>
+      <button type="button" class="btn-dock-primary" onclick="closeHomeCallbackModal()" style="margin: 0 auto;">Fermer</button>
+    </div>
+
+  </div>
+</div>
+  </section>

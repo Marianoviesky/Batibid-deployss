@@ -1,0 +1,477 @@
+/* ==========================================
+   BATIBID - LUXURY MOTION DESIGN SYSTEM
+   Creative Developer & Motion Designer Architecture
+   Curves, Micro-Interactions, Stagger & 60 FPS
+   ========================================== */
+
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* ---- Base: hidden state ---- */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal       { transform: translateY(28px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal-scale { transform: scale(0.94) translateY(16px); }
+
+/* ---- Visible state ---- */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Stagger children (parent triggers, children animate) ---- */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.stagger-children > *.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Float animation: subtle levitation for hero badges/overlays ---- */
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-8px);  }
+}
+
+.float-badge {
+  animation: floatBadge 3.5s ease-in-out infinite;
+}
+
+/* ---- Counter pulse: glow on stat numbers when visible ---- */
+@keyframes counterPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.counter-pulse.is-visible {
+  animation: counterPulse 0.6s ease-out 0.3s both;
+}
+
+/* ---- Shimmer line: decorative horizontal shimmer ---- */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.shimmer-line {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--gray-200) 25%,
+    var(--primary-light) 50%,
+    var(--gray-200) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+  border: none;
+  border-radius: var(--radius-full);
+  margin: 0 auto;
+}
+
+/* ---- Hero image: subtle zoom pulse ---- */
+@keyframes heroPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.015); }
+}
+
+.premium-hero-image-box img {
+  animation: heroPulse 6s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* ---- Timeline steps sequential reveal ---- */
+.timeline-step {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-step.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Bento cards: pop-in on reveal ---- */
+.bento-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+/* ---- Solution cards hover lift ---- */
+.solution-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(164, 56, 2, 0.12);
+}
+
+/* ---- Pricing cards hover ---- */
+.pricing-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+}
+
+/* ---- Partner cards hover ---- */
+.partner-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(164, 56, 2, 0.1);
+}
+
+/* ---- Workflow cards ---- */
+.workflow-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.workflow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
+
+/* ---- Accordion smooth open ---- */
+.accordion-content {
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s ease,
+              opacity 0.3s ease;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
+}
+
+.accordion-item.active .accordion-content {
+  opacity: 1;
+  max-height: 400px;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.accordion-icon {
+  transition: transform 0.35s ease;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+/* ---- Gradient text animation for hero span highlights ---- */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.premium-hero-title span {
+  background: linear-gradient(135deg, var(--primary) 0%, #e87540 50%, var(--primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ---- Hero badge entrance ---- */
+.hero-badge {
+  animation: fadeInDown 0.6s ease 0.1s both;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Stat numbers: count-up glow ---- */
+.counter-num, .bento-stat-number, .mini-stat-number, .partner-stat-num {
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+/* ---- CTA banner gradient hover ---- */
+.cta-banner-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-banner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+
+
+/* ---- Luxury Text Reveal with Mask ---- */
+.reveal-text-mask {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.reveal-line {
+  display: block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition: transform 0.9s var(--ease-luxury), opacity 0.7s ease;
+  will-change: transform, opacity;
+}
+
+.reveal-line.is-visible {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* ---- Cinematic Hero Image Unmasking ---- */
+.hero-img-cinematic {
+  transform: scale(1.06);
+  opacity: 0.85;
+  transition: transform 1.8s var(--ease-luxury), opacity 1.2s ease;
+  will-change: transform, opacity;
+}
+
+.hero-img-cinematic.is-loaded {
+  transform: scale(1.0);
+  opacity: 1;
+}
+
+/* ---- Counter-Oscillating Badges (Floating Levitation) ---- */
+@keyframes floatOscillate1 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -9px, 0); }
+}
+
+@keyframes floatOscillate2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, 8px, 0); }
+}
+
+.float-oscillate-1 {
+  animation: floatOscillate1 4.6s ease-in-out infinite;
+}
+
+.float-oscillate-2 {
+  animation: floatOscillate2 5.2s ease-in-out infinite 0.6s;
+}
+
+.float-oscillate-1:hover,
+.float-oscillate-2:hover {
+  animation-play-state: paused;
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ---- Dashboard Chart Draw Path ---- */
+.dash-chart-draw-path {
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  transition: stroke-dashoffset 2s var(--ease-luxury) 0.3s;
+}
+
+.is-visible .dash-chart-draw-path,
+.dash-chart-draw-path.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+/* ---- Sparkline SVG Drawing Animation ---- */
+.sparkline-draw-path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  transition: stroke-dashoffset 1.8s var(--ease-luxury) 0.35s;
+}
+
+.sparkline-draw-path.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+.sparkline-area {
+  opacity: 0;
+  transition: opacity 1.1s ease 0.9s;
+}
+
+.sparkline-area.is-drawn {
+  opacity: 1;
+}
+
+/* ---- Luxury Button Shimmer / Light Sweep ---- */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: left 0.85s var(--ease-luxury);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  left: 140%;
+}
+
+/* ---- Hero Avatar Cascade ---- */
+.hero-avatar-stack img {
+  opacity: 0;
+  transform: scale(0.6) translateX(-12px);
+  transition: opacity 0.45s var(--ease-luxury), transform 0.45s var(--ease-spring);
+}
+
+.hero-avatar-stack img.is-visible {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+}
+
+/* ---- Pillars & Bento Hover Micro-Interactions ---- */
+.pillar-item {
+  transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.pillar-item:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 36px rgba(217, 87, 30, 0.12) !important;
+  border-color: rgba(217, 87, 30, 0.35) !important;
+}
+
+.pillar-item:hover .pillar-icon-box {
+  transform: scale(1.1) rotate(-3deg);
+  background-color: var(--clr-primary-light);
+  color: var(--clr-primary);
+}
+
+.pillar-icon-box {
+  transition: transform 0.35s var(--ease-luxury), background-color 0.35s ease, color 0.35s ease;
+}
+
+.bento-card-interactive {
+  transition: transform 0.4s var(--ease-luxury), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.bento-card-interactive:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(217, 87, 30, 0.14);
+  border-color: rgba(217, 87, 30, 0.3);
+}
+
+.authority-metric-item {
+  transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s ease;
+}
+
+.authority-metric-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+/* ---- Histogram Bar Rise (Mini Chart) ---- */
+.kpi-mini-chart .bar {
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform 0.75s var(--ease-spring);
+  will-change: transform;
+}
+
+.kpi-mini-chart.is-drawn .bar,
+.is-visible .kpi-mini-chart .bar {
+  transform: scaleY(1);
+}
+
+.kpi-mini-chart.is-drawn .bar.bar-1, .is-visible .kpi-mini-chart .bar.bar-1 { transition-delay: 0.1s; }
+.kpi-mini-chart.is-drawn .bar.bar-2, .is-visible .kpi-mini-chart .bar.bar-2 { transition-delay: 0.18s; }
+.kpi-mini-chart.is-drawn .bar.bar-3, .is-visible .kpi-mini-chart .bar.bar-3 { transition-delay: 0.26s; }
+.kpi-mini-chart.is-drawn .bar.bar-4, .is-visible .kpi-mini-chart .bar.bar-4 { transition-delay: 0.34s; }
+.kpi-mini-chart.is-drawn .bar.bar-5, .is-visible .kpi-mini-chart .bar.bar-5 { transition-delay: 0.42s; }
+
+/* ---- Pricing Switcher Stagger Animation ---- */
+.pricing-cards-container.active .pricing-tier-card {
+  animation: pricingCardStagger 0.5s var(--ease-luxury) backwards;
+}
+
+.pricing-cards-container.active .pricing-tier-card:nth-child(1) { animation-delay: 0.05s; }
+.pricing-cards-container.active .pricing-tier-card:nth-child(2) { animation-delay: 0.12s; }
+.pricing-cards-container.active .pricing-tier-card:nth-child(3) { animation-delay: 0.19s; }
+
+@keyframes pricingCardStagger {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Simulator Recalculate Pulse ---- */
+@keyframes calcPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.sim-results-bar.calc-pulse {
+  animation: calcPulse 0.45s var(--ease-luxury);
+}
+
+/* ---- Reduce motion for accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right, .reveal-scale,
+  .stagger-children > *,
+  .float-badge,
+  .timeline-step,
+  .bento-card, .solution-card, .pricing-card,
+  .partner-card, .workflow-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .premium-hero-image-box img {
+    animation: none !important;
+  }
+  
+  .premium-hero-title span {
+    animation: none !important;
+    -webkit-text-fill-color: var(--primary);
+  }
+}

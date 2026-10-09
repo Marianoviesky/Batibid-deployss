@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sécurisation Juridique &amp; Foncière au Bénin | BatiBid</title>
+  <meta name="description" content="Audit de Titre Foncier, vérification ANDF, baux conformes au Code Foncier et gestion des litiges au Bénin. Premier diagnostic gratuit sous 24h.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.2">
+  <link rel="stylesheet" href="css/header-footer.css?v=2.0">
+</head>
+<body data-page="juridique">
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA REFONTE - 6 ENTRÉES)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link ">Gérer</a>
+        <a href="mise-en-location" class="nav-link">Mise en location</a>
+        <a href="construire" class="nav-link">Construire &amp; rénover</a>
+        <a href="juridique" class="nav-link active">Juridique</a>
+        <a href="corporate-housing" class="nav-link">Corporate Housing</a>
+        <a href="private-market" class="nav-link">Private Market</a>
+        
+        <!-- Dropdown: Plus -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Plus <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a> -->
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="dropdown-divider" style="height: 1px; background: var(--clr-border); margin: 0.35rem 0;"></div>
+            <a href="https://app.batibid.com/register" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> S'inscrire</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien immobilier" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main class="main-content">
+    <section id="juridique" class="view-section active">
+
+      <div class="juridique-page">
+        <!-- Filigrane architectural -->
+        <div class="juridique-bg-watermark" aria-hidden="true"></div>
+
+        <!-- ====================================================================
+             1. HERO SECTION : EN-TÊTE FONCIER & VUE PROCÉDURE
+             ==================================================================== -->
+        <section class="juridique-hero">
+          <div class="juridique-container">
+            <div class="juridique-hero-grid">
+              
+              <!-- Colonne Gauche : Argumentaire Éditorial & CTA -->
+              <div class="juridique-hero-content">
+                <div class="juridique-eyebrow-wrap reveal">
+                  <span class="juridique-eyebrow">CONSEIL JURIDIQUE &amp; PROTECTION FONCIÈRE</span>
+                  <span class="juridique-eyebrow-line" aria-hidden="true"></span>
+                </div>
+
+                <h1 class="juridique-headline">
+                  <span>Sécurisez votre</span><br>
+                  <span style="color: var(--clr-primary);">patrimoine avant de signer.</span>
+                </h1>
+
+                <p class="juridique-subtext reveal">
+                  Vérification de titres fonciers, contrats de baux certifiés conformes au Code Foncier, conciliation de litiges locatifs et fiscalité : bénéficiez d'une couverture juridique certifiée au Bénin avec nos juristes et notaires partenaires.
+                </p>
+
+                <div class="juridique-hero-ctas reveal">
+                  <button type="button" class="btn-juridique-primary btn-shimmer" onclick="openJuridiqueModal()">
+                    <i class="fas fa-file-shield" aria-hidden="true"></i>
+                    <span>Auditer mon bien</span>
+                  </button>
+                  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20prendre%20rendez-vous%20avec%20un%20conseiller%20juridique." target="_blank" rel="noopener" class="btn-juridique-outline">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <span>Conseil WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Colonne Droite : Visuel Procédure & Calque d'Audit Certifié -->
+              <div class="juridique-hero-visual-col">
+                <div class="cadastre-visual-card">
+                  <img src="./assets/images/juridique_procedure.jpg" 
+                       alt="Procédure juridique et consultation notariée pour sécurisation de Titre Foncier au Bénin" 
+                       class="cadastre-drone-img hero-img-cinematic" decoding="async" loading="eager" fetchpriority="high">
+
+                  <!-- Bandeau sobre d'audit foncier certifié -->
+                  <div class="cadastre-audit-summary-dock">
+                    <div class="cadastre-dock-header">
+                      <span class="dock-badge-official"><i class="fas fa-stamp"></i> AUDIT FONCIER &amp; ACTE NOTARIÉ</span>
+                      <span class="dock-ref">Réf: BB-JUR-2026-BENIN</span>
+                    </div>
+                    <div class="cadastre-dock-grid">
+                      <div class="dock-item">
+                        <span class="dock-lbl">Dossier</span>
+                        <span class="dock-val">Titre Foncier &amp; Mutation</span>
+                      </div>
+                      <div class="dock-item">
+                        <span class="dock-lbl">Vérification ANDF</span>
+                        <span class="dock-val text-success"><i class="fas fa-check-circle"></i> Authentifié</span>
+                      </div>
+                      <div class="dock-item">
+                        <span class="dock-lbl">Sécurité Juridique</span>
+                        <span class="dock-val text-secure">Sécurisation certifiée</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             2. SECTION : SÉLECTEUR « VOTRE SITUATION » (MONTÉ DIRECTEMENT SOUS LE HERO)
+             ==================================================================== -->
+        <section class="section-diagnostic-orientation" id="diagnostic-orientation" style="padding-top: 0;">
+          <div class="juridique-container">
+            
+            <div class="diagnostic-banner-card reveal-scale bento-card-interactive" style="border-radius: 20px; padding: 2.25rem;">
+              <div class="diagnostic-card-header">
+                <div class="juridique-eyebrow-wrap">
+                  <span class="juridique-eyebrow">DIAGNOSTIC &amp; ORIENTATION IMMÉDIATE</span>
+                </div>
+                <h2 class="diagnostic-headline" style="font-size: 1.85rem;">Quel accompagnement correspond à votre situation ?</h2>
+                <p class="diagnostic-subtext" style="font-size: 0.95rem; color: #7D695D;">
+                  Sélectionnez votre cas concret pour obtenir immédiatement l'orientation adaptée, les tarifs applicables et la prise en charge recommandée.
+                </p>
+              </div>
+
+              <div class="diagnostic-interactive-wrap">
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                  <label class="form-label" for="legal-issue-select" style="font-weight: 700; color: white;">
+                    <i class="fas fa-scale-balanced" style="color: white; margin-right: 0.4rem;"></i>
+                    Sélectionnez votre situation juridique ou foncière :
+                  </label>
+                  <div class="diagnostic-select-wrap">
+                    <select id="legal-issue-select" class="form-control" onchange="checkLegalCoverage(this.value)" style="border-radius: 12px; font-weight: 600;">
+                      <option value="">-- Choisir une situation dans la liste --</option>
+                      <option value="transaction">Je souhaite acheter ou vendre un terrain/bâtiment en toute sécurité</option>
+                      <option value="bail">Je souhaite faire rédiger ou négocier un contrat de bail sécurisé</option>
+                      <option value="recouvrement">Je veux récupérer des mois de loyers impayés</option>
+                      <option value="expulsion">Je veux expulser un locataire qui ne respecte pas ses obligations</option>
+                      <option value="strategie">Je fais face à un conflit immobilier complexe (litige foncier, succession)</option>
+                      <option value="mediation">Je veux régler un différend à l'amiable (conciliation / médiation)</option>
+                      <option value="fiscalite">Je veux déclarer ou optimiser mes impôts fonciers</option>
+                      <option value="contrat">Je veux sécuriser un contrat de travaux ou de chantier (BTP)</option>
+                      <option value="precontentieux">Je souhaite envoyer une mise en demeure formelle</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Résultat dynamique généré par checkLegalCoverage() -->
+                <div id="legal-simulator-result" class="diagnostic-result-box" style="display: none;"></div>
+              </div>
+
+            </div>
+
+            <!-- Ruban des Tarifs d'Appel Visibles -->
+            <!-- Ruban des Tarifs d'Appel Visibles (Style B2B Dark) -->
+            <div class="juridique-pricing-strip reveal" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 3rem 0 1rem;">
+              <div class="ch-pricing-card" style="padding: 1.75rem 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <div style="width: 46px; height: 46px; border-radius: 12px; background: rgba(217, 87, 30, 0.15); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-comments"></i></div>
+                  <div>
+                    <span style="font-family: var(--ff-display); font-size: 1.25rem; font-weight: 700; color: var(--white); display: block;">100% Gratuit</span>
+                    <strong style="font-size: 0.95rem; font-weight: 700; color: #F8B38A; display: block; margin-top: 0.15rem;">Premier diagnostic</strong>
+                    <span style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.65);">Étude initiale d'orientation sous 24h ouvrées</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ch-pricing-card ch-card-featured" style="padding: 1.75rem 1.5rem; box-shadow: 0 16px 44px rgba(217, 87, 30, 0.25);">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <div style="width: 46px; height: 46px; border-radius: 12px; background: rgba(217, 87, 30, 0.25); color: #F8B38A; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-file-contract"></i></div>
+                  <div>
+                    <span style="font-family: var(--ff-display); font-size: 1.25rem; font-weight: 700; color: var(--clr-primary); display: block;">Dès 25 000 FCFA</span>
+                    <strong style="font-size: 0.95rem; font-weight: 700; color: var(--white); display: block; margin-top: 0.15rem;">Bail d'habitation ou commercial</strong>
+                    <span style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.75);">Rédaction conforme au Code Foncier béninois</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ch-pricing-card" style="padding: 1.75rem 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <div style="width: 46px; height: 46px; border-radius: 12px; background: rgba(217, 87, 30, 0.15); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;"><i class="fas fa-file-shield"></i></div>
+                  <div>
+                    <span style="font-family: var(--ff-display); font-size: 1.25rem; font-weight: 700; color: var(--white); display: block;">Dès 45 000 FCFA</span>
+                    <strong style="font-size: 0.95rem; font-weight: 700; color: #F8B38A; display: block; margin-top: 0.15rem;">Audit complet de Titre Foncier</strong>
+                    <span style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.65);">Contrôle ANDF, charges &amp; état hypothécaire</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             3. SECTION : LES 4 DOMAINES D'EXPERTISE (ABSORBANT LES 7 ANCIENNES CARTES)
+             ==================================================================== -->
+        <section class="section-domaines-expertises-details b2b-dark-offers-section" style="background-color: #14110F; color: #FFFFFF; padding: 6.5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <div class="juridique-container">
+            
+            <div class="section-title-wrap reveal" style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
+              <span class="ch-eyebrow" style="color: #F8B38A;"><i class="fas fa-layer-group"></i> CHAMP D'INTERVENTION</span>
+              <h2 class="section-title-editorial" style="font-family: var(--ff-display); font-size: 2.3rem; color: #FFFFFF; margin: 0.5rem 0 1rem;">Quatre domaines d'expertise pour protéger votre patrimoine</h2>
+              <p class="section-subtitle-editorial" style="color: rgba(255, 255, 255, 0.72); line-height: 1.6; font-size: 1.05rem;">Des prestations ciblées menées par notre juriste interne et nos études notariales partenaires.</p>
+            </div>
+
+            <!-- Grille des 4 domaines d'expertise (Style Catalogue B2B) -->
+            <div class="legal-expertises-grid stagger-children" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+              
+              <!-- Domaine 1 : Contrats et baux -->
+              <div class="ch-pricing-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                  <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(217, 87, 30, 0.15); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
+                  <h3 class="ch-card-title" style="margin: 0; font-size: 1.45rem;">Contrats et baux immobiliers</h3>
+                </div>
+                <div class="ch-card-divider"></div>
+                <ul class="ch-features-list">
+                  <li><i class="fas fa-check"></i><span>Rédaction et révision de baux d'habitation et baux commerciaux (dès 25 000 FCFA)</span></li>
+                  <li><i class="fas fa-check"></i><span>Sécurisation stricte des clauses résolutoires, préavis et cautions locatives</span></li>
+                  <li><i class="fas fa-check"></i><span>Contrats d'entreprises, protocoles d'accord et contrats d'artisans BTP</span></li>
+                  <li><i class="fas fa-check"></i><span>Rédaction et notification de mises en demeure réglementaires par huissier</span></li>
+                </ul>
+              </div>
+
+              <!-- Domaine 2 : Litiges et recouvrement -->
+              <div class="ch-pricing-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                  <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(217, 87, 30, 0.15); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;"><i class="fas fa-gavel" aria-hidden="true"></i></div>
+                  <h3 class="ch-card-title" style="margin: 0; font-size: 1.45rem;">Litiges locatifs &amp; recouvrement</h3>
+                </div>
+                <div class="ch-card-divider"></div>
+                <ul class="ch-features-list">
+                  <li><i class="fas fa-check"></i><span>Médiation amiable et conciliation contradictoire entre bailleur et occupant</span></li>
+                  <li><i class="fas fa-check"></i><span>Recouvrement méthodique des loyers impayés (phase amiable et titre exécutoire)</span></li>
+                  <li><i class="fas fa-check"></i><span>Prise en charge incluse dans nos contrats de gestion locative Essentiel et Premium</span></li>
+                  <li><i class="fas fa-check"></i><span>Pilotage rigoureux des procédures légales d'expulsion avec nos huissiers partenaires</span></li>
+                </ul>
+              </div>
+
+              <!-- Domaine 3 : Vérification foncière -->
+              <div class="ch-pricing-card ch-card-featured reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                  <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(217, 87, 30, 0.25); color: #F8B38A; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></div>
+                  <h3 class="ch-card-title" style="margin: 0; font-size: 1.45rem;">Vérification foncière &amp; transactions</h3>
+                </div>
+                <div class="ch-card-divider" style="background-color: rgba(255, 255, 255, 0.15);"></div>
+                <ul class="ch-features-list">
+                  <li><i class="fas fa-check" style="color: #F8B38A;"></i><span>Audit exhaustif de Titre Foncier (TF) dès 45 000 FCFA : authenticité, hypothèques, servitudes</span></li>
+                  <li><i class="fas fa-check" style="color: #F8B38A;"></i><span>Contrôle direct auprès de l'ANDF et consultation officielle du livre foncier national</span></li>
+                  <li><i class="fas fa-check" style="color: #F8B38A;"></i><span>Sécurisation juridique des promesses, conventions de vente et cessions de parcelles</span></li>
+                  <li><i class="fas fa-check" style="color: #F8B38A;"></i><span>Assistance physique aux signatures en étude notariale pour garantir vos droits</span></li>
+                </ul>
+              </div>
+
+              <!-- Domaine 4 : Fiscalité -->
+              <div class="ch-pricing-card reveal">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+                  <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(217, 87, 30, 0.15); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0;"><i class="fas fa-calculator" aria-hidden="true"></i></div>
+                  <h3 class="ch-card-title" style="margin: 0; font-size: 1.45rem;">Fiscalité immobilière</h3>
+                </div>
+                <div class="ch-card-divider"></div>
+                <ul class="ch-features-list">
+                  <li><i class="fas fa-check"></i><span>Calcul et déclaration de la Taxe Foncière Unique (TFU) auprès de la DGI</span></li>
+                  <li><i class="fas fa-check"></i><span>Optimisation légale de la fiscalité locative pour résidents béninois et diaspora</span></li>
+                  <li><i class="fas fa-check"></i><span>Régularisation des droits d'enregistrement, plus-values et mutations de propriété</span></li>
+                  <li><i class="fas fa-check"></i><span>Vérification des régimes d'exonération et conformité avec les lois de finances</span></li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             4. SECTION : FAQ JURIDIQUE & FONCIÈRE (4 QUESTIONS CIBLÉES)
+             ==================================================================== -->
+        <section class="section-faq-juridique" style="padding-bottom: 5rem;">
+          <div class="juridique-container">
+            
+            <div class="section-title-wrap reveal">
+              <div class="juridique-eyebrow-wrap">
+                <span class="juridique-eyebrow">QUESTIONS FRÉQUEMMENT POSÉES</span>
+              </div>
+              <h2 class="section-title-editorial">Vos questions sur le droit immobilier au Bénin</h2>
+              <p class="section-subtitle-editorial">Des réponses transparentes pour protéger vos droits et sécuriser vos investissements.</p>
+            </div>
+
+            <div class="accordion-wrapper stagger-children" style="max-width: 820px; margin: 0 auto;">
+              
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Mon bail actuel est verbal, est-ce légal au Bénin ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Un bail verbal est reconnu mais extrêmement fragile juridiquement. En cas de litige ou d'impayé, ni le propriétaire ni le locataire ne dispose d'éléments de preuve solides sur le montant du loyer, la date d'échéance ou les charges. BatiBid formalise un bail écrit conforme au Code Foncier et Domanial dès 25 000 FCFA sous 48 heures.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Comment savoir si le titre foncier d'un bien est authentique ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>La vérification s'effectue directement auprès de l'Agence Nationale du Domaine et du Foncier (ANDF) et au livre foncier national. Sous 48 à 72 heures ouvrées, notre juriste certifie l'authenticité du numéro de titre, l'absence d'hypothèque ou de prénotation, et confirme l'identité légale du vendeur.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Combien coûte un conseil ou un audit foncier BatiBid ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Le premier diagnostic d'orientation est 100% gratuit et sans engagement. Nos interventions spécialisées fonctionnent au forfait transparent : bail sécurisé dès 25 000 FCFA, audit complet de Titre Foncier dès 45 000 FCFA. La gestion des litiges locatifs est quant à elle incluse pour les biens confiés en gestion.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Les échanges et documents transmis sont-ils confidentiels ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Absolument. BatiBid applique une politique stricte de confidentialité et de secret professionnel. Vos actes de vente, plans et contrats sont stockés sur des serveurs sécurisés et ne sont jamais communiqués à des tiers sans votre autorisation expresse écrite.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             5. BANDEAU CTA TERRACOTTA
+             ==================================================================== -->
+        <section class="section-cta-terracotta" style="padding-bottom: 5rem;">
+          <div class="juridique-container">
+            <div class="cta-terracotta-card reveal-scale">
+              
+              <div class="cta-terracotta-content">
+                <div class="cta-icon-wrap" aria-hidden="true">
+                  <i class="fas fa-scale-balanced"></i>
+                </div>
+                <div>
+                  <h2 class="cta-terracotta-headline">
+                    Un projet immobilier mérite une base solide.
+                  </h2>
+                  <p class="cta-terracotta-subtext">
+                    Premier diagnostic gratuit sous 24h ouvrées &bull; Juristes experts &amp; notaires partenaires.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cta-terracotta-actions">
+                <button type="button" class="btn-cta-white btn-shimmer" onclick="openJuridiqueModal()">
+                  <span>Auditer mon bien</span>
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+                <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20conseil%20juridique%20ou%20une%20v%C3%A9rification%20fonci%C3%A8re." 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="btn-cta-wa"
+                   title="Assistance Juridique WhatsApp (+229 01 42 48 48 48)">
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                  <span>WhatsApp direct</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ====================================================================
+           MODAL DE DEMANDE D'AUDIT FONCIER & JURIDIQUE
+           ==================================================================== -->
+      <div class="lead-modal-backdrop" id="juridique-lead-modal" style="display: none;" onclick="closeJuridiqueModal(event)">
+        <div class="lead-modal-dialog" onclick="event.stopPropagation()">
+          <button type="button" class="lead-modal-close" onclick="closeJuridiqueModal()" aria-label="Fermer">
+            <i class="fas fa-times"></i>
+          </button>
+          
+          <div class="lead-modal-header">
+            <span class="lead-modal-eyebrow"><i class="fas fa-scale-balanced"></i> AUDIT FONCIER &amp; JURIDIQUE &bull; BATIBID</span>
+            <h3 class="lead-modal-title">Sécurisez votre patrimoine immobilier</h3>
+            <p class="lead-modal-sub">Remplissez ces informations pour recevoir une première analyse juridique ou être contacté sous 24h ouvrées par notre équipe.</p>
+            
+            <div id="jur-selected-situation-banner" class="lead-situation-pill" style="display: none;">
+              <i class="fas fa-check-circle" style="color: var(--clr-primary);"></i>
+              <span>Situation pré-sélectionnée : <strong id="jur-selected-situation-text"></strong></span>
+            </div>
+          </div>
+
+          <form id="juridique-lead-form" onsubmit="submitJuridiqueLead(event)">
+            <div class="lead-modal-grid">
+              <div class="lead-field-group">
+                <label for="jur-name">Nom &amp; Prénom *</label>
+                <input type="text" id="jur-name" required placeholder="Ex : Jean ALAPINI">
+              </div>
+              <div class="lead-field-group">
+                <label for="jur-phone">Téléphone / WhatsApp *</label>
+                <input type="tel" id="jur-phone" required placeholder="Ex : +229 01 42 48 48 48">
+              </div>
+              <div class="lead-field-group">
+                <label for="jur-email">Email (facultatif)</label>
+                <input type="email" id="jur-email" placeholder="votre.email@domaine.com">
+              </div>
+              <div class="lead-field-group">
+                <label for="jur-city">Ville / Localité du bien *</label>
+                <input type="text" id="jur-city" required placeholder="Ex : Cotonou, Calavi, Ouidah">
+              </div>
+              <div class="lead-field-group full-width">
+                <label for="jur-topic">Type d'intervention recherchée *</label>
+                <select id="jur-topic" required>
+                  <option value="transaction">Sécurisation d'achat / vente de terrain ou bâtiment</option>
+                  <option value="titre-foncier">Audit de Titre Foncier (TF) &amp; état hypothécaire</option>
+                  <option value="bail">Rédaction / négociation de contrat de bail sécurisé</option>
+                  <option value="recouvrement">Recouvrement de loyers impayés</option>
+                  <option value="expulsion">Procédure d'expulsion de locataire</option>
+                  <option value="strategie">Litige foncier complexe, succession ou conflit</option>
+                  <option value="mediation">Médiation amiable / conciliation contradictoire</option>
+                  <option value="fiscalite">Déclaration &amp; optimisation des impôts fonciers</option>
+                  <option value="contrat">Sécurisation de contrat de travaux / BTP / artisans</option>
+                  <option value="precontentieux">Mise en demeure formelle par huissier</option>
+                  <option value="autre">Autre conseil ou accompagnement juridique</option>
+                </select>
+              </div>
+              <div class="lead-field-group full-width">
+                <label for="jur-message">Précisions sur votre situation (optionnel)</label>
+                <textarea id="jur-message" rows="3" placeholder="Décrivez en quelques mots votre situation ou vos questions..."></textarea>
+              </div>
+            </div>
+
+            <div class="lead-modal-actions">
+              <button type="submit" class="btn-lead-submit btn-shimmer">
+                Demander mon audit gratuit <i class="fas fa-arrow-right"></i>
+              </button>
+              <span class="lead-modal-reassurance">
+                <i class="fas fa-shield-alt"></i> Confidentialité garantie &bull; Secret professionnel &bull; Réponse sous 24h ouvrées
+              </span>
+            </div>
+          </form>
+
+          <div id="juridique-modal-success" class="lead-modal-success" style="display: none;">
+            <div class="lead-success-icon"><i class="fas fa-check"></i></div>
+            <h3 style="font-family: var(--ff-display); font-size: 1.5rem; margin-bottom: 0.5rem; color: #0F172A;">Demande d'audit transmise avec succès !</h3>
+            <p style="color: #64748B; font-size: 0.92rem; margin-bottom: 1.5rem;">Un juriste spécialisé BatiBid vous contactera sous 24h ouvrées pour étudier vos documents.</p>
+            <button type="button" class="btn-dock-primary" onclick="closeJuridiqueModal()" style="margin: 0 auto;">Fermer</button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER UNIFIÉ (4 COLONNES & MENTIONS LÉGALES MODALES)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence pour l'écosystème immobilier au Bénin. Nous sécurisons la gestion, la construction et les transactions immobilières.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Zone Commerciale Akpakpa, Lot 402, Cotonou, Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Prendre un rendez-vous</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="openLegalModal('mentions')">Mentions Légales</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('confidentialite')">Politique de Confidentialité</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('cgu')">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mettre en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link active" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.88rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20j%27ai%20une%20question%20juridique%20ou%20fonci%C3%A8re." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Assistance direct</span>
+  </a>
+
+  <!-- Mobile Sticky WhatsApp bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20conseil%20juridique." target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; color: #25D366; border-color: #25D366;">
+      <i class="fab fa-whatsapp" style="margin-right: 0.4rem;"></i> WhatsApp
+    </a>
+    <button type="button" class="btn btn-primary" onclick="openJuridiqueModal()" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-file-shield" style="margin-right: 0.4rem;"></i> Auditer mon bien
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

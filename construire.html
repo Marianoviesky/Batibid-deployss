@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construire &amp; Rénover au Bénin | BatiBid — Ingénierie &amp; Travaux</title>
+  <meta name="description" content="Chiffrez et pilotez vos travaux neufs et rénovations au Bénin. Diagnostic et devis sous 24-48h, suivi en direct et déblocage par jalons vérifiés.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.2">
+  <link rel="stylesheet" href="css/header-footer.css?v=2.0">
+</head>
+<body data-page="construire">
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA REFONTE - 6 ENTRÉES)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link">Gérer</a>
+        <a href="mise-en-location" class="nav-link">Mise en location</a>
+        <a href="construire" class="nav-link active">Construire &amp; rénover</a>
+        <a href="juridique" class="nav-link">Juridique</a>
+        <a href="corporate-housing" class="nav-link">Corporate Housing</a>
+        <a href="private-market" class="nav-link">Private Market</a>
+        
+        <!-- Dropdown: Plus -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Plus <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <!-- <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a> -->
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact</a>
+            <div class="dropdown-divider" style="height: 1px; background: var(--clr-border); margin: 0.35rem 0;"></div>
+            <a href="https://app.batibid.com/register" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> S'inscrire</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien immobilier" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main class="main-content">
+    <section id="construire" class="view-section active">
+
+      <div class="construire-page">
+        <!-- Filigrane architectural -->
+        <div class="construire-bg-watermark" aria-hidden="true"></div>
+
+        <!-- ====================================================================
+             1. HERO SECTION : CHANTIER RÉEL & ENGAGEMENT ÉDITORIAL
+             ==================================================================== -->
+        <section class="construire-hero">
+          <div class="construire-container">
+            <div class="construire-hero-grid">
+              
+              <!-- Colonne Gauche : Photographie de Chantier & Miniatures -->
+              <div class="chantier-hero-col">
+                <div class="chantier-visual-wrapper">
+                  <img src="./assets/images/chantier_cotonou.jpg" 
+                       id="hero-chantier-img"
+                       alt="Chantier supervisé par BatiBid à Cotonou" 
+                       class="chantier-hero-img hero-img-cinematic" decoding="async" loading="eager">
+                  
+                  <div class="chantier-project-badge">
+                    <div class="cpb-header">
+                      <span class="cpb-label">SUIVI DE CHANTIER EN DIRECT</span>
+                      <strong class="cpb-title">Villa R+1 &bull; Cocotomey</strong>
+                    </div>
+                    <div class="cpb-progress-wrap">
+                      <div class="cpb-progress-info" style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:0.25rem;">
+                        <span>Avancement certifié</span>
+                        <strong>62%</strong>
+                      </div>
+                      <div class="cpb-progress-bar">
+                        <div class="cpb-progress-fill" style="width: 62%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Miniatures de suivi -->
+                <div class="chantier-thumbs-row" id="chantier-thumbs-carousel" aria-label="Galerie des jalons récents">
+                  <div class="chantier-thumb-item active" data-thumb-idx="0" data-img-src="./assets/images/chantier_cotonou.jpg" title="Élévation des piliers R+1" onclick="selectChantierThumb(this, './assets/images/chantier_cotonou.jpg')">
+                    <img src="./assets/images/chantier_cotonou.jpg" alt="Piliers R+1" decoding="async" loading="lazy">
+                  </div>
+                  <div class="chantier-thumb-item" data-thumb-idx="1" data-img-src="./assets/images/home_hero_villa.webp" title="Coulage de dalle" onclick="selectChantierThumb(this, './assets/images/home_hero_villa.webp')">
+                    <img src="./assets/images/home_hero_villa.webp" alt="Dalle coulée" decoding="async" loading="lazy">
+                  </div>
+                  <div class="chantier-thumb-item" data-thumb-idx="2" data-img-src="./assets/images/blog_parcelle.webp" title="Ferraillage et fondations" onclick="selectChantierThumb(this, './assets/images/blog_parcelle.webp')">
+                    <img src="./assets/images/blog_parcelle.webp" alt="Ferraillage" decoding="async" loading="lazy">
+                  </div>
+                  <div class="chantier-thumb-item" data-thumb-idx="3" data-img-src="./assets/images/apt_kitchen.webp" title="Finitions intérieures" onclick="selectChantierThumb(this, './assets/images/apt_kitchen.webp')">
+                    <img src="./assets/images/apt_kitchen.webp" alt="Finitions" decoding="async" loading="lazy">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Colonne Droite : En-tête Éditorial -->
+              <div class="construire-hero-content">
+                <div class="construire-eyebrow-wrap reveal">
+                  <span class="construire-eyebrow">CONSTRUIRE &amp; RÉNOVER AU BÉNIN</span>
+                  <span class="construire-eyebrow-line" aria-hidden="true"></span>
+                </div>
+
+                <!-- <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(217, 87, 30, 0.1); border: 1px solid rgba(217, 87, 30, 0.25); padding: 0.35rem 0.85rem; border-radius: 999px; margin-bottom: 1.25rem; font-size: 0.78rem; font-weight: 700; color: var(--clr-primary);">
+                  <i class="fas fa-clock"></i>
+                  <span>Diagnostic &amp; devis sous 24-48 h &bull; Déblocage par jalons</span>
+                </div> -->
+
+                <h1 class="construire-headline">
+                  <span>Sans construire dans le doute.</span><br>
+                  <!-- <span style="color: var(--clr-primary);">Sans rénover au hasard.</span> -->
+                </h1>
+
+                <p class="construire-subtext reveal">
+                  BatiBid vous permet de construire ou rénover au Bénin en toute sérénité, même depuis l'étranger. Vous suivez, vous validez, vous décidez. Nos ingénieurs vérifient, documentent et livrent.
+                </p>
+
+                <div class="construire-hero-ctas reveal">
+                  <a href="#simulateur-estimation" class="btn-construire-primary btn-shimmer">
+                    <span>Demander un devis sous 24-48h</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <a href="#solutions-hub" class="btn-construire-outline">
+                    <i class="fas fa-layer-group" aria-hidden="true"></i>
+                    <span>Explorer nos 3 solutions</span>
+                  </a>
+                </div>
+
+                <!-- Preuve sociale -->
+                <div class="construire-trust-strip reveal">
+                  <div class="construire-icons-stack" aria-hidden="true">
+                    <span class="trust-icon-pill" title="Maison &amp; Villa"><i class="fas fa-house-chimney"></i></span>
+                    <span class="trust-icon-pill" title="Immeuble &amp; Bâtiment pro"><i class="fas fa-building"></i></span>
+                    <span class="trust-icon-pill" title="Contrôle qualité certifié"><i class="fas fa-shield-halved"></i></span>
+                  </div>
+                  <span class="construire-trust-text"><strong>+320 chantiers &amp; interventions</strong> réalisés avec succès au Bénin</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             2. SECTION : CHOIX EN 3 CARTES PAR BESOIN
+             ==================================================================== -->
+        <section class="section-services-hub b2b-dark-offers-section" id="solutions-hub" style="background-color: #14110F; color: #FFFFFF; padding: 6.5rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <div class="construire-container">
+            
+            <div class="section-title-wrap reveal" style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
+              <span class="ch-eyebrow" style="color: #F8B38A;"><i class="fas fa-layer-group"></i> PARCOURS SUR-MESURE</span>
+              <h2 class="section-title-editorial" style="font-family: var(--ff-display); font-size: 2.3rem; color: #FFFFFF; margin: 0.5rem 0 1rem;">Trois solutions claires. Une même exigence de rigueur.</h2>
+              <p class="section-subtitle-editorial" style="color: rgba(255, 255, 255, 0.72); line-height: 1.6; font-size: 1.05rem;">Que vous bâtissiez un projet neuf ou modernisiez un bien existant, chaque intervention est étudiée, chiffrée sur devis et supervisée par nos experts.</p>
+            </div>
+
+            <!-- Grille des 3 Solutions (Style Catalogue B2B) -->
+            <div class="ch-offers-grid-3">
+              
+              <!-- Carte 1 : Construire du neuf (Featured) -->
+              <div class="ch-pricing-card ch-card-featured reveal">
+                <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--clr-primary); color: var(--white); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.95rem; border-radius: var(--radius-full); white-space: nowrap;">
+                  <i class="fas fa-hammer"></i> CLÉS EN MAIN • SUIVI PAR JALONS
+                </div>
+                <div class="ch-card-pill ch-pill-featured">PROJETS NEUFS • CLÉS EN MAIN</div>
+                <h3 class="ch-card-title">Construire votre bien</h3>
+                <p class="ch-card-catchphrase">« Villas, duplex, immeubles de rapport (R+1 à R+5) »</p>
+                <div class="ch-card-divider" style="background-color: rgba(255, 255, 255, 0.15);"></div>
+                <div class="ch-card-body">
+                  <div class="ch-features-heading">Prestations incluses :</div>
+                  <ul class="ch-features-list">
+                    <li><i class="fas fa-check" style="color: #F8B38A;"></i> <span>Études de faisabilité, plans architecturaux 2D/3D et permis de construire</span></li>
+                    <li><i class="fas fa-check" style="color: #F8B38A;"></i> <span>Chiffrage détaillé métré par métré avant le premier coup de pioche</span></li>
+                    <li><i class="fas fa-check" style="color: #F8B38A;"></i> <span>Déblocage sécurisé des fonds par jalons validés sur le terrain</span></li>
+                    <li><i class="fas fa-check" style="color: #F8B38A;"></i> <span>Supervision continue par ingénieurs BatiBid et rapports photos/vidéos 4K</span></li>
+                  </ul>
+                  <div class="ch-card-footer" style="margin-top: auto; padding-top: 1rem;">
+                    <a href="#simulateur-estimation" class="btn btn-primary btn-shimmer" style="width: 100%; justify-content: center; text-decoration: none;" onclick="document.getElementById('est-proj-type').value='construction-villa';">
+                      Chiffrer une construction <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Carte 2 : Rénover chez moi (Home Solutions) -->
+              <div class="ch-pricing-card reveal">
+                <div class="ch-card-pill">PARTICULIERS • HOME SOLUTIONS</div>
+                <h3 class="ch-card-title">Rénover votre logement</h3>
+                <p class="ch-card-catchphrase">« Dépannages ciblés ou remise à neuf générale »</p>
+                <div class="ch-card-divider"></div>
+                <div class="ch-card-body">
+                  <div class="ch-features-heading">Prestations incluses :</div>
+                  <ul class="ch-features-list">
+                    <li><i class="fas fa-check"></i> <span>Fin des recherches dispersées : le bon artisan coordonné sous 24-48h</span></li>
+                    <li><i class="fas fa-check"></i> <span>Rénovation ponctuelle (fuite, électricité, clim, carrelage) ou complète de villa</span></li>
+                    <li><i class="fas fa-check"></i> <span>Devis clair main-d'œuvre &amp; matériaux sans aucun surcoût imprévu</span></li>
+                    <li><i class="fas fa-check"></i> <span>Contrôle technique contradictoire et validation avant déblocage</span></li>
+                  </ul>
+                  <div class="ch-card-footer" style="margin-top: auto; padding-top: 1rem;">
+                    <a href="#simulateur-estimation" class="btn-ch-card-secondary" onclick="document.getElementById('est-proj-type').value='home-ponctuel';">
+                      Démarrer une rénovation <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Carte 3 : Entreprise & Grands projets (Building Solutions) -->
+              <div class="ch-pricing-card reveal">
+                <div class="ch-card-pill">ENTREPRISES • BUILDING SOLUTIONS</div>
+                <h3 class="ch-card-title">Interventions professionnelles</h3>
+                <p class="ch-card-catchphrase">« Bureaux, commerces, agences réseau, ONG &amp; parcs »</p>
+                <div class="ch-card-divider"></div>
+                <div class="ch-card-body">
+                  <div class="ch-features-heading">Prestations incluses :</div>
+                  <ul class="ch-features-list">
+                    <li><i class="fas fa-check"></i> <span>Réhabilitation tertiaire complète &amp; agencement d'espaces de travail</span></li>
+                    <li><i class="fas fa-check"></i> <span>Délais de prise en charge et SLA contractuels d'intervention garantis</span></li>
+                    <li><i class="fas fa-check"></i> <span>Option accord-cadre avec facturation consolidée et centre de coût par site</span></li>
+                    <li><i class="fas fa-check"></i> <span>Traçabilité documentaire complète (rapports techniques &amp; PV archivés)</span></li>
+                  </ul>
+                  <div class="ch-card-footer" style="margin-top: auto; padding-top: 1rem;">
+                    <a href="#simulateur-estimation" class="btn-ch-card-secondary" onclick="document.getElementById('est-proj-type').value='building-ponctuel';">
+                      Demander une intervention pro <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             3. SECTION : LES 4 GARANTIES CLÉS D'INGÉNIERIE
+             ==================================================================== -->
+        <section class="section-piliers-controle" style="padding: 4rem 0;">
+          <div class="construire-container">
+            
+            <div class="section-title-wrap reveal">
+              <div class="construire-eyebrow-wrap">
+                <span class="construire-eyebrow">NOTRE CADRE D'INGÉNIERIE</span>
+              </div>
+              <h2 class="section-title-editorial">Quatre garanties pour sécuriser votre investissement.</h2>
+              <p class="section-subtitle-editorial">La méthode BatiBid remplace l'incertitude par un suivi chiffré, vérifié et documenté à chaque étape.</p>
+            </div>
+
+            <div class="piliers-grid stagger-children" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+              <div class="pilier-card bento-card-interactive">
+                <div class="pilier-icon-box"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
+                <h3 class="pilier-title">Devis détaillé par corps d'état</h3>
+                <p class="pilier-desc">Métrés exacts, prix unitaires transparents et matériaux spécifiés. Zéro mauvaise surprise ni surcoût en cours de route.</p>
+              </div>
+
+              <div class="pilier-card bento-card-interactive">
+                <div class="pilier-icon-box"><i class="fas fa-wallet" aria-hidden="true"></i></div>
+                <h3 class="pilier-title">Paiement par jalons vérifiés</h3>
+                <p class="pilier-desc">Vous ne payez que les étapes validées sur place par nos ingénieurs. Vos fonds restent protégés jusqu'à la conformité.</p>
+              </div>
+
+              <div class="pilier-card bento-card-interactive">
+                <div class="pilier-icon-box"><i class="fas fa-video" aria-hidden="true"></i></div>
+                <h3 class="pilier-title">Suivi de chantier en direct</h3>
+                <p class="pilier-desc">Photos haute définition, vidéos 4K et rapports consultables en temps réel sur votre espace client, où que vous soyez.</p>
+              </div>
+
+              <div class="pilier-card bento-card-interactive">
+                <div class="pilier-icon-box"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+                <h3 class="pilier-title">Contrôle qualité certifié</h3>
+                <p class="pilier-desc">Audits techniques indépendants sur les fondations, ferraillages, dalles, plomberie et circuits électriques.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             4. SECTION : LES 10 CORPS DE MÉTIER (RANGÉE D'ICÔNES + ACCORDÉON)
+             ==================================================================== -->
+        <section class="section-metiers-strip" style="padding: 2rem 0 4rem;">
+          <div class="construire-container">
+            
+            <div class="section-title-wrap reveal">
+              <div class="construire-eyebrow-wrap">
+                <span class="construire-eyebrow">COMPÉTENCES MOBILISÉES</span>
+              </div>
+              <h2 class="section-title-editorial">10 corps de métier. Un seul interlocuteur responsable.</h2>
+              <p class="section-subtitle-editorial">BatiBid sélectionne, pilote et contrôle les meilleurs artisans certifiés du Bénin.</p>
+            </div>
+
+            <!-- Rangée des 10 icônes -->
+            <div class="metiers-icons-strip reveal">
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-faucet-drip"></i></div>
+                <span class="mi-label">Plomberie &amp; Sanitaires</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-bolt"></i></div>
+                <span class="mi-label">Électricité &amp; Sécurité</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-snowflake"></i></div>
+                <span class="mi-label">Climatisation &amp; Froid</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-trowel-bricks"></i></div>
+                <span class="mi-label">Étanchéité &amp; Maçonnerie</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-paint-roller"></i></div>
+                <span class="mi-label">Peinture &amp; Finitions</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-cubes"></i></div>
+                <span class="mi-label">Carrelage &amp; Sols</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-door-open"></i></div>
+                <span class="mi-label">Menuiserie &amp; Serrurerie</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-layer-group"></i></div>
+                <span class="mi-label">Plâtrerie &amp; Faux-plafonds</span>
+              </div>
+              <div class="metier-icon-item">
+                <div class="mi-icon"><i class="fas fa-video"></i></div>
+                <span class="mi-label">Sécurité &amp; Domotique</span>
+              </div>
+              <div class="metier-icon-item" style="border-color: var(--clr-primary);">
+                <div class="mi-icon" style="background: var(--clr-primary); color: #fff;"><i class="fas fa-arrows-split-up-and-left"></i></div>
+                <span class="mi-label" style="color: var(--clr-primary);">Multi-Métiers Coordonnés</span>
+              </div>
+            </div>
+
+            <!-- Accordéon dépliable pour le tableau détaillé -->
+            <div class="pricing-expandable-wrap reveal">
+              <button type="button" class="btn-toggle-pricing-details" onclick="toggleConstruireMetiersDetails()" aria-expanded="false" id="btn-metiers-toggle">
+                <span class="toggle-text">
+                  <i class="fas fa-sliders-h" style="color: var(--clr-primary);"></i> 
+                  <span>Consulter le tableau détaillé des prestations et garanties par métier</span>
+                </span>
+                <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+              </button>
+
+              <div class="pricing-details-table-wrapper" id="construire-metiers-table-wrapper" style="display: none; margin-top: 1.5rem;">
+                <table class="metiers-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 22%;">Corps de Métier</th>
+                      <th style="width: 28%;">Rénovation Ponctuelle (Home Solutions)</th>
+                      <th style="width: 28%;">Chantiers Neufs &amp; Tertiaire (Building)</th>
+                      <th style="width: 22%;">Contrôle &amp; Garantie</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-faucet-drip"></i> Plomberie &amp; Sanitaires</span></td>
+                      <td>Recherche de fuite, robinetterie, chauffe-eau, débouchage canalisation, WC</td>
+                      <td>Colonnes montantes, réseaux d'évacuation, blocs sanitaires collectifs, surpresseur</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Test de pression &amp; PV</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-bolt"></i> Électricité &amp; Sécurité</span></td>
+                      <td>Panne tableau, prises cassées, luminaires, mise en sécurité, parafoudre</td>
+                      <td>Armoires de distribution, groupes électrogènes, éclairage bureaux, câblage RJ45</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Mesure de terre &amp; charge</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-snowflake"></i> Climatisation &amp; Froid</span></td>
+                      <td>Diagnostic panne split, recharge gaz, nettoyage filtres, pose neuve</td>
+                      <td>Parcs de climatiseurs, cassettes bureaux, contrats d'entretien préventif</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Test condensation</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-shield-halved"></i> Étanchéité &amp; Maçonnerie</span></td>
+                      <td>Reprise de fissures, infiltration terrasse/balcon, solin de toit, chape</td>
+                      <td>Réfection toiture-terrasse complète, cuvelage, renfort de structure, dalles</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Test mise en eau 48h</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-paint-roller"></i> Peinture &amp; Finitions</span></td>
+                      <td>Remise en blanc, chambre à rafraîchir, traitement anti-moisissure</td>
+                      <td>Mise en peinture intégrale de bâtiments, façades extérieures, signalétique pro</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Contrôle uniformité</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-cubes"></i> Carrelage &amp; Sols</span></td>
+                      <td>Remplacement carreaux cassés, faïence douche, reprise de plinthes</td>
+                      <td>Pose grand format sur plateaux complets, sols industriels, dalles de bureaux</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Planéité au laser</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-door-open"></i> Menuiserie &amp; Serrurerie</span></td>
+                      <td>Serrure bloquée, rabotage de porte, vitrage cassé, verrous haute sécurité</td>
+                      <td>Baies alu grand passage, portes coupe-feu, cloisons vitrées, blindage bureaux</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Calage des gonds</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-layer-group"></i> Plâtrerie &amp; Faux-plafonds</span></td>
+                      <td>Réparation plaque BA13 endommagée, retouche staff, rebouchage trous</td>
+                      <td>Faux-plafonds démontables 60x60, cloisons modulaires acoustiques, isolation</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Prêt-à-peindre certifié</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="col-metier-name"><i class="fas fa-video"></i> Sécurité &amp; Domotique</span></td>
+                      <td>Caméra surveillance villa, interphone, sonnette connectée, alarme</td>
+                      <td>Contrôle d'accès par badge, vidéosurveillance IP multi-sites, alarme incendie</td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-shield-alt"></i> Recette connectivité</span></td>
+                    </tr>
+                    <tr style="background: rgba(217, 87, 30, 0.04);">
+                      <td><span class="col-metier-name" style="color: var(--clr-primary);"><i class="fas fa-arrows-split-up-and-left"></i> Multi-Métiers Coordonnés</span></td>
+                      <td>Dégât des eaux (plomberie + plâtre + peinture) ou réfection complète de salle de bain</td>
+                      <td><strong>Réhabilitation complète de siège social, agences réseau ou immeubles</strong></td>
+                      <td><span class="table-guarantee-note"><i class="fas fa-check-double"></i> <strong>Pilote BatiBid dédié</strong></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             5. SECTION : TABLEAU DE BORD & SUIVI EN DIRECT
+             ==================================================================== -->
+        <section class="section-dashboard-preview" id="dashboard-preview" style="background: rgba(22, 15, 10, 0.02); padding: 5rem 0;">
+          <div class="construire-container">
+            <div class="dashboard-preview-grid">
+              
+              <div class="dashboard-preview-text reveal-left">
+                <div class="construire-eyebrow-wrap">
+                  <span class="construire-eyebrow">SUIVI CLAIR &bull; DÉCISIONS ÉCLAIRÉES</span>
+                </div>
+                <h2 class="dashboard-headline">Un tableau de bord pensé pour vous.</h2>
+                <p class="dashboard-subtext">
+                  Visualisez l'avancement, les dépenses, les jalons et les rapports en un coup d'œil, depuis Cotonou, Paris, Montréal ou n'importe où dans le monde.
+                </p>
+
+                <div class="dashboard-checklist">
+                  <div class="dash-check-row">
+                    <div class="check-circle"><i class="fas fa-check" aria-hidden="true"></i></div>
+                    <span>Avancement réel du chantier certifié par nos ingénieurs sur site</span>
+                  </div>
+                  <div class="dash-check-row">
+                    <div class="check-circle"><i class="fas fa-check" aria-hidden="true"></i></div>
+                    <span>Dépenses par étape &amp; factures strictement conformes au devis</span>
+                  </div>
+                  <div class="dash-check-row">
+                    <div class="check-circle"><i class="fas fa-check" aria-hidden="true"></i></div>
+                    <span>Rapports photo 4K &amp; vidéos commentées de chaque jalon clé</span>
+                  </div>
+                  <div class="dash-check-row">
+                    <div class="check-circle"><i class="fas fa-check" aria-hidden="true"></i></div>
+                    <span>Historique complet des validations contradictoires et PV de réception</span>
+                  </div>
+                </div>
+
+                <div class="dashboard-cta-wrap">
+                  <button type="button" class="btn-demo-dashboard btn-shimmer" onclick="openDemoModal()">
+                    <span>Voir une démo</span>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="dashboard-mockup-wrapper reveal-right">
+                <div class="dashboard-mockup-card bento-card-interactive">
+                  <div class="dmc-top-bar">
+                    <div class="dmc-project-info">
+                      <span class="dmc-project-title">Villa R+1 &bull; Cotonou</span>
+                      <span class="dmc-status-pill">EN COURS</span>
+                    </div>
+                    <div class="dmc-tabs">
+                      <span class="dmc-tab active">Aperçu</span>
+                      <span class="dmc-tab">Jalons</span>
+                      <span class="dmc-tab">Rapports</span>
+                      <span class="dmc-tab">Dépenses</span>
+                    </div>
+                  </div>
+
+                  <div class="dmc-body-grid">
+                    <div class="dmc-panel dmc-gauge-panel">
+                      <span class="dmc-panel-label">Avancement global</span>
+                      <div class="dmc-gauge-val">62%</div>
+                      <div class="cpb-progress-bar">
+                        <div class="cpb-progress-fill animated-bar" style="width: 62%;"></div>
+                      </div>
+                      <span class="dmc-update-hint">Dernier jalon validé par nos ingénieurs</span>
+                    </div>
+
+                    <div class="dmc-panel dmc-next-milestone">
+                      <span class="dmc-panel-label">Prochain jalon</span>
+                      <h4 class="dmc-milestone-name">Élévation R+1</h4>
+                      <span class="dmc-milestone-date">Date prévue : 28 Mai 2026</span>
+                      <span class="dmc-milestone-link" style="color: var(--clr-primary);"><i class="fas fa-clock"></i> En cours de ferraillage</span>
+                    </div>
+
+                    <div class="dmc-panel dmc-expenses-panel">
+                      <span class="dmc-panel-label">Budget engagé</span>
+                      <div class="dmc-expense-val">12 450 000 <span class="dmc-currency">FCFA</span></div>
+                      <span class="dmc-expense-total">sur 20 000 000 FCFA chiffrés</span>
+                    </div>
+
+                    <div class="dmc-panel dmc-report-panel">
+                      <span class="dmc-panel-label">Dernier rapport visuel</span>
+                      <div class="dmc-video-thumb">
+                        <img src="./assets/images/chantier_cotonou.jpg" alt="Dernier rapport visuel" decoding="async" loading="lazy">
+                        <div class="dmc-play-overlay"><i class="fas fa-play"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             6. SECTION : FORMULAIRE DE DEVIS SIMPLIFIÉ EN 2 ÉTAPES
+             ==================================================================== -->
+        <section class="section-simulateur-estimation" id="simulateur-estimation" style="padding: 5rem 0;">
+          <div class="construire-container">
+            
+            <div class="estimation-banner-card reveal-scale bento-card-interactive" style="border-radius: 24px; padding: 2.5rem;">
+              <div class="estimation-card-header" style="max-width: 820px; margin: 0 auto 2rem; text-align: center;">
+                <div class="construire-eyebrow-wrap" style="justify-content: center;">
+                  <span class="construire-eyebrow">DEMANDE DE DEVIS &bull; SOUS 24-48 H</span>
+                </div>
+                <h2 class="estimation-headline" style="font-size: 2rem;">Chiffrez précisément votre projet au Bénin.</h2>
+                <p class="estimation-subtext" style="font-size: 0.95rem; color: #7D695D;">
+                  Nos ingénieurs analysent votre demande et vous transmettent une proposition détaillée sous 24 à 48 heures ouvrées.
+                </p>
+
+                <div class="estimation-reassurance-pills" style="justify-content: center; margin-top: 1rem;">
+                  <span class="reassurance-pill-item"><i class="fas fa-clock"></i> Réponse sous 24-48h ouvrées</span>
+                  <span class="reassurance-pill-item"><i class="fas fa-shield-halved"></i> 100% Gratuit &amp; Sans engagement</span>
+                  <span class="reassurance-pill-item"><i class="fas fa-file-invoice"></i> Chiffrage réaliste marché Bénin</span>
+                </div>
+              </div>
+
+              <!-- Formulaire 2 étapes fluide -->
+              <form class="estimation-multistep-form" onsubmit="handleConstruireEstimation(event)" style="max-width: 820px; margin: 0 auto;">
+                <div class="devis-2steps-wrap">
+                  
+                  <!-- Étape 1 : Le projet -->
+                  <div class="devis-step-card">
+                    <div class="devis-step-title">
+                      <span class="devis-step-num">1</span>
+                      <span>Votre projet</span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-proj-type" style="font-size: 0.85rem; font-weight: 700;">Nature de votre besoin *</label>
+                      <select id="est-proj-type" class="form-control" required style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                        <option value="construction-villa">Construction neuve : Villa / Duplex</option>
+                        <option value="construction-immeuble">Construction neuve : Immeuble de rapport</option>
+                        <option value="home-complete">Particulier : Rénovation complète de villa</option>
+                        <option value="home-ponctuel">Particulier : Rénovation ponctuelle / Dépannage</option>
+                        <option value="building-complet">Entreprise : Réhabilitation de locaux tertiaires</option>
+                        <option value="building-ponctuel">Entreprise : Travaux techniques &amp; multi-sites</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-proj-city" style="font-size: 0.85rem; font-weight: 700;">Ville d'intervention *</label>
+                      <select id="est-proj-city" class="form-control" style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                        <option>Cotonou (Littoral)</option>
+                        <option>Abomey-Calavi (Atlantique)</option>
+                        <option>Porto-Novo (Ouémé)</option>
+                        <option>Ouidah (Atlantique)</option>
+                        <option>Grand-Popo / Sèmè / Autre</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-start-date" style="font-size: 0.85rem; font-weight: 700;">Délai souhaité</label>
+                      <select id="est-start-date" class="form-control" style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                        <option>Urgent / Sous 24-48h</option>
+                        <option>Dans les 2 semaines</option>
+                        <option>Dans le mois à venir</option>
+                        <option>Projet à planifier (1 à 3 mois)</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label" for="est-message" style="font-size: 0.85rem; font-weight: 700;">Description de votre besoin</label>
+                      <textarea id="est-message" class="form-control" rows="3" placeholder="Précisez la surface, la nature des travaux ou les contraintes d'accès..." style="padding: 0.65rem 0.85rem; border-radius: 10px;"></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Étape 2 : Vos coordonnées -->
+                  <div class="devis-step-card">
+                    <div class="devis-step-title">
+                      <span class="devis-step-num">2</span>
+                      <span>Vos coordonnées</span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-fullname" style="font-size: 0.85rem; font-weight: 700;">Nom &amp; Prénom *</label>
+                      <input type="text" id="est-fullname" class="form-control" required placeholder="Ex: Jean-Marc Dossou" style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-proj-phone" style="font-size: 0.85rem; font-weight: 700;">Numéro WhatsApp *</label>
+                      <input type="tel" id="est-proj-phone" class="form-control" required placeholder="Ex: +229 01 42 48 48 48 ou +33 6..." style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.15rem;">
+                      <label class="form-label" for="est-email" style="font-size: 0.85rem; font-weight: 700;">Adresse email *</label>
+                      <input type="email" id="est-email" class="form-control" required placeholder="Ex: jean.dossou@example.com" style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label" for="est-country" style="font-size: 0.85rem; font-weight: 700;">Pays de résidence</label>
+                      <select id="est-country" class="form-control" style="padding: 0.65rem 0.85rem; border-radius: 10px;">
+                        <option>Bénin (Résident)</option>
+                        <option>France / Europe (Diaspora)</option>
+                        <option>États-Unis / Canada (Diaspora)</option>
+                        <option>Côte d'Ivoire / Sénégal / UEMOA</option>
+                        <option>Autre pays</option>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="estimation-action-footer" style="margin-top: 2rem; text-align: center;">
+                  <button type="submit" class="btn-submit-estimation btn-shimmer" id="btn-submit-estimation" style="padding: 0.95rem 2rem; font-size: 1rem; border-radius: 999px;">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    <span>Transmettre mon dossier pour devis sous 24-48h</span>
+                  </button>
+                  <div style="font-size: 0.78rem; color: #7D695D; margin-top: 0.75rem;">
+                    <i class="fas fa-shield-halved" style="color: var(--clr-primary);"></i> Vos informations sont strictement confidentielles. Aucun démarchage abusif.
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             7. SECTION : FAQ CONSTRUIRE & RÉNOVER (4 QUESTIONS CIBLÉES)
+             ==================================================================== -->
+        <section class="section-faq-construire" style="padding: 2rem 0 5rem;">
+          <div class="construire-container">
+            
+            <div class="section-title-wrap reveal">
+              <div class="construire-eyebrow-wrap">
+                <span class="construire-eyebrow">QUESTIONS FRÉQUEMMENT POSÉES</span>
+              </div>
+              <h2 class="section-title-editorial">Tout comprendre sur nos modalités d'intervention.</h2>
+              <p class="section-subtitle-editorial">Des réponses concrètes pour aborder votre chantier l'esprit tranquille.</p>
+            </div>
+
+            <div class="accordion-wrapper stagger-children" style="max-width: 820px; margin: 0 auto;">
+              
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Quelle est la différence entre une rénovation complète et une rénovation ponctuelle ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>La rénovation complète concerne l'intégralité ou une grande partie du bâtiment et engage plusieurs corps de métier coordonnés (gros œuvre, plomberie, électricité, carrelage, peinture). La rénovation ponctuelle concerne une zone spécifique (une pièce, une fuite d'eau, une toiture) ou un équipement ciblé, et mobilise un à deux artisans spécialisés.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Pourquoi toutes les interventions fonctionnent-elles sur devis préalable ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>C'est la garantie de transparence absolue de BatiBid : aucun travail n'est lancé sans diagnostic préalable, sans fixation écrite des prix de la main-d'œuvre et des matériaux, et sans votre accord formel. Il n'y a ainsi aucun surcoût imprévu en cours de chantier.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Comment fonctionne le paiement par jalons vérifiés ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Le budget total est découpé en tranches correspondant aux étapes physiques du chantier (fondations, élévation, dalle, second œuvre, finitions). Les fonds ne sont libérés au constructeur qu'après audit et validation contradictoire de chaque étape par les ingénieurs BatiBid sur place.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item" onclick="this.classList.toggle('active')">
+                <div class="accordion-header">
+                  <span>Puis-je piloter mon chantier si je vis à l'étranger (Diaspora) ?</span>
+                  <i class="fas fa-chevron-down accordion-icon" aria-hidden="true"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Oui, c'est l'un des cœurs de métier de BatiBid. Grâce à notre tableau de bord digital, vous suivez chaque étape en direct, visualisez les photos et vidéos 4K de chaque jalon, et échangez directement avec votre ingénieur dédié sans avoir besoin de faire des déplacements imprévus.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ====================================================================
+             8. BANDEAU CTA TERRACOTTA
+             ==================================================================== -->
+        <section class="section-cta-terracotta" style="padding-bottom: 5rem;">
+          <div class="construire-container">
+            <div class="cta-terracotta-card reveal-scale">
+              
+              <div class="cta-terracotta-content">
+                <h2 class="cta-terracotta-headline">
+                  Vous avez un projet de construction<br>
+                  ou une intervention à réaliser ?
+                </h2>
+                <p class="cta-terracotta-subtext">
+                  Diagnostic et devis sous 24-48 h &bull; Parlons-en dès aujourd'hui en toute sérénité.
+                </p>
+              </div>
+
+              <div class="cta-terracotta-actions">
+                <a href="#simulateur-estimation" class="btn-cta-white btn-shimmer">
+                  <span>Demander mon devis</span>
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20renseignement%20sur%20un%20projet%20de%20construction%20ou%20r%C3%A9novation." 
+                   target="_blank" 
+                   rel="noopener" 
+                   class="btn-cta-wa"
+                   title="Assistance WhatsApp (+229 01 42 48 48 48)">
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                  <span>WhatsApp direct</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER UNIFIÉ (4 COLONNES & MENTIONS LÉGALES MODALES)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence pour l'écosystème immobilier au Bénin. Nous sécurisons la gestion, la construction et les transactions immobilières.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Zone Commerciale Akpakpa, Lot 402, Cotonou, Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Prendre un rendez-vous</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="openLegalModal('mentions')">Mentions Légales</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('confidentialite')">Politique de Confidentialité</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('cgu')">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mettre en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link active" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.88rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20j%27ai%20une%20question%20concernant%20un%20projet%20de%20travaux." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Assistance direct</span>
+  </a>
+
+  <!-- Mobile Sticky WhatsApp bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20devis%20travaux." target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; color: #25D366; border-color: #25D366;">
+      <i class="fab fa-whatsapp" style="margin-right: 0.4rem;"></i> WhatsApp
+    </a>
+    <a href="#simulateur-estimation" class="btn btn-primary" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-calculator" style="margin-right: 0.4rem;"></i> Demander un devis
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

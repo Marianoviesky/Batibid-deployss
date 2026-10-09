@@ -1,0 +1,25 @@
+/* ==========================================
+   BATIBID CENTRAL STYLE SYSTEM (MODULAR IMPORTS)
+   ========================================== */
+@import url('css/variables.css?v=3.0');
+@import url('css/base.css?v=3.1');
+@import url('css/offer.css');
+@import url('css/animations.css?v=3.0');
+@import url('css/header-footer.css?v=3.0');
+@import url('css/home.css?v=3.0');
+@import url('css/gerer.css?v=4.1');
+@import url('css/mise-en-location.css?v=4.0');
+@import url('css/construire.css?v=3.5');
+@import url('css/conseils-juridiques.css?v=3.5');
+@import url('css/private-market.css?v=4.0');
+@import url('css/corporate-housing.css?v=2.0');
+@import url('css/partenariats.css?v=4.0');
+@import url('css/blog.css?v=3.4');
+@import url('css/contact.css?v=3.5');
+@import url('css/detail.css?v=3.0');
+@import url('css/modals.css?v=3.1');
+@import url('css/responsive.css?v=3.0');
+
+.form-control{
+   background: none;
+}

@@ -1,0 +1,822 @@
+/* ========================================================================
+   BATIBID — MASTER RESPONSIVE DESIGN SYSTEM (MOBILE-FIRST QA AUDIT)
+   Breakpoints : 1200px · 992px · 768px · 640px · 428px · 390px · 375px
+   Standards : WCAG 2.5.5 / 2.5.8 Touch Targets (Min 48x48px), Fluid clamp(),
+   Logical Stacking < 640px, Zero Horizontal Overflow, Re-anchored Overlays.
+   ======================================================================== */
+
+/* ========================================================================
+   1. FONDATIONS GLOBALES & GARANTIE ZÉRO OVERFLOW-X
+   ======================================================================== */
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Césure et rupture de ligne sécurisée pour empêcher tout débordement sur 375px */
+h1, h2, h3, h4, h5, h6,
+.headline-xl, .headline-lg, .headline-md,
+.home-hero-title, .gerer-hero-title, .loc-hero-title,
+.construire-headline, .juridique-headline, .pm-hero-title,
+.partner-hero-title, .blog-title, .contact-headline,
+.data-title, .gerer-section-title, .loc-section-title,
+.section-title-editorial, .approche-headline, .diagnostic-headline,
+.partner-eco-title, .partner-steps-title, .partner-cta-title,
+.proptech-banner-title, .contact-card-title {
+  /* overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto; */
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+/* Image et éléments multimédias toujours contraints */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========================================================================
+   2. PADDINGS VERTICAUX INTER-SECTIONS (RAPPORT DESKTOP / MOBILE)
+   Rapport conforme DESIGN.md : Desktop 5rem-6rem (80-96px) -> Mobile 2.75rem-3.25rem (44-52px)
+   ======================================================================== */
+.premium-section,
+.home-section,
+.gerer-section,
+.loc-section,
+.construire-section,
+.juridique-section,
+.pm-section,
+.partner-section,
+.blog-section {
+  padding-top: var(--section-pad-y, clamp(2.75rem, 5vw + 1rem, 5.5rem)) !important;
+  padding-bottom: var(--section-pad-y, clamp(2.75rem, 5vw + 1rem, 5.5rem)) !important;
+}
+
+/* Sections majeures (Hero, Dark modules, Pre-footer) */
+.home-hero,
+.gerer-hero-section,
+.loc-hero,
+.construire-hero,
+.juridique-hero,
+.pm-hero,
+.partner-hero,
+.blog-hero-section,
+.contact-page,
+.home-data-section,
+.gerer-problem-section,
+.gerer-solution-section,
+.gerer-tech-section,
+.loc-offres-section,
+.loc-process-section,
+.section-piliers-controle,
+.section-comment-marche,
+.section-approche-rigoureuse,
+.section-cadastre-visuel,
+.pm-tracks-section,
+.pm-why-section,
+.partner-ecosystem-section,
+.partner-steps-section {
+  /* padding-top: var(--section-pad-y-lg, clamp(3.25rem, 6vw + 1.25rem, 6.5rem));
+  padding-bottom: var(--section-pad-y-lg, clamp(3.25rem, 6vw + 1.25rem, 6.5rem)); */
+   padding-top: 30px !important;
+  padding-bottom: 30px !important;
+}
+
+/* ========================================================================
+   3. ZONES TACTILES ACCESSIBLES (MINIMUM 48x48px PARTOUT)
+   ======================================================================== */
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-ghost,
+.btn-hero-cta,
+.btn-hero-demo,
+.btn-gerer-primary,
+.btn-gerer-secondary,
+.btn-loc-primary,
+.btn-loc-secondary,
+.btn-construire-primary,
+.btn-construire-outline,
+.btn-juridique-primary,
+.btn-juridique-outline,
+.pm-btn-hero-vendre,
+.pm-btn-hero-acq,
+.pm-btn-primary,
+.pm-btn-outline,
+.partner-btn-hero,
+.partner-btn-submit,
+.btn-whatsapp-dark,
+.btn-cta-white,
+.btn-cta-wa,
+.btn-submit-estimation,
+.btn-step-continue,
+.btn-step-prev {
+  min-height: 48px !important;
+  min-width: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Contrôles de formulaire */
+.form-control,
+input[type="text"].form-control,
+input[type="tel"].form-control,
+input[type="email"].form-control,
+input[type="number"].form-control,
+select.form-control,
+textarea.form-control {
+  min-height: 48px !important;
+  font-size: 16px !important; /* Empêche le zoom intrusif sur iOS Safari */
+  box-sizing: border-box !important;
+}
+
+/* Boutons de fermeture de modales et tiroirs */
+.modal-close,
+.drawer-close,
+.dialog-close,
+.search-modal-close,
+.mobile-nav-close,
+.partner-modal-close,
+.article-reader-close,
+.demo-modal-close {
+  min-width: 48px !important;
+  min-height: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+/* Onglets, filtres et switchers tactiles */
+.switch-pill,
+.loc-tab-btn,
+.filter-pill,
+.tag-pill,
+.step-pill,
+.calc-tab-btn,
+.pm-mode-tab,
+.pricing-toggle-btn {
+  min-height: 48px !important;
+  padding: 0.75rem 1.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Floating Action Buttons (FAB) */
+.whatsapp-fab {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  font-size: 1.45rem !important;
+}
+
+.contact-fab {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  font-size: 1.15rem !important;
+}
+
+/* Liens du tiroir de navigation mobile */
+.mobile-nav-link {
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.mobile-menu-btn {
+  min-width: 48px !important;
+  min-height: 48px !important;
+}
+
+/* ========================================================================
+   4. BREAKPOINT : TABLETTE LANDSCAPE & LAPTOP COMPACT (< 1200px)
+   ======================================================================== */
+@media (max-width: 1200px) {
+  .nav-menu {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+
+  .home-hero-grid,
+  .partner-hero-container {
+    gap: 3rem;
+  }
+
+  .home-pillars-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .pillar-item:nth-child(3) {
+    border-right: none;
+  }
+  
+  .pillar-item:last-child {
+    grid-column: span 3;
+    border-top: 1px solid var(--clr-border);
+  }
+}
+
+/* ========================================================================
+   5. BREAKPOINT : TABLETTE STANDARD (< 992px)
+   ======================================================================== */
+@media (max-width: 992px) {
+  /* Layout Hero général */
+  .home-hero-grid,
+  .gerer-hero-grid,
+  .loc-hero-grid,
+  .construire-hero-grid,
+  .juridique-hero-grid,
+  .pm-hero-container,
+  .partner-hero-container,
+  .contact-layout-grid,
+  .split-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Ordre de lecture : Visual après le titre/copy pour maintenir la clarté */
+  .home-hero-visual-col,
+  .gerer-hero-visual-wrapper,
+  .loc-hero-visual,
+  .construire-hero-visual,
+  .cadastre-visual-card,
+  .pm-hero-visual-col,
+  .partner-hero-constellation {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .home-authority-container,
+  .approche-rigoureuse-grid,
+  .dashboard-preview-grid,
+  .pilotage-card,
+  .reassurance-grid,
+  .partner-eco-container,
+  .partner-cta-card,
+  .home-cta-card {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Module Données & Portfolio */
+  .data-interior-card {
+    display: none !important;
+  }
+
+  .data-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer en 2 colonnes */
+  .footer-container {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .footer-compliance-banner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Sticky CTA Bar Mobile */
+  .mobile-sticky-cta {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+    background-color: var(--white);
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--clr-border);
+    gap: 0.75rem;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Décalage des FAB au-dessus de la sticky bar */
+  .whatsapp-fab {
+    bottom: calc(82px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+  }
+
+  .contact-fab {
+    bottom: calc(144px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+  }
+}
+
+/* ========================================================================
+   6. BREAKPOINT : TABLETTE PORTRAIT (< 768px)
+   ======================================================================== */
+@media (max-width: 768px) {
+  /* Grilles intermédiaires */
+  .solutions-grid,
+  .solutions-grid.grid-3,
+  .piliers-grid,
+  .workflow-stepper,
+  .expertises-cards-grid,
+  .legal-stepper,
+  .loc-pricing-grid-b2c,
+  .loc-pricing-grid-b2b,
+  .loc-b2b-grid,
+  .loc-steps-grid,
+  .loc-gallery-grid,
+  .pm-stepper-vendeur,
+  .pm-stepper-acquereur,
+  .pm-form-grid-2,
+  .pm-radio-card-group,
+  .partner-timeline-grid,
+  .partner-contact-bar,
+  .partner-modal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Modales en pleine largeur responsive */
+  .modal-card,
+  .drawer-card,
+  .demo-modal-window,
+  .gerer-modal-dialog,
+  .loc-modal-container,
+  .partner-modal-dialog,
+  .article-reader-window,
+  .search-modal-window {
+    width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin: 1rem auto !important;
+  }
+}
+
+/* ========================================================================
+   7. BREAKPOINT : MOBILE STANDARD (< 640px) — INSTRUCTION MAJEURE
+   - Toutes les grilles/dispositions asymétriques transformées en pile verticale 1 colonne.
+   - Ordre de lecture logique préservé.
+   - Éléments flottants/badges repensés et re-ancrés en flux compagnon sans coupure.
+   ======================================================================== */
+@media (max-width: 640px) {
+  /* --- A. TRANSFORMATION STRICTE DE TOUTES LES GRILLES EN 1 COLONNE --- */
+  .home-hero-grid,
+  .home-pillars-card,
+  .data-grid,
+  .dash-stats-grid,
+  .authority-metrics-grid,
+  .home-cta-card,
+  .home-authority-container,
+  .gerer-hero-grid,
+  .gerer-problem-grid,
+  .gerer-solution-grid,
+  .gerer-tech-grid,
+  .gerer-steps-grid,
+  .timeline-flow,
+  .pricing-cards-grid,
+  .gerer-compare-grid,
+  .sim-form-grid,
+  .sim-results-bar,
+  .modal-form-grid,
+  .loc-hero-grid,
+  .loc-stats-grid,
+  .loc-pricing-grid-b2c,
+  .loc-pricing-grid-b2b,
+  .loc-b2b-grid,
+  .loc-steps-grid,
+  .loc-gallery-grid,
+  .loc-form-row,
+  .loc-cta-card,
+  .construire-hero-grid,
+  .piliers-grid,
+  .workflow-stepper,
+  .domaines-grid,
+  .estimation-fields-grid,
+  .dashboard-preview-grid,
+  .dmc-body-grid,
+  .reassurance-stats-col,
+  .reassurance-grid,
+  .cta-terracotta-card,
+  .juridique-hero-grid,
+  .expertises-cards-grid,
+  .legal-stepper,
+  .approche-rigoureuse-grid,
+  .cadastre-split,
+  .diagnostic-grid,
+  .legal-expertises-grid,
+  .pm-hero-container,
+  .pm-stepper-vendeur,
+  .pm-stepper-acquereur,
+  .pm-tracks-container,
+  .pm-op-box-row,
+  #pm-acquereur-op-box,
+  .pm-constellation-wrapper,
+  .pm-radio-card-group,
+  .pm-prefooter-card,
+  .pm-faq-grid,
+  .pm-form-grid-2,
+  .partner-hero-container,
+  .partner-eco-container,
+  .partner-eco-grid,
+  .partner-timeline-grid,
+  .partner-contact-bar,
+  .partner-cta-card,
+  .partner-modal-grid,
+  .blog-grid,
+  .blog-cards-grid,
+  .blog-featured-card,
+  .blog-proptech-banner,
+  .blog-contact-strip,
+  .article-reader-window,
+  .contact-layout-grid,
+  .contact-channels-list,
+  .contact-card-panel,
+  .step-actions-dual,
+  .footer-container,
+  .footer-compliance-banner {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Annulation des spans horizontaux */
+  .pillar-item,
+  .pillar-item:last-child,
+  .compare-benefits-box,
+  .sim-field.btn-field,
+  .pm-constellation-center,
+  .node-top-left, .node-bottom-left, .node-top-right, .node-bottom-right {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  /* Ordre de lecture : Titre/CTA avant le visuel sur mobile */
+  .home-hero-content { order: 1; }
+  .home-hero-visual-col { order: 2; }
+  .gerer-hero-content { order: 1; }
+  .gerer-hero-visual-wrapper { order: 2; }
+  .loc-hero-content { order: 1; }
+  .loc-hero-visual { order: 2; }
+  .construire-hero-content { order: 1; }
+  .construire-hero-visual { order: 2; }
+  .juridique-hero-content { order: 1; }
+  .cadastre-visual-card { order: 2; }
+  .pm-hero-content { order: 1; }
+  .pm-hero-visual-col { order: 2; }
+  .partner-hero-content { order: 1; }
+  .partner-hero-constellation { order: 2; }
+
+  /* Boutons d'action héro empilés verticalement */
+  .home-hero-actions,
+  .gerer-hero-actions,
+  .loc-hero-actions,
+  .construire-hero-ctas,
+  .juridique-hero-ctas,
+  .pm-hero-actions,
+  .partner-hero-ctas,
+  .cta-terracotta-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .home-hero-actions .btn,
+  .gerer-hero-actions .btn,
+  .loc-hero-actions .btn,
+  .construire-hero-ctas .btn,
+  .juridique-hero-ctas .btn,
+  .pm-hero-actions .btn,
+  .partner-hero-ctas .btn,
+  .btn-hero-cta,
+  .btn-hero-demo,
+  .btn-gerer-primary,
+  .btn-gerer-secondary,
+  .btn-loc-primary,
+  .btn-loc-secondary,
+  .btn-construire-primary,
+  .btn-construire-outline,
+  .btn-juridique-primary,
+  .btn-juridique-outline,
+  .btn-cta-white,
+  .btn-cta-wa {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* --- B. RE-ANCRAGE INTELLIGENT DES ÉLÉMENTS FLOTTANTS & BADGES --- */
+  /* Au lieu d'être tronqués ou réduits de façon illisible, les badges deviennent des compagnons visuels nets */
+  
+  /* Home Hero Badges */
+  .floating-badge,
+  .badge-yield,
+  .badge-assets,
+  .badge-verified {
+    position: static !important;
+    width: 100% !important;
+    min-width: unset !important;
+    margin: 0.85rem 0 0 0 !important;
+    transform: none !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 16px rgba(59, 31, 11, 0.08) !important;
+  }
+
+  /* Hero Visual Frame (Aspect ratio naturel sans déformation) */
+  .hero-visual-frame,
+  .gerer-hero-image-box,
+  .loc-hero-visual-frame,
+  .pm-hero-visual-frame {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    max-height: 380px !important;
+    overflow: hidden !important;
+  }
+
+  .hero-main-img,
+  .gerer-hero-img,
+  .loc-hero-img,
+  .pm-hero-main-img {
+    height: 320px !important;
+    object-fit: cover !important;
+  }
+
+  /* Gérer Hero Overlays */
+  .gerer-floating-kpi-top {
+    position: static !important;
+    width: 100% !important;
+    min-width: unset !important;
+    margin-top: 1rem !important;
+    right: auto !important;
+    top: auto !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .gerer-floating-bar-bottom {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 0.75rem !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .bar-stat-separator {
+    display: none !important;
+  }
+
+  /* Mise en Location Hero Floating Badge */
+  .loc-floating-badge {
+    position: static !important;
+    margin: 1rem auto 0 !important;
+    width: 100% !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .loc-stat-card::after {
+    display: none !important;
+  }
+
+  /* Construire & Rénover Badges */
+  .chantier-project-badge,
+  .pilotage-badge-float {
+    max-width: calc(100% - 2rem) !important;
+    left: 1rem !important;
+    top: 1rem !important;
+  }
+
+  /* Conseils Juridiques Badges */
+  .cadastre-dossier-badge {
+    max-width: calc(100% - 2rem) !important;
+    right: 1rem !important;
+    top: 1rem !important;
+  }
+
+  .cadastre-plot-tag {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+
+  /* Suppression des connecteurs de timeline absolus qui causent des débordements */
+  .workflow-stepper::before,
+  .partner-timeline-line,
+  .pm-pf-arrow {
+    display: none !important;
+  }
+
+  /* Switchers & Segments verticaux */
+  .pricing-switcher-pills,
+  .loc-segmented-tabs,
+  .pm-mode-switcher-bar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    border-radius: 14px !important;
+    gap: 0.35rem !important;
+  }
+
+  .switch-pill,
+  .loc-tab-btn,
+  .pm-mode-tab {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Step actions (Prev / Next) */
+  .step-actions-dual {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .step-actions-dual .btn-step-continue {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  .step-actions-dual .btn-step-prev {
+    order: 2 !important;
+    width: 100% !important;
+  }
+
+  /* Mockups téléphones masqués ou allégés pour la concision */
+  .smartphone-preview-card,
+  .dashboard-phone-mockup {
+    display: none !important;
+  }
+
+  /* Partenaires Hub Constellation compact */
+  .partner-hub-wrapper {
+    width: min(300px, calc(100vw - 2.5rem)) !important;
+    height: min(300px, calc(100vw - 2.5rem)) !important;
+    margin: 0 auto !important;
+  }
+
+  .partner-hub-svg {
+    display: none !important;
+  }
+
+  .partner-hub-center {
+    width: 115px !important;
+    height: 115px !important;
+  }
+
+  .partner-sat-icon {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .partner-sat-label {
+    font-size: 0.58rem !important;
+  }
+}
+
+/* ========================================================================
+   8. BREAKPOINT COMPACT : 428px, 390px, 375px (ZÉRO HORIZONTAL OVERFLOW)
+   ======================================================================== */
+@media (max-width: 428px) {
+  /* Conteneurs avec marge de sécurité garantie sur petits écrans */
+  .container,
+  .home-hero-container,
+  .gerer-container,
+  .loc-container,
+  .construire-container,
+  .juridique-container,
+  .pm-hero-container,
+  .pm-why-container,
+  .partner-hero-container,
+  .partner-eco-container,
+  .partner-steps-container,
+  .blog-container,
+  .contact-container,
+  .header-container,
+  .footer-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Constellation B2B encore plus sûre pour 375px */
+  .partner-hub-wrapper {
+    width: min(280px, calc(100vw - 2rem)) !important;
+    height: min(280px, calc(100vw - 2rem)) !important;
+  }
+
+  .partner-hub-center {
+    width: 105px !important;
+    height: 105px !important;
+  }
+
+  /* Cartes de tarification & formulaires compacts */
+  .loc-pricing-card,
+  .tier-card,
+  .bento-card,
+  .contact-card-panel,
+  .estimation-banner-card,
+  .diagnostic-banner-card {
+    padding: 1.5rem 1rem !important;
+  }
+
+  /* Dialogues et formulaires modaux */
+  .modal-card,
+  .drawer-card,
+  .gerer-modal-dialog,
+  .loc-modal-container,
+  .partner-modal-dialog,
+  .article-reader-window,
+  .demo-modal-window {
+    width: calc(100% - 1.25rem) !important;
+    max-width: calc(100% - 1.25rem) !important;
+    padding: 1.5rem 1rem !important;
+    margin: 0.6rem auto !important;
+  }
+
+  /* Footer radial glow contraint */
+  .footer::before {
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Tableaux & graphiques à défilement horizontal sécurisé */
+  .chart-canvas-wrapper,
+  .gerer-compare-table-wrapper,
+  .pm-pipeline-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  /* Ticker logos partenaires continu */
+  .partners-logos-list,
+  .partners-logos-row {
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Header compact */
+  .header-search-form {
+    display: none !important;
+  }
+
+  .logo-img {
+    height: 36px !important;
+  }
+}
+
+/* ========================================================================
+   9. SUPPORT MODE DASHBOARD / APPLICATION CLIENT
+   ======================================================================== */
+@media (max-width: 900px) {
+  body.dashboard-active-mode .header {
+    display: none !important;
+  }
+  
+  body.dashboard-active-mode .main-content {
+    margin-top: 0 !important;
+  }
+  
+  body.dashboard-active-mode #dashboard.view-section {
+    height: 100vh !important;
+  }
+  
+  body.dashboard-active-mode .dashboard-p1,
+  body.dashboard-active-mode .dashboard-p2,
+  body.dashboard-active-mode .dashboard-p3,
+  body.dashboard-active-mode .dashboard-p4,
+  body.dashboard-active-mode .dashboard-layout {
+    height: 100vh !important;
+  }
+}

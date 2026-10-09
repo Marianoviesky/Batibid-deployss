@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(reg) { reg.unregister(); });
+      }).catch(function() {});
+    }
+    if ('caches' in window && window.location.protocol !== 'file:') {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(key) { caches.delete(key); });
+      }).catch(function() {});
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails du bien immobilier | BatiBid</title>
+  <meta name="description" content="Consultez la fiche complète du bien immobilier sélectionné avec photos, visite 360° et équipements.">
+  
+  <!-- Preload Critical Self-Hosted Fonts -->
+  <link rel="preload" href="./fonts/fraunces-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/geist-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon and PWA Meta -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/BatiBid logo app.svg">
+  <link rel="apple-touch-icon" href="./assets/images/BatiBid logo app.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D9571E">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet Map library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Tailwind Css -->
+   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css?v=4.1">
+</head>
+<body data-page="detail">
+
+  <!-- ==========================================
+       SCROLL PROGRESS BAR
+       ========================================== -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- ==========================================
+       HEADER (NAVBAR)
+       ========================================== -->
+  <!-- ==========================================
+       HEADER (NAVBAR FIDÈLE À LA MAQUETTE)
+       ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo">
+      </a>
+      
+      <nav class="nav-menu" id="header-nav-menu">
+        <a href="gerer" class="nav-link">Gérer</a>
+        <a href="mise-en-location" class="nav-link">Louer</a>
+        <a href="construire" class="nav-link">Construire</a>
+        <a href="juridique" class="nav-link">Juridique</a>
+        
+        <!-- Dropdown: Entreprises -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Entreprises <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="corporate-housing"><i class="fas fa-building-user"></i> Corporate Housing</a>
+            <a href="private-market"><i class="fas fa-lock"></i> Private Market</a>
+            <a href="partenariats"><i class="fas fa-handshake"></i> Partenariats</a>
+          </div>
+        </div>
+
+        <!-- Dropdown: Ressources -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            Ressources <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="blog"><i class="fas fa-newspaper"></i> Blog &amp; Actualités</a>
+            <a href="contact"><i class="fas fa-envelope"></i> Contact &amp; RDV</a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Search form to marketplace app -->
+        <form action="https://app.batibid.com/search" method="GET" target="_blank" rel="noopener" class="header-search-form">
+          <input type="text" name="q" placeholder="Rechercher un bien au Bénin" class="header-search-input" autocomplete="off" aria-label="Rechercher un bien immobilier">
+          <button type="submit" class="header-search-submit" title="Rechercher sur la marketplace BatiBid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <!-- Orange Button: Se connecter -->
+        <a href="https://app.batibid.com" target="_blank" rel="noopener" class="btn-header-login">
+          Se connecter <i class="fas fa-arrow-right"></i>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu principal">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN VIEWS CONTAINER (SPA SHELL)
+       ========================================== -->
+      <main class="main-content">
+
+    <section id="detail" class="view-section active">
+<div class="detail-page-wrapper">
+  <!-- Back button -->
+  <div class="detail-back-bar">
+    <button class="detail-back-btn" onclick="navigateTo('#trouver')">
+      <i class="fas fa-arrow-left"></i> Retour aux biens
+    </button>
+    <div id="detail-verified-badge" class="detail-verified-badge" style="display:none;">
+      <i class="fas fa-shield-halved"></i> Bien Vérifié BatiBid
+    </div>
+  </div>
+
+  <div class="detail-property-layout">
+    <!-- ====== LEFT COLUMN ====== -->
+    <div class="detail-left-col">
+
+      <!-- MEDIA TABS -->
+      <div class="detail-media-tabs">
+        <button class="detail-tab-btn active" onclick="switchDetailTab('gallery', this)">
+          <i class="fas fa-images"></i> Photos
+        </button>
+        <button class="detail-tab-btn" onclick="switchDetailTab('panorama', this)">
+          <i class="fas fa-vr-cardboard"></i> Visite 360°
+        </button>
+        <button class="detail-tab-btn" id="detail-video-tab-btn" onclick="switchDetailTab('video', this)" style="display:none;">
+          <i class="fas fa-play-circle"></i> Vidéo
+        </button>
+      </div>
+
+      <!-- GALLERY PANEL -->
+      <div id="detail-panel-gallery" class="detail-media-panel active">
+        <div class="detail-gallery-main-wrapper">
+          <img id="detail-gallery-main-img" src="" alt="Photo principale" class="detail-gallery-main-img" decoding="async" loading="lazy">
+          <div class="detail-gallery-nav">
+            <button class="detail-gallery-arrow" onclick="galleryPrev()"><i class="fas fa-chevron-left"></i></button>
+            <button class="detail-gallery-arrow" onclick="galleryNext()"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="detail-gallery-counter" id="detail-gallery-counter">1 / 4</div>
+        </div>
+        <div class="detail-gallery-thumbs" id="detail-gallery-thumbs">
+          <!-- Thumbnails injected by JS -->
+        </div>
+      </div>
+
+      <!-- 360 PANORAMA PANEL -->
+      <div id="detail-panel-panorama" class="detail-media-panel">
+        <div class="panorama-360-container">
+          <canvas id="panorama-360" class="panorama-canvas"></canvas>
+          <div class="panorama-overlay-info">
+            <i class="fas fa-vr-cardboard"></i> Visite Virtuelle 360° Interactive BatiBid
+          </div>
+          <div class="panorama-control-tip">
+            <i class="fas fa-arrows-alt-h"></i> Cliquez et glissez pour tourner — Tactile supporté
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO PANEL -->
+      <div id="detail-panel-video" class="detail-media-panel">
+        <div class="detail-video-wrapper">
+          <iframe 
+            id="detail-video-iframe" 
+            src="" 
+            class="detail-video-iframe"
+            title="Vidéo de présentation du bien" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="detail-video-caption">
+          <i class="fas fa-info-circle"></i> Vidéo de présentation du bien enregistrée par BatiBid
+        </p>
+      </div>
+
+      <!-- PROPERTY INFO -->
+      <div class="detail-info-section">
+        <h1 class="headline-lg" id="detail-title">Appartement de Standing</h1>
+        <div class="property-card-location detail-location-bar" id="detail-location">
+          <i class="fas fa-map-marker-alt"></i> Cadjehoun, Cotonou
+        </div>
+
+        <div class="detail-stats-container">
+          <div class="detail-stat-item">
+            <span class="detail-stat-label"><i class="fas fa-bed"></i> Chambres</span>
+            <strong class="detail-stat-value" id="detail-beds">2</strong>
+          </div>
+          <div class="detail-stat-item">
+            <span class="detail-stat-label"><i class="fas fa-bath"></i> Salles de bain</span>
+            <strong class="detail-stat-value" id="detail-baths">2</strong>
+          </div>
+          <div class="detail-stat-item">
+            <span class="detail-stat-label"><i class="fas fa-ruler-combined"></i> Superficie</span>
+            <strong class="detail-stat-value"><span id="detail-surface">95</span> m²</strong>
+          </div>
+          <div class="detail-stat-item">
+            <span class="detail-stat-label"><i class="fas fa-home"></i> Type</span>
+            <strong class="detail-stat-value" id="detail-type">Appartement</strong>
+          </div>
+        </div>
+
+        <h2 class="headline-md mb-4" style="margin-top:2rem;">Description du bien</h2>
+        <p class="body-md" style="line-height: 1.8; color: var(--secondary-light); margin-bottom: 3rem;" id="detail-desc">
+          Description complète du logement...
+        </p>
+      </div>
+    </div>
+
+    <!-- ====== RIGHT COLUMN: CTA ====== -->
+    <div id="detail-cta-box">
+      <!-- Dynamic CTA sidebar filled by app.js -->
+    </div>
+  </div>
+</div>
+    </section>
+
+    <!-- ========================================================================
+         BATIBID — CORPORATE HOUSING (SECTION)
+         ======================================================================== -->
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER (PREMIUM DARK BACKGROUND)
+       ========================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Col 1: Marque & Mission -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="./assets/images/BatiBid logo 2.svg" class="logo-img" style="filter: brightness(0) invert(1);" alt="BatiBid Logo Blanc">
+        </div>
+        <p class="footer-desc">
+          BatiBid est la plateforme PropTech de référence pour l'écosystème immobilier au Bénin. Nous sécurisons la gestion, la construction et les transactions immobilières.
+        </p>
+        <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+          <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" style="width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--white);"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Solutions -->
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="gerer"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Gérer mon bien</a></li>
+          <li><a href="mise-en-location"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Mettre en location</a></li>
+          <li><a href="https://app.batibid.com/search" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" style="font-size: 0.68rem; color: var(--clr-primary);"></i> Trouver un bien (Catalogue)</a></li>
+          <li><a href="construire"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Construire &amp; rénover</a></li>
+          <li><a href="corporate-housing"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Corporate Housing (B2B)</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Expertises -->
+      <div class="footer-col">
+        <h4>Expertises &amp; Off-Market</h4>
+        <ul class="footer-links">
+          <li><a href="private-market"><i class="fas fa-lock" style="font-size: 0.7rem; color: var(--clr-primary);"></i> BatiBid Private Market</a></li>
+          <li><a href="juridique"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Sécurisation Juridique</a></li>
+          <li><a href="partenariats"><i class="fas fa-chevron-right" style="font-size: 0.7rem; color: var(--clr-primary);"></i> Partenariats</a></li>
+          <li><a href="blog"><i class="fas fa-newspaper"></i> Blog</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Siège & Contact -->
+      <div class="footer-col">
+        <h4>Siège &amp; Contact</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Zone Commerciale Akpakpa, Lot 402, Cotonou, Bénin</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+229 01 42 48 48 48</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>contact@batibid.com</span>
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="contact" class="btn btn-outline" style="border-color: rgba(255,255,255,0.25); color: var(--white); width: 100%; font-size: 0.85rem;"><i class="fas fa-calendar-check"></i> Prendre un rendez-vous</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 BatiBid Technologies. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="javascript:void(0)" onclick="openLegalModal('mentions')">Mentions Légales</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('confidentialite')">Politique de Confidentialité</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('cgu')">Conditions Générales</a>
+        <a href="https://app.batibid.com" target="_blank" rel="noopener">Espace Client</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <img src="./assets/images/BatiBid logo 1.svg" class="logo-img" alt="BatiBid Logo" style="height: 38px;">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Fermer le menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <nav class="mobile-nav-links" id="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-home"></i> Accueil</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="gerer" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-key"></i> Gérer mon bien</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="mise-en-location" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-bullhorn"></i> Mettre en location</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="construire" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-hard-hat"></i> Construire &amp; rénover</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="juridique" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-balance-scale"></i> Juridique &amp; Foncier</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="corporate-housing" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-building-user"></i> Corporate Housing</span>
+          <span class="badge-private" style="font-size: 0.62rem; background: var(--clr-primary-soft); color: var(--clr-primary-deep);">B2B</span>
+        </a>
+        <a href="private-market" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-lock"></i> Private Market</span>
+          <span class="badge-private" style="font-size: 0.62rem;">Off-Market</span>
+        </a>
+        <a href="partenariats" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-handshake"></i> Partenariats</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="blog" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-newspaper"></i> Blog</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+        <a href="contact" class="mobile-nav-link" onclick="toggleMobileMenu()">
+          <span class="mobile-nav-link-left"><i class="fas fa-envelope"></i> Contact</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.75rem; color: var(--gray-400);"></i>
+        </a>
+      </nav>
+      
+      <div class="mobile-nav-footer">
+        <a href="https://wa.me/2290142484848" target="_blank" rel="noopener" style="font-size: 0.88rem; color: #25D366; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding-top: 0.3rem;">
+          <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> Assistance WhatsApp directe
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20un%20renseignement%20sur%20ce%20bien." id="whatsapp-fab" class="whatsapp-fab" target="_blank" rel="noopener" title="Discuter sur WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-fab-tooltip">Assistance direct</span>
+  </a>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20je%20souhaite%20visiter%20ce%20bien." target="_blank" rel="noopener" class="btn btn-secondary" style="flex: 1; justify-content: center; color: #25D366; border-color: #25D366;">
+      <i class="fab fa-whatsapp" style="margin-right: 0.4rem;"></i> WhatsApp
+    </a>
+    <button type="button" class="btn btn-primary" onclick="initiatePropertyApplication()" style="flex: 1.2; justify-content: center;">
+      <i class="fas fa-file-signature" style="margin-right: 0.4rem;"></i> Postuler
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=3.0"></script>
+  <script src="js/offer.js"></script>
+  <script src="app.js?v=3.8"></script>
+</body>
+</html>

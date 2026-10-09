@@ -1,0 +1,286 @@
+<section id="blog" class="view-section active">
+<!-- ========================================================================
+     BATIBID — LE BLOG (PAGE BLOG ÉDITORIALE)
+     Fidélité stricte à la maquette de référence media_1788533683996.jpg
+     Catégories : Articles | Actualités | Conseils
+     ======================================================================== -->
+
+<div class="blog-page">
+  <div class="blog-container">
+
+    <!-- ====================================================================
+         HEADER : EN-TÊTE ÉDITORIAL & FILTRES CATÉGORIES
+         ==================================================================== -->
+    <header class="blog-header">
+      <span class="blog-eyebrow reveal">BatiBid</span>
+      <h1 class="blog-title reveal-text-mask">
+        <span class="reveal-line">Le Blog BatiBid</span>
+      </h1>
+      <p class="blog-subtitle reveal">
+        Conseils, analyses et tendances sur le marché de l'immobilier au Bénin.
+      </p>
+      
+      <!-- Filter Tabs : Articles | Actualités | Conseils -->
+      <nav class="blog-filter-bar reveal" role="tablist" aria-label="Catégories du blog">
+        <button type="button" 
+                class="blog-tab active" 
+                data-category="all" 
+                onclick="filterBlogArticles('all', this)" 
+                role="tab" 
+                aria-selected="true">
+          Articles
+        </button>
+        <span class="blog-tab-separator" aria-hidden="true"></span>
+        <button type="button" 
+                class="blog-tab" 
+                data-category="actualites" 
+                onclick="filterBlogArticles('actualites', this)" 
+                role="tab" 
+                aria-selected="false">
+          Actualités
+        </button>
+        <span class="blog-tab-separator" aria-hidden="true"></span>
+        <button type="button" 
+                class="blog-tab" 
+                data-category="conseils" 
+                onclick="filterBlogArticles('conseils', this)" 
+                role="tab" 
+                aria-selected="false">
+          Conseils
+        </button>
+      </nav>
+    </header>
+
+
+    <!-- ====================================================================
+         ARTICLE 1 : GRAND FORMAT À LA UNE (FEATURED POST)
+         ==================================================================== -->
+    <section class="blog-featured-section" aria-label="Article à la une">
+      <article class="blog-featured-card reveal-scale bento-card-interactive" data-category="actualites" onclick="openArticleReader('calavi')">
+        
+        <div class="blog-featured-media">
+          <img src="./assets/images/blog_calavi.jpg" 
+               alt="Vue aérienne d'Abomey-Calavi et Cocotomey au Bénin" 
+               class="blog-featured-img hero-img-cinematic" 
+               loading="lazy">
+        </div>
+        
+        <div class="blog-featured-body">
+          <div class="blog-meta-row">
+            <span class="blog-badge blog-badge-actu">Actualités</span>
+            <span class="blog-date">09 Juin 2026</span>
+          </div>
+          
+          <h2 class="blog-featured-title">
+            Investir à Abomey-Calavi : Les quartiers d'avenir en 2026
+          </h2>
+          
+          <p class="blog-featured-desc">
+            Découvrez notre analyse complète des zones à forte croissance et rentabilité locative autour de Calavi et Cocotomey.
+          </p>
+          
+          <div class="blog-read-link-wrap">
+            <span class="blog-read-link">
+              Lire l'article <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+
+      </article>
+    </section>
+
+
+    <!-- ====================================================================
+         GRILLE DES ARTICLES SECONDAIRES (2 COLONNES DESKTOP)
+         ==================================================================== -->
+    <section class="blog-grid-section" aria-label="Derniers articles">
+      <div class="blog-cards-grid stagger-children">
+        
+        <!-- Article 2 : Loyers Impayés & Garantie 100% -->
+        <article class="blog-card bento-card-interactive" data-category="conseils" onclick="openArticleReader('loyers')">
+          <div class="blog-card-media">
+            <img src="./assets/images/apt_kitchen.png" 
+                 alt="Intérieur moderne appartement géré par BatiBid" 
+                 class="blog-card-img" 
+                 loading="lazy">
+            
+            <!-- Badge flottant officiel fidélité maquette -->
+            <div class="blog-guarantee-badge float-oscillate-1">
+              <span class="badge-icon-check">
+                <i class="fas fa-check" aria-hidden="true"></i>
+              </span>
+              <span class="badge-text">
+                <strong>Loyer garanti :</strong> Versement effectué le 5 du mois
+              </span>
+            </div>
+          </div>
+          
+          <div class="blog-card-body">
+            <div class="blog-meta-row">
+              <span class="blog-badge blog-badge-conseils">Conseils</span>
+              <span class="blog-date">02 Juin 2026</span>
+            </div>
+            
+            <h3 class="blog-card-title">
+              Loyers Impayés : Comment notre garantie à 100% protège les bailleurs
+            </h3>
+            
+            <p class="blog-card-desc">
+              BatiBid révolutionne la gestion avec un fonds d'assurance intégré. Comprendre le versement automatique du 5 du mois.
+            </p>
+            
+            <div class="blog-read-link-wrap">
+              <span class="blog-read-link">
+                Lire l'article <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 : Les 5 pièges à éviter lors de l'achat d'une parcelle -->
+        <article class="blog-card bento-card-interactive" data-category="conseils" onclick="openArticleReader('parcelle')">
+          <div class="blog-card-media">
+            <img src="./assets/images/blog_parcelle.jpg" 
+                 alt="Parcelle clôturée sécurisée à Cotonou" 
+                 class="blog-card-img" 
+                 loading="lazy">
+          </div>
+          
+          <div class="blog-card-body">
+            <div class="blog-meta-row">
+              <span class="blog-badge blog-badge-conseils">Conseils</span>
+              <span class="blog-date">24 Mai 2026</span>
+            </div>
+            
+            <h3 class="blog-card-title">
+              Les 5 pièges à éviter lors de l'achat d'une parcelle à Cotonou
+            </h3>
+            
+            <p class="blog-card-desc">
+              Titres fonciers, géomètres, autorisations administratives : suivez les conseils d'experts pour sécuriser votre investissement foncier.
+            </p>
+            
+            <div class="blog-read-link-wrap">
+              <span class="blog-read-link">
+                Lire l'article <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         BANNIÈRE INSTITUTIONNELLE PROPTECH (FOND SOMBRE & DÉCOUPE COURBÉE)
+         ==================================================================== -->
+    <section class="blog-proptech-banner reveal-scale bento-card-interactive" aria-label="Présentation PropTech BatiBid">
+      <div class="proptech-banner-content">
+        <h2 class="proptech-banner-title">
+          BatiBid est la plateforme leader en PropTech au Bénin.
+        </h2>
+        <p class="proptech-banner-desc">
+          Notre mission est de sécuriser le patrimoine des propriétaires tout en simplifiant le logement pour les locataires.
+        </p>
+      </div>
+      
+      <div class="proptech-banner-visual">
+        <img src="./assets/images/duplex_villa.png" 
+             alt="Villa contemporaine haut de gamme BatiBid" 
+             class="proptech-banner-img hero-img-cinematic" 
+             loading="lazy">
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         BANDEAU RESTONS EN CONTACT (CONTACT STRIP & BULLES D'ACTION)
+         ==================================================================== -->
+    <section class="blog-contact-strip reveal-scale bento-card-interactive" aria-label="Coordonnées de contact">
+      <div class="contact-strip-lead">
+        <h3 class="contact-strip-title">Restons en contact</h3>
+        <p class="contact-strip-desc">
+          Une question, un projet ou besoin d'accompagnement ?<br>Notre équipe est à votre écoute.
+        </p>
+      </div>
+      
+      <div class="contact-strip-info">
+        <div class="contact-info-item">
+          <i class="fas fa-location-dot" aria-hidden="true"></i>
+          <span>Zone Commerciale Akpakpa, Cotonou</span>
+        </div>
+        <a href="mailto:contact@batibid.com" class="contact-info-item">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span>contact@batibid.com</span>
+        </a>
+        <a href="tel:+2290142484848" class="contact-info-item">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          <span>+229 01 42 48 48 48</span>
+        </a>
+      </div>
+
+      <div class="contact-strip-actions">
+        <a href="mailto:contact@batibid.com" 
+           class="contact-action-circle action-circle-mail" 
+           title="Envoyer un email à contact@batibid.com" 
+           aria-label="Envoyer un email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a href="https://wa.me/2290142484848?text=Bonjour%20BatiBid%2C%20j%27ai%20une%20question%20suite%20%C3%A0%20la%20lecture%20de%20votre%20blog." 
+           target="_blank" 
+           rel="noopener" 
+           class="contact-action-circle action-circle-whatsapp" 
+           title="Contacter sur WhatsApp (+229 01 42 48 48 48)" 
+           aria-label="Contacter sur WhatsApp">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ========================================================================
+     MODAL DE LECTURE D'ARTICLE (ARTICLE READER MODAL)
+     ======================================================================== -->
+<div class="article-reader-modal" id="article-reader-modal" onclick="if(event.target === this) closeArticleReader()" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="article-reader-window">
+    <button type="button" class="article-reader-close" onclick="closeArticleReader()" aria-label="Fermer l'article">
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    
+    <div class="article-reader-header">
+      <div class="article-reader-meta">
+        <span class="blog-badge" id="arm-badge">Actualités</span>
+        <span class="blog-date" id="arm-date">09 Juin 2026</span>
+        <span class="arm-read-time"><i class="far fa-clock"></i> 4 min de lecture</span>
+      </div>
+      <h2 class="article-reader-title" id="arm-title">Titre de l'article</h2>
+    </div>
+    
+    <div class="article-reader-media">
+      <img id="arm-image" src="./assets/images/blog_calavi.jpg" alt="Article image" class="article-reader-img" decoding="async" loading="lazy">
+    </div>
+
+    <div class="article-reader-body" id="arm-body">
+      <!-- Article content loaded dynamically by app.js -->
+    </div>
+
+    <div class="article-reader-footer">
+      <div class="arm-footer-author">
+        <div class="arm-author-avatar">BB</div>
+        <div>
+          <strong style="color: var(--clr-dark); display: block; font-size: 0.95rem;">Rédaction BatiBid Bénin</strong>
+          <span style="font-size: 0.8rem; color: #8A796F;">Analystes fonciers et experts juridiques</span>
+        </div>
+      </div>
+      <div class="arm-footer-cta">
+        <a href="contact" class="btn btn-primary btn-shimmer" onclick="closeArticleReader()">
+          <i class="fas fa-calendar-alt"></i> Prendre conseil avec un expert
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+    </section>
